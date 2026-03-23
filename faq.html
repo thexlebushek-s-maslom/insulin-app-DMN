@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>FAQ — Часто задаваемые вопросы — Калькулятор инсулина</title>
+<meta name="description" content="Ответы на часто задаваемые вопросы о расчёте дозы инсулина, ICR, ISF, гипогликемии и безопасности.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/faq.html">
+<meta name="theme-color" content="#3fb68e">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-q {
+    width: 100%; background: none; border: none; padding: 14px 0;
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;
+    cursor: pointer; text-align: left; color: var(--text); font-family: var(--sans);
+    font-size: 14px; font-weight: 600; line-height: 1.4;
+  }
+  .faq-q:hover { color: var(--accent); }
+  .faq-icon { font-size: 18px; flex-shrink: 0; transition: transform 0.2s; margin-top: 1px; color: var(--muted); }
+  .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--accent); }
+  .faq-a {
+    font-size: 13px; color: var(--muted); line-height: 1.7;
+    max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.2s;
+    padding-bottom: 0;
+  }
+  .faq-item.open .faq-a { max-height: 600px; padding-bottom: 14px; }
+  .faq-a ul { padding-left: 16px; margin-top: 6px; }
+  .faq-a li { margin-bottom: 4px; }
+  .faq-a strong { color: var(--text); }
+  .warn-card {
+    background: rgba(224,92,92,0.08);
+    border: 1px solid rgba(224,92,92,0.25);
+    border-radius: 12px; padding: 14px 16px;
+  }
+  .warn-card h2 { color: var(--danger) !important; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">💉 Insulin<span>.app</span></a>
+    <div class="nav-links">
+      <a href="index.html"  class="nav-link" data-i18n="nav_calc">Калькулятор</a>
+      <a href="about.html"  class="nav-link" data-i18n="nav_about">О расчёте</a>
+      <a href="faq.html"    class="nav-link active" data-i18n="nav_faq">FAQ</a>
+      <select id="lang-select" class="lang-select" title="Language">
+        <option value="ru">RU</option>
+        <option value="en">EN</option>
+        <option value="es">ES</option>
+        <option value="de">DE</option>
+        <option value="fr">FR</option>
+        <option value="be">BE</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </div>
+</nav>
+
+<main class="page">
+
+  <div class="ad-slot" id="ad-top"></div>
+
+  <div class="card prose">
+    <h1>FAQ</h1>
+    <p class="date">Часто задаваемые вопросы · 2026</p>
+  </div>
+
+  <!-- ⚠️ Warnings card -->
+  <div class="card prose warn-card">
+    <h2>⚠️ Важные предупреждения</h2>
+    <p>Расчёт дозы инсулина — сложный медицинский процесс. Данный калькулятор предназначен <strong>только для информационных целей</strong> и не заменяет консультацию врача.</p>
+    <ul>
+      <li>Всегда проверяйте рассчитанную дозу перед введением</li>
+      <li>Учитывайте активный инсулин (IOB) от предыдущих введений</li>
+      <li>Физическая активность меняет чувствительность к инсулину</li>
+      <li>При болезни или стрессе коэффициенты могут меняться</li>
+      <li>При признаках гипогликемии — немедленно примите быстрые углеводы</li>
+      <li>Никогда не вводите инсулин без измерения уровня глюкозы</li>
+    </ul>
+  </div>
+
+  <!-- FAQ items -->
+  <div class="card" style="padding: 8px 16px;">
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span>Что такое ICR и как его узнать?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <strong>ICR (Insulin-to-Carb Ratio)</strong> — инсулино-углеводный коэффициент. Показывает, сколько граммов углеводов покрывает 1 единица инсулина. Например, ICR = 12 означает: 1 ед. на каждые 12 г углеводов.<br><br>
+        ICR подбирается эндокринологом индивидуально. Типичные значения — от 8 до 20, но они строго индивидуальны. Не меняйте ICR без консультации с врачом.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span>Что такое ISF и почему он важен?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <strong>ISF (Insulin Sensitivity Factor)</strong> — фактор чувствительности к инсулину. Показывает, насколько снизится глюкоза при введении 1 единицы инсулина. Например, ISF = 2.5 ммоль/л: 1 ед. снижает глюкозу на 2.5 ммоль/л.<br><br>
+        ISF меняется в зависимости от времени суток, физической активности, болезни и других факторов. Уточняйте ISF с врачом.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span>Что такое целевой уровень глюкозы?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        Целевой уровень — значение глюкозы, к которому стремится коррекционная доза. Обычно для взрослых с СД1 это <strong>5.0–7.0 ммоль/л</strong> (90–126 мг/дл).<br><br>
+        Ваш целевой уровень определяет эндокринолог с учётом возраста, активности и истории гипогликемий.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span>Почему доза округляется до 0.5?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        Большинство инсулиновых шприц-ручек позволяют вводить дозу с шагом 0.5 или 1 единица. Округление до 0.5 ед. — разумный компромисс между математической точностью и техническими возможностями устройств.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span>Нормы уровня глюкозы крови</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <ul>
+          <li><strong>Ниже 3.9 ммоль/л (70 мг/дл)</strong> — гипогликемия, требует срочного приёма быстрых углеводов</li>
+          <li><strong>3.9 – 7.8 ммоль/л (70–140 мг/дл)</strong> — норма для большинства ситуаций</li>
+          <li><strong>7.8 – 11.0 ммоль/л (140–198 мг/дл)</strong> — повышенный уровень</li>
+          <li><strong>Выше 11.0 ммоль/л (198 мг/дл)</strong> — гипергликемия, требует коррекции</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span>Почему расчёт показывает 0 или отрицательное значение?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        Это происходит когда глюкоза уже ниже целевого уровня. В таком случае коррекционная доза отрицательная и может перевесить дозу на еду.<br><br>
+        Если результат ≤ 0 — инсулин на коррекцию не нужен. Возможно, стоит уменьшить дозу на еду или вообще отказаться от болюса. Обязательно уточняйте такие ситуации с врачом.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span>Как часто нужно пересматривать ICR и ISF?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        Коэффициенты рекомендуется пересматривать каждые <strong>3–6 месяцев</strong>, а также при:
+        <ul>
+          <li>Значительном изменении веса</li>
+          <li>Смене режима питания или активности</li>
+          <li>Систематических гипо- или гипергликемиях</li>
+          <li>Изменении схемы инсулинотерапии</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span>Работает ли приложение без интернета?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        Да. При первом открытии приложение кешируется на устройстве через Service Worker. После этого оно работает полностью офлайн. История расчётов хранится локально в браузере — никуда не отправляется.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span>Безопасно ли использовать этот калькулятор?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        Калькулятор реализует стандартные медицинские формулы расчёта болюса. <strong>Однако он не учитывает</strong>:
+        <ul>
+          <li>Активный инсулин (IOB) от предыдущих введений</li>
+          <li>Индивидуальные особенности всасывания инсулина</li>
+          <li>Гликемический индекс конкретных продуктов</li>
+          <li>Влияние физической нагрузки, стресса, болезни</li>
+        </ul>
+        Используйте результаты как ориентир, а не как точное предписание. Всегда сверяйтесь с врачом.
+      </div>
+    </div>
+
+  </div>
+
+  <div style="text-align:center;padding:4px 0;">
+    <a href="index.html" class="calc-btn" style="display:inline-block;text-decoration:none;padding:14px 32px;border-radius:12px;width:auto;" data-i18n="nav_calc">
+      Перейти к калькулятору →
+    </a>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <a href="about.html" class="footer-link" data-i18n="nav_about">О расчёте</a>
+    <span class="footer-sep">·</span>
+    <a href="faq.html" class="footer-link" data-i18n="nav_faq">FAQ</a>
+    <span class="footer-sep">·</span>
+    <a href="privacy.html" class="footer-link">Privacy</a>
+    <div class="footer-copy" data-i18n="footer_copy">© 2026 insulin-calc. Только для информационных целей.</div>
+  </div>
+</footer>
+
+<div id="cookie-banner">
+  <div class="cookie-inner">
+    <p class="cookie-text"><span data-i18n="cookie_text">Мы используем cookies.</span> <a href="privacy.html">Privacy</a></p>
+    <div class="cookie-btns">
+      <button class="cookie-accept" onclick="acceptCookies()" data-i18n="cookie_accept">Принять</button>
+      <button class="cookie-decline" onclick="declineCookies()" data-i18n="cookie_decline">Только необходимые</button>
+    </div>
+  </div>
+</div>
+
+<button id="theme-toggle" title="Toggle theme">☀️</button>
+
+<script src="app.js"></script>
+<script>
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>

@@ -1,43 +1,45 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-<!-- SEO -->
 <title>Как рассчитать дозу инсулина — методика ICR и ISF</title>
-<meta name="description" content="Объяснение методики расчёта дозы инсулина: инсулино-углеводный коэффициент (ICR), фактор чувствительности (ISF), коррекционная доза. Информация для пациентов с диабетом.">
+<meta name="description" content="Объяснение методики расчёта дозы инсулина: инсулино-углеводный коэффициент (ICR), фактор чувствительности (ISF), коррекционная доза.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/about.html">
-<meta property="og:title" content="Как рассчитать дозу инсулина">
-<meta property="og:description" content="Методика расчёта дозы инсулина по ICR и ISF — объяснение для пациентов.">
 <meta name="theme-color" content="#3fb68e">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script> -->
 </head>
 <body>
 
 <nav class="nav">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">💉 Инсулин<span>.app</span></a>
+    <a href="index.html" class="nav-logo">💉 Insulin<span>.app</span></a>
     <div class="nav-links">
-      <a href="index.html" class="nav-link">Калькулятор</a>
-      <a href="about.html" class="nav-link active">О расчёте</a>
+      <a href="index.html"  class="nav-link" data-i18n="nav_calc">Калькулятор</a>
+      <a href="about.html"  class="nav-link active" data-i18n="nav_about">О расчёте</a>
+      <a href="faq.html"    class="nav-link" data-i18n="nav_faq">FAQ</a>
+      <select id="lang-select" class="lang-select" title="Language">
+        <option value="ru">RU</option>
+        <option value="en">EN</option>
+        <option value="es">ES</option>
+        <option value="de">DE</option>
+        <option value="fr">FR</option>
+        <option value="be">BE</option>
+        <option value="zh">中文</option>
+      </select>
     </div>
   </div>
 </nav>
 
 <main class="page">
 
-  <!-- Ad top -->
-  <div class="ad-slot" id="ad-top" style="display:none">
-    <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
-  </div>
+  <div class="ad-slot" id="ad-top"></div>
 
   <div class="card prose">
     <h1>Как рассчитывается доза инсулина</h1>
@@ -47,61 +49,33 @@
     <p>Расчёт болюсной дозы инсулина состоит из двух частей:</p>
     <ul>
       <li><strong>Доза на еду</strong> = Углеводы (г) ÷ ICR</li>
-      <li><strong>Коррекционная доза</strong> = (Текущая глюкоза − Целевая глюкоза) ÷ ISF</li>
+      <li><strong>Коррекционная доза</strong> = (Текущая глюкоза − Целевая) ÷ ISF</li>
       <li><strong>Итоговая доза</strong> = Доза на еду + Коррекционная доза</li>
     </ul>
 
     <h2>Что такое ICR</h2>
     <p><strong>ICR (Insulin-to-Carb Ratio)</strong> — инсулино-углеводный коэффициент. Показывает, сколько граммов углеводов «покрывает» одна единица инсулина. Например, ICR = 12 означает, что 1 ед. инсулина необходима на каждые 12 г углеводов.</p>
-    <p>ICR подбирается индивидуально эндокринологом и может различаться в зависимости от времени суток: утром часто требуется больше инсулина из-за феномена «утренней зари».</p>
+    <p>ICR подбирается индивидуально эндокринологом и может различаться в зависимости от времени суток.</p>
 
     <h2>Что такое ISF</h2>
-    <p><strong>ISF (Insulin Sensitivity Factor)</strong> — фактор чувствительности к инсулину. Показывает, насколько снизится уровень глюкозы при введении 1 единицы инсулина. Например, ISF = 2.5 ммоль/л означает, что 1 ед. снизит глюкозу на 2.5 ммоль/л.</p>
-    <p>ISF также индивидуален и зависит от физической активности, стресса, фазы цикла и других факторов.</p>
+    <p><strong>ISF (Insulin Sensitivity Factor)</strong> — фактор чувствительности к инсулину. Показывает, насколько снизится уровень глюкозы при введении 1 единицы инсулина. ISF = 2.5 ммоль/л означает снижение на 2.5 ммоль/л.</p>
 
     <h2>Целевой уровень глюкозы</h2>
-    <p>Целевой уровень — это значение, к которому нужно стремиться после приёма пищи и введения инсулина. Обычно для взрослых с диабетом 1 типа это <strong>5.0–7.0 ммоль/л</strong>, но точное значение определяет врач.</p>
+    <p>Для взрослых с диабетом 1 типа обычно <strong>5.0–7.0 ммоль/л</strong>. Точное значение определяет врач.</p>
 
     <h2>Нормы уровня глюкозы</h2>
     <ul>
-      <li><strong>Ниже 3.9 ммоль/л</strong> — гипогликемия, требует немедленного приёма быстрых углеводов</li>
-      <li><strong>3.9 – 7.8 ммоль/л</strong> — норма натощак и постпрандиальная</li>
-      <li><strong>7.8 – 11.0 ммоль/л</strong> — повышенный уровень</li>
-      <li><strong>Выше 11.0 ммоль/л</strong> — гипергликемия, требует коррекции</li>
+      <li><strong>Ниже 3.9 ммоль/л</strong> — гипогликемия</li>
+      <li><strong>3.9 – 7.8 ммоль/л</strong> — норма</li>
+      <li><strong>7.8 – 11.0 ммоль/л</strong> — повышенный</li>
+      <li><strong>Выше 11.0 ммоль/л</strong> — гипергликемия</li>
     </ul>
   </div>
 
-  <!-- Ad middle -->
-  <div class="ad-slot" id="ad-middle" style="display:none">
-    <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
-  </div>
+  <div class="ad-slot" id="ad-middle"></div>
 
-  <div class="card prose">
-    <h2>Важные предупреждения</h2>
-    <p>Расчёт дозы инсулина — сложный медицинский процесс. Данный калькулятор предназначен <strong>только для информационных целей</strong> и не заменяет консультацию врача.</p>
-    <ul>
-      <li>Всегда проверяйте рассчитанную дозу перед введением</li>
-      <li>Учитывайте активный инсулин от предыдущих введений</li>
-      <li>Физическая активность влияет на чувствительность к инсулину</li>
-      <li>При болезни, стрессе или изменении режима питания коэффициенты могут меняться</li>
-      <li>При признаках гипогликемии — немедленно примите быстрые углеводы</li>
-    </ul>
-
-    <h2>Часто задаваемые вопросы</h2>
-
-    <h2>Как часто нужно пересматривать ICR и ISF?</h2>
-    <p>Коэффициенты рекомендуется пересматривать с эндокринологом каждые 3–6 месяцев, а также при значительном изменении веса, образа жизни или схемы лечения.</p>
-
-    <h2>Почему доза округляется до 0.5?</h2>
-    <p>Большинство инсулиновых шприц-ручек позволяют вводить дозу с шагом 0.5 или 1 единица. Округление до 0.5 ед. — разумный компромисс между точностью и практическими ограничениями устройств.</p>
-
-    <h2>Работает ли приложение без интернета?</h2>
-    <p>Да. Приложение кешируется на устройстве при первом открытии и работает полностью офлайн. История расчётов хранится локально на вашем устройстве.</p>
-  </div>
-
-  <div style="text-align:center;padding:8px 0;">
-    <a href="index.html" class="calc-btn" style="display:inline-block;text-decoration:none;padding:14px 32px;border-radius:12px;width:auto;">
+  <div style="text-align:center;padding:4px 0;">
+    <a href="index.html" class="calc-btn" style="display:inline-block;text-decoration:none;padding:14px 32px;border-radius:12px;width:auto;" data-i18n="nav_calc">
       Перейти к калькулятору →
     </a>
   </div>
@@ -110,31 +84,27 @@
 
 <footer class="footer">
   <div class="footer-inner">
-    <a href="about.html" class="footer-link">О расчёте</a>
+    <a href="about.html" class="footer-link" data-i18n="nav_about">О расчёте</a>
     <span class="footer-sep">·</span>
-    <a href="privacy.html" class="footer-link">Политика конфиденциальности</a>
-    <div class="footer-copy">© 2026 insulin-calc. Только для информационных целей.</div>
+    <a href="faq.html" class="footer-link" data-i18n="nav_faq">FAQ</a>
+    <span class="footer-sep">·</span>
+    <a href="privacy.html" class="footer-link">Privacy</a>
+    <div class="footer-copy" data-i18n="footer_copy">© 2026 insulin-calc. Только для информационных целей.</div>
   </div>
 </footer>
 
 <div id="cookie-banner">
   <div class="cookie-inner">
-    <p class="cookie-text">Мы используем cookies для аналитики и показа рекламы. <a href="privacy.html">Подробнее</a>.</p>
+    <p class="cookie-text"><span data-i18n="cookie_text">Мы используем cookies.</span> <a href="privacy.html">Privacy</a></p>
     <div class="cookie-btns">
-      <button class="cookie-accept" onclick="acceptCookies()">Принять</button>
-      <button class="cookie-decline" onclick="declineCookies()">Только необходимые</button>
+      <button class="cookie-accept" onclick="acceptCookies()" data-i18n="cookie_accept">Принять</button>
+      <button class="cookie-decline" onclick="declineCookies()" data-i18n="cookie_decline">Только необходимые</button>
     </div>
   </div>
 </div>
 
-<script>
-function checkCookieConsent() {
-  if (!localStorage.getItem('cookieConsent'))
-    setTimeout(() => document.getElementById('cookie-banner').classList.add('show'), 1500);
-}
-function acceptCookies() { localStorage.setItem('cookieConsent','accepted'); document.getElementById('cookie-banner').classList.remove('show'); }
-function declineCookies() { localStorage.setItem('cookieConsent','declined'); document.getElementById('cookie-banner').classList.remove('show'); }
-checkCookieConsent();
-</script>
+<button id="theme-toggle" title="Toggle theme">☀️</button>
+
+<script src="app.js"></script>
 </body>
 </html>

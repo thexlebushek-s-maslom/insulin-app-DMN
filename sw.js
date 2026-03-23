@@ -1,44 +1,56 @@
-const CACHE = 'insulin-v2';
+// sw.js — Service Worker v3
+const CACHE = 'insulin-v3';
 const ASSETS = [
-  '/',
-  '/index.html',
-  '/about.html',
-  '/privacy.html',
-  '/style.css',
-  '/manifest.json',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png',
+  './',
+  './index.html',
+  './about.html',
+  './faq.html',
+  './privacy.html',
+  './style.css',
+  './app.js',
+  './manifest.json',
+  './icons/icon-192.png',
+  './icons/icon-512.png',
 ];
 
-self.addEventListener('install', e => {
-  e.waitUntil(
+self.addEventListener('install', event => {
+  event.waitUntil(
     caches.open(CACHE)
-      .then(c => c.addAll(ASSETS))
+      .then(cache => cache.addAll(ASSETS))
       .then(() => self.skipWaiting())
   );
 });
 
-self.addEventListener('activate', e => {
-  e.waitUntil(
+self.addEventListener('activate', event => {
+  event.waitUntil(
     caches.keys()
-      .then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k))))
+      .then(keys => Promise.all(
+        keys.filter(key => key !== CACHE).map(key => caches.delete(key))
+      ))
       .then(() => self.clients.claim())
   );
 });
 
-self.addEventListener('fetch', e => {
-  e.respondWith(
-    caches.match(e.request)
-      .then(cached => cached || fetch(e.request)
-        .then(res => {
-          // Cache successful GET responses
-          if (e.request.method === 'GET' && res.status === 200) {
-            const copy = res.clone();
-            caches.open(CACHE).then(c => c.put(e.request, copy));
-          }
-          return res;
-        })
-        .catch(() => caches.match('/index.html'))
-      )
+self.addEventListener('fetch', event => {
+  const url = new URL(event.request.url);
+
+  // Don't cache cross-origin requests (fonts, ads, analytics)
+  if (url.origin !== self.location.origin) {
+    event.respondWith(fetch(event.request).catch(() => new Response('', { status: 408 })));
+    return;
+  }
+
+  // Cache-first for local assets
+  event.respondWith(
+    caches.match(event.request).then(cached => {
+      if (cached) return cached;
+      return fetch(event.request).then(response => {
+        if (response.ok && event.request.method === 'GET') {
+          const copy = response.clone();
+          caches.open(CACHE).then(cache => cache.put(event.request, copy));
+        }
+        return response;
+      }).catch(() => caches.match('./index.html'));
+    })
   );
 });

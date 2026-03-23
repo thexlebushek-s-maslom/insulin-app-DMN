@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Политика конфиденциальности — Калькулятор дозы инсулина</title>
-<meta name="description" content="Политика конфиденциальности калькулятора дозы инсулина. Информация об использовании cookies и обработке данных.">
+<meta name="description" content="Политика конфиденциальности калькулятора дозы инсулина. Информация об использовании cookies и обработке данных. GDPR.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/privacy.html">
 <meta name="theme-color" content="#3fb68e">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -18,84 +19,81 @@
 
 <nav class="nav">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">💉 Инсулин<span>.app</span></a>
+    <a href="index.html" class="nav-logo">💉 Insulin<span>.app</span></a>
     <div class="nav-links">
-      <a href="index.html" class="nav-link">Калькулятор</a>
-      <a href="about.html" class="nav-link">О расчёте</a>
+      <a href="index.html"  class="nav-link" data-i18n="nav_calc">Калькулятор</a>
+      <a href="about.html"  class="nav-link" data-i18n="nav_about">О расчёте</a>
+      <a href="faq.html"    class="nav-link" data-i18n="nav_faq">FAQ</a>
+      <select id="lang-select" class="lang-select" title="Language">
+        <option value="ru">RU</option>
+        <option value="en">EN</option>
+        <option value="es">ES</option>
+        <option value="de">DE</option>
+        <option value="fr">FR</option>
+        <option value="be">BE</option>
+        <option value="zh">中文</option>
+      </select>
     </div>
   </div>
 </nav>
 
 <main class="page">
   <div class="card prose">
+    <h1>Privacy Policy</h1>
+    <p class="date">Last updated: March 23, 2026</p>
 
-    <h1>Политика конфиденциальности</h1>
-    <p class="date">Последнее обновление: 23 марта 2026 г.</p>
+    <h2>1. Overview</h2>
+    <p>This Privacy Policy describes how the Insulin Dose Calculator web application (the "App") collects, uses and protects user information. By using the App, you agree to this policy.</p>
 
-    <h2>1. Общие положения</h2>
-    <p>Настоящая политика конфиденциальности описывает, как веб-приложение «Калькулятор дозы инсулина» (далее — «Приложение», размещённое по адресу <strong>https://thexlebushek-s-maslom.github.io/insulin-app-DMN/</strong>) собирает, использует и защищает информацию пользователей.</p>
-    <p>Используя Приложение, вы соглашаетесь с условиями данной политики.</p>
-
-    <h2>2. Данные, которые мы НЕ собираем</h2>
-    <p>Приложение <strong>не собирает и не передаёт на сервер</strong> следующие данные:</p>
+    <h2>2. Data we do NOT collect</h2>
+    <p>The App <strong>does not transmit to any server</strong>:</p>
     <ul>
-      <li>Уровень глюкозы и другие медицинские показатели, которые вы вводите</li>
-      <li>Историю расчётов (хранится только локально на вашем устройстве)</li>
-      <li>Имя, email, телефон или другие персональные данные</li>
-      <li>Данные о местоположении</li>
+      <li>Glucose levels or other medical data you enter</li>
+      <li>Calculation history (stored locally on your device only)</li>
+      <li>Name, email, phone or other personal data</li>
+      <li>Location data</li>
     </ul>
 
-    <h2>3. Локальное хранилище (localStorage)</h2>
-    <p>Приложение использует <strong>localStorage</strong> вашего браузера для хранения:</p>
+    <h2>3. Local storage</h2>
+    <p>The App uses your browser's <strong>localStorage</strong> to store: calculation history (up to 20 entries), your cookie consent, language preference, theme preference, and install banner state. This data never leaves your device. You can delete it anytime by clearing site data in your browser settings.</p>
+
+    <h2>4. Cookies and advertising</h2>
+    <p>With your consent, the App may use:</p>
     <ul>
-      <li>Истории расчётов (до 20 записей)</li>
-      <li>Вашего согласия на использование cookies</li>
-      <li>Настройки «не показывать снова» для баннера установки</li>
+      <li><strong>Google AdSense</strong> — for advertising. Google may use cookies for ad personalisation. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>.</li>
     </ul>
-    <p>Эти данные хранятся <strong>только на вашем устройстве</strong> и никогда не покидают его. Вы можете удалить их в любое время, очистив данные сайта в настройках браузера.</p>
+    <p>If you clicked "Essential only" in the cookie banner, no third-party services are loaded.</p>
 
-    <h2>4. Cookies и аналитика</h2>
-    <p>При вашем согласии Приложение может использовать следующие сторонние сервисы:</p>
-    <ul>
-      <li><strong>Google AdSense</strong> — показ рекламных объявлений. Google может использовать cookies для персонализации рекламы. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Политика конфиденциальности Google</a>.</li>
-      <li><strong>Google Analytics</strong> (при подключении) — анонимная статистика посещений.</li>
-    </ul>
-    <p>Если вы нажали «Только необходимые» в баннере cookies, сторонние сервисы не загружаются.</p>
+    <h2>5. Your rights (GDPR)</h2>
+    <p>Under the EU General Data Protection Regulation (GDPR) you have the right to withdraw consent, access your data, and request deletion — all of which can be done by clearing localStorage in your browser, as we hold no data on servers.</p>
 
-    <h2>5. Ваши права (GDPR)</h2>
-    <p>В соответствии с Регламентом ЕС о защите данных (GDPR) вы имеете право:</p>
-    <ul>
-      <li>Отозвать согласие на cookies в любое время (очистите данные сайта в браузере)</li>
-      <li>Запросить удаление своих данных — поскольку мы не храним данные на серверах, достаточно очистить localStorage в браузере</li>
-      <li>Получить информацию о хранимых данных — все данные находятся локально на вашем устройстве</li>
-    </ul>
+    <h2>6. Medical disclaimer</h2>
+    <p>The App is intended <strong>for informational purposes only</strong>. It does not constitute medical advice. Always consult a qualified healthcare professional before making insulin dosing decisions.</p>
 
-    <h2>6. Медицинский дисклеймер</h2>
-    <p>Приложение предназначено <strong>исключительно для информационных целей</strong>. Расчёты, предоставляемые Приложением, не являются медицинской консультацией, диагнозом или предписанием. Всегда консультируйтесь с квалифицированным медицинским специалистом перед принятием решений о дозировке инсулина или изменении схемы лечения.</p>
+    <h2>7. Children</h2>
+    <p>The App is not intended for use by children under 16 without adult supervision. We do not knowingly collect data from children.</p>
 
-    <h2>7. Безопасность</h2>
-    <p>Поскольку Приложение не передаёт медицинские данные на внешние серверы, риск их утечки минимален. Тем не менее рекомендуем не оставлять устройство без присмотра, если на нём хранится история расчётов.</p>
+    <h2>8. Changes</h2>
+    <p>We may update this policy. The date at the top reflects the latest revision. Continued use of the App constitutes acceptance of any changes.</p>
 
-    <h2>8. Дети</h2>
-    <p>Приложение не предназначено для использования детьми без надзора взрослых. Мы не собираем намеренно данные о детях до 16 лет.</p>
-
-    <h2>9. Изменения политики</h2>
-    <p>Мы оставляем за собой право обновлять настоящую политику. Дата последнего обновления указана в начале документа. Продолжение использования Приложения после изменений означает ваше согласие с новой редакцией.</p>
-
-    <h2>10. Контакт</h2>
-    <p>По вопросам, связанным с данной политикой конфиденциальности, вы можете обратиться через GitHub репозиторий проекта.</p>
-
+    <h2>9. Contact</h2>
+    <p>For privacy-related questions, please open an issue in the GitHub repository.</p>
   </div>
 </main>
 
 <footer class="footer">
   <div class="footer-inner">
-    <a href="about.html" class="footer-link">О расчёте</a>
+    <a href="about.html" class="footer-link" data-i18n="nav_about">О расчёте</a>
     <span class="footer-sep">·</span>
-    <a href="privacy.html" class="footer-link">Политика конфиденциальности</a>
-    <div class="footer-copy">© 2026 insulin-calc. Только для информационных целей.</div>
+    <a href="faq.html" class="footer-link" data-i18n="nav_faq">FAQ</a>
+    <span class="footer-sep">·</span>
+    <a href="privacy.html" class="footer-link">Privacy</a>
+    <div class="footer-copy" data-i18n="footer_copy">© 2026 insulin-calc.</div>
   </div>
 </footer>
 
+<button id="theme-toggle" title="Toggle theme">☀️</button>
+
+<script src="app.js"></script>
 </body>
 </html>

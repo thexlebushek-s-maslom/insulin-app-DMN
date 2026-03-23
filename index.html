@@ -1,120 +1,98 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-<!-- SEO -->
 <title>Калькулятор дозы инсулина — расчёт по глюкозе и углеводам</title>
 <meta name="description" content="Бесплатный онлайн-калькулятор дозы инсулина. Рассчитайте дозу по текущему уровню глюкозы и количеству углеводов. Работает офлайн на Android и iPhone.">
-<meta name="keywords" content="калькулятор инсулина, доза инсулина, расчёт инсулина, ICR, ISF, глюкоза, углеводы, диабет">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/">
-
-<!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Калькулятор дозы инсулина">
 <meta property="og:description" content="Рассчитайте дозу инсулина по уровню глюкозы и количеству углеводов. Бесплатно, офлайн, без регистрации.">
-<meta property="og:url" content="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/">
-<meta property="og:locale" content="ru_RU">
-
-<!-- PWA -->
+<meta name="theme-color" content="#3fb68e">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Инсулин">
-<meta name="theme-color" content="#3fb68e">
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
-
-<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-
-<!-- ╔══════════════════════════════════════════════════════╗
-     ║  GOOGLE ADSENSE — замените ca-pub-XXXXXXXXXX        ║
-     ║  на ваш реальный Publisher ID после одобрения       ║
-     ╚══════════════════════════════════════════════════════╝ -->
-<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script> -->
-
-<!-- Schema.org structured data -->
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Калькулятор дозы инсулина",
-  "description": "Рассчитайте дозу инсулина по уровню глюкозы и количеству углеводов",
-  "url": "https://thexlebushek-s-maslom.github.io/insulin-app-DMN/",
-  "applicationCategory": "HealthApplication",
-  "operatingSystem": "Android, iOS",
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-}
+{"@context":"https://schema.org","@type":"WebApplication","name":"Калькулятор дозы инсулина","applicationCategory":"HealthApplication","operatingSystem":"Android, iOS","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
+<!-- AdSense: раскомментируйте после одобрения
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
+-->
 </head>
 <body>
 
-<!-- ── Navigation ─────────────────────────────────────────── -->
+<!-- Nav -->
 <nav class="nav">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">💉 Инсулин<span>.app</span></a>
+    <a href="index.html" class="nav-logo">💉 Insulin<span>.app</span></a>
     <div class="nav-links">
-      <a href="index.html" class="nav-link active">Калькулятор</a>
-      <a href="about.html" class="nav-link">О расчёте</a>
+      <a href="index.html"  class="nav-link active" data-i18n="nav_calc">Калькулятор</a>
+      <a href="about.html"  class="nav-link" data-i18n="nav_about">О расчёте</a>
+      <a href="faq.html"    class="nav-link" data-i18n="nav_faq">FAQ</a>
+      <select id="lang-select" class="lang-select" title="Language">
+        <option value="ru">RU</option>
+        <option value="en">EN</option>
+        <option value="es">ES</option>
+        <option value="de">DE</option>
+        <option value="fr">FR</option>
+        <option value="be">BE</option>
+        <option value="zh">中文</option>
+      </select>
     </div>
   </div>
 </nav>
 
-<!-- ── Page ───────────────────────────────────────────────── -->
 <main class="page">
 
-  <!-- Ad slot TOP — Leaderboard 320×50 (мобильный) -->
+  <!-- Ad top -->
   <div class="ad-slot" id="ad-top">
-    <!-- Вставьте сюда код рекламного блока AdSense после одобрения:
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-XXXXXXXXXX"
-         data-ad-slot="XXXXXXXXXX"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    -->
+    <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
   </div>
 
   <!-- Header -->
   <div style="display:flex;align-items:flex-end;justify-content:space-between;padding:4px 0;">
     <div>
-      <div style="font-size:26px;font-weight:600;letter-spacing:-0.5px;line-height:1;">Расчёт дозы</div>
-      <div style="font-size:11px;color:var(--muted);font-family:var(--mono);letter-spacing:0.08em;text-transform:uppercase;margin-top:3px;">Инсулин — калькулятор</div>
+      <div style="font-size:24px;font-weight:600;letter-spacing:-0.5px;line-height:1;" data-i18n="calc_title">Расчёт дозы</div>
+      <div style="font-size:11px;color:var(--muted);font-family:var(--mono);letter-spacing:0.08em;text-transform:uppercase;margin-top:3px;" data-i18n="calc_sub">Инсулин — калькулятор</div>
     </div>
     <div class="unit-toggle">
-      <button class="unit-btn active" id="btn-mmol" onclick="setUnit('mmol')">ммоль/л</button>
-      <button class="unit-btn" id="btn-mgdl" onclick="setUnit('mgdl')">мг/дл</button>
+      <button class="unit-btn active" id="btn-mmol" onclick="setUnit('mmol')" data-i18n="unit_mmol">ммоль/л</button>
+      <button class="unit-btn" id="btn-mgdl" onclick="setUnit('mgdl')" data-i18n="unit_mgdl">мг/дл</button>
     </div>
   </div>
 
-  <!-- Offline / Install banners -->
-  <div class="offline-banner" id="offline-banner">📡 Нет соединения — приложение работает офлайн</div>
+  <!-- Banners -->
+  <div class="offline-banner" id="offline-banner" data-i18n="offline_msg">📡 Нет соединения — приложение работает офлайн</div>
   <div class="install-banner" id="install-banner">
-    <span class="install-text">📲 Установите приложение на главный экран</span>
-    <button class="install-btn" onclick="installApp()">Установить</button>
+    <span class="install-text" data-i18n="install_text">📲 Установите приложение на главный экран</span>
+    <button class="install-btn" onclick="installApp()" data-i18n="install_btn">Установить</button>
     <button class="install-close" onclick="closeInstall()">✕</button>
   </div>
 
   <!-- Disclaimer -->
-  <div class="disclaimer">
-    ⚠️ <strong>Только для справки.</strong> Расчёт носит информационный характер. Дозу инсулина всегда определяет лечащий врач. Проверяйте расчёт перед введением.
-  </div>
+  <div class="disclaimer" data-i18n="disclaimer">⚠️ <strong>Только для справки.</strong> Дозу инсулина всегда определяет лечащий врач. Проверяйте расчёт перед введением.</div>
 
   <!-- Inputs -->
   <div class="card">
-    <div class="card-label">Данные для расчёта</div>
+    <div class="card-label" data-i18n="inputs_label">Данные для расчёта</div>
     <div class="input-row">
       <div class="input-icon icon-glucose">🩸</div>
       <div class="input-group">
-        <label>Глюкоза сейчас <span id="glucose-badge"></span></label>
+        <label data-i18n="label_glucose">Глюкоза сейчас <span id="glucose-badge"></span></label>
         <div class="input-wrap">
-          <input type="number" id="glucose" inputmode="decimal" placeholder="5.5" step="0.1" min="1" oninput="onGlucoseInput()">
+          <input type="number" id="glucose" inputmode="decimal"
+                 placeholder="5.5" step="0.1" min="1"
+                 oninput="onGlucoseInput()">
           <span class="input-unit" id="glucose-unit-label">ммоль/л</span>
         </div>
         <div class="glucose-zone" id="glucose-zone"></div>
@@ -123,7 +101,7 @@
     <div class="input-row">
       <div class="input-icon icon-carb">🥗</div>
       <div class="input-group">
-        <label>Углеводы в еде</label>
+        <label data-i18n="label_carbs">Углеводы в еде</label>
         <div class="input-wrap">
           <input type="number" id="carbs" inputmode="decimal" placeholder="60" step="1" min="0">
           <span class="input-unit">г</span>
@@ -134,282 +112,297 @@
 
   <!-- Settings -->
   <div class="card">
-    <div class="card-label">Параметры (задайте с врачом)</div>
+    <div class="card-label" data-i18n="settings_label">Параметры (задайте с врачом)</div>
     <div class="settings-grid">
       <div class="setting-item">
-        <label>ICR</label>
+        <label data-i18n="label_icr">ICR</label>
         <input type="number" id="icr" value="12" step="1" min="1" inputmode="decimal">
-        <div class="setting-hint">г углеводов / 1 ед.</div>
+        <div class="setting-hint" data-i18n="hint_icr">г углеводов / 1 ед.</div>
       </div>
       <div class="setting-item">
-        <label>ISF</label>
+        <label data-i18n="label_isf">ISF</label>
         <input type="number" id="isf" value="2.5" step="0.1" min="0.1" inputmode="decimal">
-        <div class="setting-hint" id="isf-hint">ммоль/л / 1 ед.</div>
+        <div class="setting-hint" id="isf-hint" data-i18n="hint_isf_mmol">ммоль/л / 1 ед.</div>
       </div>
       <div class="setting-item">
-        <label>Цель</label>
+        <label data-i18n="label_target">Цель</label>
         <input type="number" id="target" value="5.5" step="0.1" min="3" inputmode="decimal">
-        <div class="setting-hint" id="target-hint">ммоль/л цель</div>
+        <div class="setting-hint" id="target-hint" data-i18n="hint_target_mmol">ммоль/л цель</div>
       </div>
     </div>
   </div>
 
-  <!-- Ad slot MIDDLE — между настройками и кнопкой -->
+  <!-- Ad middle -->
   <div class="ad-slot" id="ad-middle">
-    <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
+    <!-- <ins ...></ins> -->
   </div>
 
-  <!-- Calculate -->
-  <button class="calc-btn" onclick="calculate()">Рассчитать дозу →</button>
+  <button class="calc-btn" onclick="calculate()" data-i18n="btn_calc">Рассчитать дозу →</button>
 
-  <!-- Result -->
   <div class="result-card" id="result-card">
     <div id="result-content"></div>
   </div>
 
-  <!-- History -->
   <button class="history-toggle" onclick="toggleHistory()">
-    <span>📋</span><span id="history-toggle-label">История расчётов</span>
+    <span>📋</span><span id="history-toggle-label" data-i18n="btn_history">История расчётов</span>
   </button>
   <div class="history-panel" id="history-panel">
     <div class="history-header">
-      <span class="history-title">История</span>
-      <button class="history-clear" onclick="clearHistory()">Очистить</button>
+      <span class="history-title" data-i18n="history_title">История</span>
+      <button class="history-clear" onclick="clearHistory()" data-i18n="history_clear">Очистить</button>
     </div>
     <div class="history-list" id="history-list"></div>
   </div>
 
-  <!-- Reset -->
-  <button class="reset-btn" onclick="reset()">Сбросить</button>
+  <button class="reset-btn" onclick="reset()" data-i18n="btn_reset">Сбросить</button>
 
-  <!-- Ad slot BOTTOM -->
+  <!-- Ad bottom -->
   <div class="ad-slot" id="ad-bottom">
-    <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
+    <!-- <ins ...></ins> -->
   </div>
 
 </main>
 
-<!-- ── Footer ──────────────────────────────────────────────── -->
 <footer class="footer">
   <div class="footer-inner">
-    <a href="about.html" class="footer-link">О расчёте</a>
+    <a href="about.html" class="footer-link" data-i18n="nav_about">О расчёте</a>
     <span class="footer-sep">·</span>
-    <a href="privacy.html" class="footer-link">Политика конфиденциальности</a>
-    <div class="footer-copy">© 2026 insulin-calc. Только для информационных целей.</div>
+    <a href="faq.html" class="footer-link" data-i18n="nav_faq">FAQ</a>
+    <span class="footer-sep">·</span>
+    <a href="privacy.html" class="footer-link">Privacy</a>
+    <div class="footer-copy" data-i18n="footer_copy">© 2026 insulin-calc. Только для информационных целей.</div>
   </div>
 </footer>
 
-<!-- ── Cookie Banner (GDPR) ────────────────────────────────── -->
+<!-- Cookie banner -->
 <div id="cookie-banner">
   <div class="cookie-inner">
     <p class="cookie-text">
-      Мы используем cookies для аналитики и показа рекламы. Нажимая «Принять», вы соглашаетесь с нашей <a href="privacy.html">политикой конфиденциальности</a>.
+      <span data-i18n="cookie_text">Мы используем cookies для аналитики и рекламы.</span>
+      <a href="privacy.html">Privacy Policy</a>
     </p>
     <div class="cookie-btns">
-      <button class="cookie-accept" onclick="acceptCookies()">Принять</button>
-      <button class="cookie-decline" onclick="declineCookies()">Только необходимые</button>
+      <button class="cookie-accept" onclick="acceptCookies()" data-i18n="cookie_accept">Принять</button>
+      <button class="cookie-decline" onclick="declineCookies()" data-i18n="cookie_decline">Только необходимые</button>
     </div>
   </div>
 </div>
 
+<!-- Theme toggle -->
+<button id="theme-toggle" title="Toggle theme">☀️</button>
+
+<script src="app.js"></script>
 <script>
-// ── Service Worker ────────────────────────────────────────────
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
-}
-
-// ── Install prompt ────────────────────────────────────────────
-let deferredInstall = null;
-window.addEventListener('beforeinstallprompt', e => {
-  e.preventDefault(); deferredInstall = e;
-  if (!localStorage.getItem('installDismissed'))
-    document.getElementById('install-banner').classList.add('show');
-});
-function installApp() {
-  if (!deferredInstall) return;
-  deferredInstall.prompt();
-  deferredInstall.userChoice.then(() => {
-    document.getElementById('install-banner').classList.remove('show');
-    deferredInstall = null;
-  });
-}
-function closeInstall() {
-  document.getElementById('install-banner').classList.remove('show');
-  localStorage.setItem('installDismissed', '1');
-}
-
-// ── Offline ───────────────────────────────────────────────────
-function updateOnline() { document.getElementById('offline-banner').classList.toggle('show', !navigator.onLine); }
-window.addEventListener('online', updateOnline);
-window.addEventListener('offline', updateOnline);
-
-// ── Cookie consent (GDPR) ────────────────────────────────────
-function checkCookieConsent() {
-  const consent = localStorage.getItem('cookieConsent');
-  if (!consent) {
-    setTimeout(() => document.getElementById('cookie-banner').classList.add('show'), 1500);
-  } else if (consent === 'accepted') {
-    loadAds();
-  }
-}
-function acceptCookies() {
-  localStorage.setItem('cookieConsent', 'accepted');
-  document.getElementById('cookie-banner').classList.remove('show');
-  loadAds();
-}
-function declineCookies() {
-  localStorage.setItem('cookieConsent', 'declined');
-  document.getElementById('cookie-banner').classList.remove('show');
-}
-function loadAds() {
-  // Uncomment after AdSense approval and replace Publisher ID:
-  // const s = document.createElement('script');
-  // s.async = true;
-  // s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX';
-  // s.crossOrigin = 'anonymous';
-  // document.head.appendChild(s);
-  // Hide empty ad slots visually if no ads loaded
-  document.querySelectorAll('.ad-slot').forEach(el => {
-    if (!el.querySelector('ins')) el.style.display = 'none';
-  });
-}
-
-// ── Units ─────────────────────────────────────────────────────
+// ── Unit state ────────────────────────────────────────────────
 let unit = 'mmol';
+
 function setUnit(u) {
-  const gEl = document.getElementById('glucose'), isfEl = document.getElementById('isf'), tEl = document.getElementById('target');
-  const gv = parseFloat(gEl.value), isfv = parseFloat(isfEl.value), tv = parseFloat(tEl.value);
+  const gEl = document.getElementById('glucose');
+  const isfEl = document.getElementById('isf');
+  const tEl  = document.getElementById('target');
+  const gv   = parseFloat(gEl.value);
+  const isfv = parseFloat(isfEl.value);
+  const tv   = parseFloat(tEl.value);
+
   unit = u;
   document.getElementById('btn-mmol').classList.toggle('active', u === 'mmol');
   document.getElementById('btn-mgdl').classList.toggle('active', u === 'mgdl');
-  document.getElementById('glucose-unit-label').textContent = u === 'mmol' ? 'ммоль/л' : 'мг/дл';
-  document.getElementById('isf-hint').textContent = u === 'mmol' ? 'ммоль/л / 1 ед.' : 'мг/дл / 1 ед.';
-  document.getElementById('target-hint').textContent = u === 'mmol' ? 'ммоль/л цель' : 'мг/дл цель';
+
+  // Update unit label
+  document.getElementById('glucose-unit-label').textContent = u === 'mmol' ? t('unit_mmol') : t('unit_mgdl');
+
+  // Update placeholder based on unit
+  gEl.placeholder = u === 'mmol' ? t('ph_glucose_mmol') : t('ph_glucose_mgdl');
+
+  // Update hints
+  document.getElementById('isf-hint').dataset.i18n   = u === 'mmol' ? 'hint_isf_mmol'    : 'hint_isf_mgdl';
+  document.getElementById('target-hint').dataset.i18n = u === 'mmol' ? 'hint_target_mmol' : 'hint_target_mgdl';
+  document.getElementById('isf-hint').textContent    = t(document.getElementById('isf-hint').dataset.i18n);
+  document.getElementById('target-hint').textContent = t(document.getElementById('target-hint').dataset.i18n);
+
+  // Convert values
   if (u === 'mgdl') {
-    if (!isNaN(gv) && gv > 0) gEl.value = Math.round(gv * 18.016);
-    if (!isNaN(isfv)) isfEl.value = (isfv * 18.016).toFixed(0);
-    if (!isNaN(tv)) tEl.value = Math.round(tv * 18.016);
+    if (!isNaN(gv)   && gv > 0)  gEl.value   = Math.round(gv * 18.016);
+    if (!isNaN(isfv) && isfv > 0) isfEl.value = (isfv * 18.016).toFixed(0);
+    if (!isNaN(tv)   && tv > 0)   tEl.value   = Math.round(tv * 18.016);
   } else {
-    if (!isNaN(gv) && gv > 0) gEl.value = (gv / 18.016).toFixed(1);
-    if (!isNaN(isfv)) isfEl.value = (isfv / 18.016).toFixed(1);
-    if (!isNaN(tv)) tEl.value = (tv / 18.016).toFixed(1);
+    if (!isNaN(gv)   && gv > 0)  gEl.value   = (gv / 18.016).toFixed(1);
+    if (!isNaN(isfv) && isfv > 0) isfEl.value = (isfv / 18.016).toFixed(1);
+    if (!isNaN(tv)   && tv > 0)   tEl.value   = (tv / 18.016).toFixed(1);
   }
-  hideResult(); onGlucoseInput();
+
+  hideResult();
+  onGlucoseInput();
 }
+
 function toMmol(v) { return unit === 'mgdl' ? v / 18.016 : v; }
 
 function getGlucoseLevel(mmol) {
-  if (mmol < 3.9)  return { label:'НИЗКИЙ',       cls:'level-low',       color:'#5bc4a0' };
-  if (mmol <= 7.8) return { label:'НОРМА',         cls:'level-ok',        color:'#3fb68e' };
-  if (mmol <= 11)  return { label:'ВЫСОКИЙ',       cls:'level-high',      color:'#e8a84c' };
-  return               { label:'ОЧЕНЬ ВЫСОКИЙ', cls:'level-very-high', color:'#e05c5c' };
+  if (mmol < 3.9)  return { label: 'LOW',        cls: 'level-low',        color: '#2e9e78' };
+  if (mmol <= 7.8) return { label: 'OK',          cls: 'level-ok',         color: '#1f9b72' };
+  if (mmol <= 11)  return { label: 'HIGH',        cls: 'level-high',       color: '#c47c10' };
+  return                  { label: 'VERY HIGH',   cls: 'level-very-high',  color: '#c0392b' };
 }
+
 function onGlucoseInput() {
-  const val = parseFloat(document.getElementById('glucose').value);
-  const badge = document.getElementById('glucose-badge'), zone = document.getElementById('glucose-zone');
-  if (isNaN(val) || val <= 0) { badge.innerHTML = ''; zone.style.background = 'transparent'; return; }
+  const val   = parseFloat(document.getElementById('glucose').value);
+  const badge = document.getElementById('glucose-badge');
+  const zone  = document.getElementById('glucose-zone');
+  if (isNaN(val) || val <= 0) {
+    badge.innerHTML = '';
+    zone.style.background = 'transparent';
+    return;
+  }
   const lv = getGlucoseLevel(toMmol(val));
   badge.innerHTML = `<span class="level-badge ${lv.cls}">${lv.label}</span>`;
   zone.style.background = lv.color;
 }
 
-// ── Calculate ────────────────────────────────────────────────
+// ── Calculate ─────────────────────────────────────────────────
 function calculate() {
   const glucoseRaw = parseFloat(document.getElementById('glucose').value);
   const carbsG     = parseFloat(document.getElementById('carbs').value);
   const icr        = parseFloat(document.getElementById('icr').value);
   const isfRaw     = parseFloat(document.getElementById('isf').value);
   const targetRaw  = parseFloat(document.getElementById('target').value);
-  if ([glucoseRaw,carbsG,icr,isfRaw,targetRaw].some(isNaN)) { alert('Пожалуйста, заполните все поля.'); return; }
-  const glucose = toMmol(glucoseRaw), isf = toMmol(isfRaw), tgt = toMmol(targetRaw);
-  const carbDose = carbsG / icr, corrDose = (glucose - tgt) / isf, total = carbDose + corrDose;
-  const displayUnit = unit === 'mmol' ? 'ммоль/л' : 'мг/дл';
+
+  if ([glucoseRaw, carbsG, icr, isfRaw, targetRaw].some(isNaN)) {
+    alert(t('confirm_fill'));
+    return;
+  }
+
+  const glucose  = toMmol(glucoseRaw);
+  const isf      = toMmol(isfRaw);
+  const tgt      = toMmol(targetRaw);
+  const carbDose = carbsG / icr;
+  const corrDose = (glucose - tgt) / isf;
+  const total    = carbDose + corrDose;
+
+  const displayUnit = unit === 'mmol' ? t('unit_mmol') : t('unit_mgdl');
   const fmtG = v => v.toFixed(unit === 'mmol' ? 1 : 0);
+  const now  = new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
   const content = document.getElementById('result-content');
-  const now = new Date().toLocaleTimeString('ru-RU', {hour:'2-digit',minute:'2-digit'});
+
   if (total <= 0) {
-    const msg = glucose < 3.9 ? '⚠️ Глюкоза низкая — инсулин не нужен. Примите быстрые углеводы.' : 'Суммарная доза ≤ 0 — инсулин на коррекцию не нужен. Уточните с врачом.';
-    content.innerHTML = `<div class="no-dose">${msg}</div>
+    const msg = glucose < 3.9 ? t('no_dose_hypo') : t('no_dose_zero');
+    content.innerHTML = `
+      <div class="no-dose">${msg}</div>
       <div class="result-breakdown">
-        <div class="breakdown-row"><span class="breakdown-name">На углеводы (${carbsG}г ÷ ${icr})</span><span class="breakdown-val">${carbDose.toFixed(2)} ед.</span></div>
-        <div class="breakdown-row"><span class="breakdown-name">Коррекция (${fmtG(glucoseRaw)} → ${fmtG(targetRaw)} ${displayUnit})</span><span class="breakdown-val negative">${corrDose.toFixed(2)} ед.</span></div>
+        <div class="breakdown-row">
+          <span class="breakdown-name">${t('breakdown_carbs')} (${carbsG}г ÷ ${icr})</span>
+          <span class="breakdown-val">${carbDose.toFixed(2)} u.</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="breakdown-name">${t('breakdown_corr')} (${fmtG(glucoseRaw)} → ${fmtG(targetRaw)} ${displayUnit})</span>
+          <span class="breakdown-val negative">${corrDose.toFixed(2)} u.</span>
+        </div>
       </div>`;
     saveHistory(glucoseRaw, carbsG, 0, now);
   } else {
     const rounded = Math.round(total * 2) / 2;
     content.innerHTML = `
       <div class="result-main">
-        <div class="result-label">Рекомендуемая доза</div>
+        <div class="result-label">${t('result_label')}</div>
         <div class="result-value">${rounded.toFixed(1)}</div>
-        <div class="result-unit">единиц инсулина</div>
+        <div class="result-unit">${t('result_unit')}</div>
         <div class="result-time">${now}</div>
       </div>
       <div class="result-breakdown">
-        <div class="breakdown-row"><span class="breakdown-name">На углеводы (${carbsG}г ÷ ${icr})</span><span class="breakdown-val">${carbDose.toFixed(2)} ед.</span></div>
-        <div class="breakdown-row"><span class="breakdown-name">Коррекция (${fmtG(glucoseRaw)} → ${fmtG(targetRaw)} ${displayUnit})</span><span class="breakdown-val ${corrDose>=0?'positive':'negative'}">${corrDose>=0?'+':''}${corrDose.toFixed(2)} ед.</span></div>
+        <div class="breakdown-row">
+          <span class="breakdown-name">${t('breakdown_carbs')} (${carbsG}г ÷ ${icr})</span>
+          <span class="breakdown-val">${carbDose.toFixed(2)} u.</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="breakdown-name">${t('breakdown_corr')} (${fmtG(glucoseRaw)} → ${fmtG(targetRaw)} ${displayUnit})</span>
+          <span class="breakdown-val ${corrDose >= 0 ? 'positive' : 'negative'}">${corrDose >= 0 ? '+' : ''}${corrDose.toFixed(2)} u.</span>
+        </div>
         <div class="breakdown-divider"></div>
-        <div class="breakdown-row"><span class="breakdown-name">Итого точно</span><span class="breakdown-val">${total.toFixed(2)} ед.</span></div>
-        <div class="breakdown-row"><span class="breakdown-name">Округлено до 0.5</span><span class="breakdown-val" style="color:var(--accent2)">${rounded.toFixed(1)} ед.</span></div>
+        <div class="breakdown-row">
+          <span class="breakdown-name">${t('breakdown_exact')}</span>
+          <span class="breakdown-val">${total.toFixed(2)} u.</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="breakdown-name">${t('breakdown_round')}</span>
+          <span class="breakdown-val" style="color:var(--accent2)">${rounded.toFixed(1)} u.</span>
+        </div>
       </div>`;
     saveHistory(glucoseRaw, carbsG, rounded, now);
   }
+
   document.getElementById('result-card').classList.add('visible');
-  setTimeout(() => document.getElementById('result-card').scrollIntoView({behavior:'smooth',block:'nearest'}), 50);
+  setTimeout(() => document.getElementById('result-card').scrollIntoView({behavior:'smooth', block:'nearest'}), 60);
 }
+
 function hideResult() { document.getElementById('result-card').classList.remove('visible'); }
+
 function reset() {
   document.getElementById('glucose').value = '';
-  document.getElementById('carbs').value = '';
+  document.getElementById('carbs').value   = '';
   document.getElementById('glucose-badge').innerHTML = '';
   document.getElementById('glucose-zone').style.background = 'transparent';
   hideResult();
 }
 
 // ── History ───────────────────────────────────────────────────
-function loadHistory() { try { return JSON.parse(localStorage.getItem('insulin_history') || '[]'); } catch { return []; } }
+function loadHistory() {
+  try { return JSON.parse(localStorage.getItem('insulin_history') || '[]'); }
+  catch { return []; }
+}
+
 function saveHistory(glucose, carbs, dose, time) {
   const h = loadHistory();
-  h.unshift({glucose, carbs, dose, time, unit, date: new Date().toLocaleDateString('ru-RU')});
+  h.unshift({ glucose, carbs, dose, time, unit, date: new Date().toLocaleDateString() });
   if (h.length > 20) h.pop();
   localStorage.setItem('insulin_history', JSON.stringify(h));
-  renderHistory(); updateHistoryLabel();
+  renderHistory();
+  updateHistoryLabel();
 }
+
 function renderHistory() {
-  const h = loadHistory(), list = document.getElementById('history-list');
-  if (!h.length) { list.innerHTML = '<div class="history-empty">История пуста</div>'; return; }
+  const h    = loadHistory();
+  const list = document.getElementById('history-list');
+  if (!h.length) {
+    list.innerHTML = `<div class="history-empty">${t('history_empty')}</div>`;
+    return;
+  }
   list.innerHTML = h.map(e => `
     <div class="history-item">
       <div class="history-item-left">
         <div>${e.date} ${e.time}</div>
-        <div>🩸 ${e.glucose} ${e.unit==='mmol'?'ммоль/л':'мг/дл'} &nbsp; 🥗 ${e.carbs} г</div>
+        <div>🩸 ${e.glucose} ${e.unit === 'mmol' ? 'mmol/L' : 'mg/dL'} &nbsp; 🥗 ${e.carbs}g</div>
       </div>
-      <div class="history-item-dose">${e.dose>0?e.dose.toFixed(1)+' ед.':'—'}</div>
+      <div class="history-item-dose">${e.dose > 0 ? e.dose.toFixed(1) + ' u.' : '—'}</div>
     </div>`).join('');
 }
+
 function clearHistory() {
-  if (!confirm('Очистить историю?')) return;
-  localStorage.removeItem('insulin_history'); renderHistory(); updateHistoryLabel();
+  if (!confirm(t('confirm_history'))) return;
+  localStorage.removeItem('insulin_history');
+  renderHistory();
+  updateHistoryLabel();
 }
+
 function updateHistoryLabel() {
   const h = loadHistory();
-  document.getElementById('history-toggle-label').textContent = h.length ? `История расчётов (${h.length})` : 'История расчётов';
+  const lbl = document.getElementById('history-toggle-label');
+  if (lbl) lbl.textContent = h.length ? `${t('btn_history')} (${h.length})` : t('btn_history');
 }
+
 let historyOpen = false;
 function toggleHistory() {
   historyOpen = !historyOpen;
   document.getElementById('history-panel').classList.toggle('visible', historyOpen);
-  if (historyOpen) { renderHistory(); document.getElementById('history-panel').scrollIntoView({behavior:'smooth',block:'nearest'}); }
+  if (historyOpen) {
+    renderHistory();
+    setTimeout(() => document.getElementById('history-panel').scrollIntoView({behavior:'smooth', block:'nearest'}), 60);
+  }
 }
 
 // ── Init ──────────────────────────────────────────────────────
-updateHistoryLabel();
-updateOnline();
-checkCookieConsent();
-// Hide empty ad slots on load
-document.querySelectorAll('.ad-slot').forEach(el => {
-  if (!el.querySelector('ins')) el.style.display = 'none';
+document.addEventListener('DOMContentLoaded', () => {
+  updateHistoryLabel();
+  // Set correct placeholder on load
+  document.getElementById('glucose').placeholder = t('ph_glucose_mmol');
 });
 </script>
 </body>
