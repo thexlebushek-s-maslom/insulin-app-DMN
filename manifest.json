@@ -3,11 +3,13 @@
   "short_name": "Инсулин",
   "description": "Расчёт дозы инсулина по уровню глюкозы и углеводам",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#0d1117",
   "theme_color": "#3fb68e",
   "orientation": "portrait",
   "lang": "ru",
+  "categories": ["health", "medical"],
   "icons": [
     {
       "src": "icons/icon-192.png",
@@ -20,6 +22,18 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Калькулятор",
+      "url": "/index.html",
+      "description": "Рассчитать дозу инсулина"
+    },
+    {
+      "name": "О расчёте",
+      "url": "/about.html",
+      "description": "Как работает расчёт"
     }
   ]
 }

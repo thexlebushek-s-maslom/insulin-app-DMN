@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://thexlebushek-s-maslom.github.io/insulin-app-DMN/sitemap.xml
