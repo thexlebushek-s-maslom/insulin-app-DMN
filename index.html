@@ -35,6 +35,7 @@
 <meta name="apple-mobile-web-app-title" content="Insulin Calc">
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="manifest" href="./manifest.json">
+<link rel="icon" type="image/png" href="./icons/icon-192.png">
 <link rel="apple-touch-icon" href="./icons/icon-192.png">
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -86,6 +87,17 @@
     </div>
   </div>
 
+  <!-- Profile switcher -->
+  <div class="profile-bar">
+    <span class="profile-bar-label" data-i18n="profile_label">Профиль</span>
+    <div class="profile-tabs">
+      <button class="profile-tab active" id="ptab-morning" onclick="switchProfile('morning')" data-i18n="profile_morning">☀️ Утро</button>
+      <button class="profile-tab"        id="ptab-day"     onclick="switchProfile('day')"     data-i18n="profile_day">🌤 День</button>
+      <button class="profile-tab"        id="ptab-evening" onclick="switchProfile('evening')"  data-i18n="profile_evening">🌙 Вечер</button>
+    </div>
+    <button class="profile-edit-btn" onclick="openProfileModal()" title="Edit profile">⚙️</button>
+  </div>
+
   <div class="offline-banner" id="offline-banner" data-i18n="offline_msg"></div>
   <div class="install-banner" id="install-banner">
     <span class="install-text" data-i18n="install_text"></span>
@@ -124,6 +136,12 @@
                  autocomplete="off" onkeydown="onEnterKey(event)">
           <span class="input-unit">г</span>
         </div>
+      </div>
+      <!-- Meal presets -->
+      <div class="preset-row" id="preset-row">
+        <div class="preset-label" data-i18n="preset_label">Быстрые углеводы</div>
+        <div id="preset-chips"></div>
+        <button class="preset-add-btn" onclick="openPresetModal(null)" data-i18n="preset_add">+ Добавить</button>
       </div>
     </div>
 
@@ -256,6 +274,8 @@ function setUnit(u) {
   clearAllErrors();
   hideResult();
   onGlucoseInput();
+  // Re-apply profile with new unit
+  if (typeof applyProfileToFields === 'function') applyProfileToFields();
 }
 
 function updatePlaceholders(u) {
@@ -378,15 +398,16 @@ function calculate() {
 
 function hideResult() { document.getElementById('result-card').classList.remove('visible'); }
 
-// ── Reset ALL fields to empty ─────────────────────────────────
+// ── Reset: clear inputs, restore profile values ──────────────
 function resetAll() {
-  ['glucose', 'carbs', 'target', 'icr', 'isf'].forEach(id => {
-    document.getElementById(id).value = '';
-  });
-  document.getElementById('glucose-badge').innerHTML = '';
-  document.getElementById('glucose-zone').style.background = 'transparent';
+  document.getElementById('glucose').value = '';
+  document.getElementById('carbs').value   = '';
   clearAllErrors();
   hideResult();
+  document.getElementById('glucose-badge').innerHTML = '';
+  document.getElementById('glucose-zone').style.background = 'transparent';
+  // Restore ICR / ISF / Target from active profile
+  if (typeof applyProfileToFields === 'function') applyProfileToFields();
 }
 
 // ── History ───────────────────────────────────────────────────
@@ -448,6 +469,268 @@ document.addEventListener('DOMContentLoaded', () => {
   // Read lang param from URL (?lang=en)
   const urlLang = new URLSearchParams(location.search).get('lang');
   if (urlLang && LANGS[urlLang]) applyLang(urlLang);
+});
+</script>
+
+<!-- ── Profile modal ── -->
+<div class="modal-overlay hidden" id="profile-modal">
+  <div class="modal-box">
+    <div class="modal-title">
+      <span id="profile-modal-title" data-i18n="profile_edit_title">Настройка профиля</span>
+      <button class="modal-close" onclick="closeProfileModal()">✕</button>
+    </div>
+    <div style="display:flex;gap:6px;margin-bottom:14px;">
+      <button class="profile-tab active" id="medit-morning" onclick="selectEditProfile('morning')" data-i18n="profile_morning">☀️ Утро</button>
+      <button class="profile-tab"        id="medit-day"     onclick="selectEditProfile('day')"     data-i18n="profile_day">🌤 День</button>
+      <button class="profile-tab"        id="medit-evening" onclick="selectEditProfile('evening')"  data-i18n="profile_evening">🌙 Вечер</button>
+    </div>
+    <div class="profile-grid">
+      <div class="profile-field">
+        <label data-i18n="label_icr">ICR</label>
+        <input type="text" inputmode="decimal" id="pedit-icr" placeholder="12">
+      </div>
+      <div class="profile-field">
+        <label data-i18n="label_isf">ISF</label>
+        <input type="text" inputmode="decimal" id="pedit-isf" placeholder="2.5">
+      </div>
+      <div class="profile-field">
+        <label data-i18n="label_target">Цель</label>
+        <input type="text" inputmode="decimal" id="pedit-target" placeholder="5.5">
+      </div>
+    </div>
+    <button class="profile-reset-btn" onclick="resetEditProfile()" data-i18n="profile_reset">Сбросить к умолчаниям</button>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeProfileModal()" data-i18n="profile_cancel">Отмена</button>
+      <button class="modal-save"   onclick="saveProfileModal()"  data-i18n="profile_save">Сохранить</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Preset modal ── -->
+<div class="modal-overlay hidden" id="preset-modal">
+  <div class="modal-box">
+    <div class="modal-title">
+      <span data-i18n="preset_edit_title">Пресет еды</span>
+      <button class="modal-close" onclick="closePresetModal()">✕</button>
+    </div>
+    <div class="modal-field">
+      <label data-i18n="preset_name_ph">Название</label>
+      <input type="text" id="preset-name" autocomplete="off" maxlength="20">
+    </div>
+    <div class="modal-field">
+      <label data-i18n="preset_carbs_ph">Углеводы (г)</label>
+      <input type="text" inputmode="decimal" id="preset-carbs-val" autocomplete="off">
+    </div>
+    <div class="modal-btns">
+      <button class="modal-delete" id="preset-delete-btn" onclick="deletePreset()" style="display:none" data-i18n="preset_delete">Удалить</button>
+      <button class="modal-cancel" onclick="closePresetModal()" data-i18n="preset_cancel">Отмена</button>
+      <button class="modal-save"   onclick="savePreset()"       data-i18n="preset_save">Сохранить</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+//  PROFILES
+// ═══════════════════════════════════════════════════════════════
+const PROFILE_DEFAULTS = {
+  morning: { icr:'10', isf_mmol:'2.0', isf_mgdl:'36', target_mmol:'5.5', target_mgdl:'99' },
+  day:     { icr:'12', isf_mmol:'2.5', isf_mgdl:'45', target_mmol:'5.5', target_mgdl:'99' },
+  evening: { icr:'14', isf_mmol:'3.0', isf_mgdl:'54', target_mmol:'6.0', target_mgdl:'108' },
+};
+
+function loadProfiles() {
+  try { return JSON.parse(localStorage.getItem('profiles') || 'null') || JSON.parse(JSON.stringify(PROFILE_DEFAULTS)); }
+  catch { return JSON.parse(JSON.stringify(PROFILE_DEFAULTS)); }
+}
+
+function saveProfiles(p) { localStorage.setItem('profiles', JSON.stringify(p)); }
+
+let currentProfile = localStorage.getItem('activeProfile') || 'morning';
+
+function switchProfile(name) {
+  currentProfile = name;
+  localStorage.setItem('activeProfile', name);
+  // Update tab UI
+  ['morning','day','evening'].forEach(p => {
+    document.getElementById('ptab-' + p).classList.toggle('active', p === name);
+  });
+  // Apply profile values to fields
+  applyProfileToFields();
+}
+
+function applyProfileToFields() {
+  const profiles = loadProfiles();
+  const p = profiles[currentProfile];
+  document.getElementById('icr').value    = p.icr;
+  document.getElementById('isf').value    = unit === 'mmol' ? p.isf_mmol    : p.isf_mgdl;
+  document.getElementById('target').value = unit === 'mmol' ? p.target_mmol : p.target_mgdl;
+}
+
+// ── Profile modal ──────────────────────────────────────────────
+let editingProfile = 'morning';
+
+function openProfileModal() {
+  editingProfile = currentProfile;
+  renderProfileModalTabs();
+  loadProfileIntoModal(editingProfile);
+  document.getElementById('profile-modal').classList.remove('hidden');
+}
+
+function closeProfileModal() {
+  document.getElementById('profile-modal').classList.add('hidden');
+}
+
+function selectEditProfile(name) {
+  // Save current edits before switching tab
+  saveCurrentEditToTemp();
+  editingProfile = name;
+  renderProfileModalTabs();
+  loadProfileIntoModal(name);
+}
+
+function renderProfileModalTabs() {
+  ['morning','day','evening'].forEach(p => {
+    document.getElementById('medit-' + p).classList.toggle('active', p === editingProfile);
+  });
+}
+
+let tempProfiles = null;
+
+function saveCurrentEditToTemp() {
+  if (!tempProfiles) tempProfiles = loadProfiles();
+  const icr    = document.getElementById('pedit-icr').value.trim();
+  const isf    = document.getElementById('pedit-isf').value.trim();
+  const target = document.getElementById('pedit-target').value.trim();
+  if (icr)    tempProfiles[editingProfile].icr = icr;
+  if (unit === 'mmol') {
+    if (isf)    tempProfiles[editingProfile].isf_mmol    = isf;
+    if (target) tempProfiles[editingProfile].target_mmol = target;
+  } else {
+    if (isf)    tempProfiles[editingProfile].isf_mgdl    = isf;
+    if (target) tempProfiles[editingProfile].target_mgdl = target;
+  }
+}
+
+function loadProfileIntoModal(name) {
+  const p = (tempProfiles || loadProfiles())[name];
+  document.getElementById('pedit-icr').value    = p.icr;
+  document.getElementById('pedit-isf').value    = unit === 'mmol' ? p.isf_mmol    : p.isf_mgdl;
+  document.getElementById('pedit-target').value = unit === 'mmol' ? p.target_mmol : p.target_mgdl;
+}
+
+function resetEditProfile() {
+  if (!tempProfiles) tempProfiles = loadProfiles();
+  tempProfiles[editingProfile] = JSON.parse(JSON.stringify(PROFILE_DEFAULTS[editingProfile]));
+  loadProfileIntoModal(editingProfile);
+}
+
+function saveProfileModal() {
+  saveCurrentEditToTemp();
+  saveProfiles(tempProfiles);
+  tempProfiles = null;
+  closeProfileModal();
+  applyProfileToFields();
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  PRESETS
+// ═══════════════════════════════════════════════════════════════
+const DEFAULT_PRESETS = [
+  { id: 'p1', name: 'Завтрак', carbs: 45 },
+  { id: 'p2', name: 'Обед',    carbs: 70 },
+  { id: 'p3', name: 'Ужин',    carbs: 55 },
+];
+
+function loadPresets() {
+  try { return JSON.parse(localStorage.getItem('meal_presets') || 'null') || DEFAULT_PRESETS; }
+  catch { return DEFAULT_PRESETS; }
+}
+
+function savePresetsData(presets) { localStorage.setItem('meal_presets', JSON.stringify(presets)); }
+
+function renderPresets() {
+  const presets  = loadPresets();
+  const container = document.getElementById('preset-chips');
+  container.innerHTML = '';
+  presets.forEach(p => {
+    const chip = document.createElement('button');
+    chip.className = 'preset-chip';
+    chip.innerHTML = `${p.name} <span class="preset-chip-val">${p.carbs}г</span>`;
+    chip.onclick = () => applyPreset(p);
+    chip.addEventListener('pointerdown', startLongPress(p));
+    chip.addEventListener('pointerup',   cancelLongPress);
+    chip.addEventListener('pointerleave',cancelLongPress);
+    container.appendChild(chip);
+  });
+}
+
+// Long press → edit preset
+let longPressTimer = null;
+function startLongPress(preset) {
+  return () => {
+    longPressTimer = setTimeout(() => { openPresetModal(preset); }, 600);
+  };
+}
+function cancelLongPress() { clearTimeout(longPressTimer); }
+
+function applyPreset(preset) {
+  clearTimeout(longPressTimer);
+  document.getElementById('carbs').value = String(preset.carbs);
+  clearFieldError(document.getElementById('carbs'));
+}
+
+// ── Preset modal ───────────────────────────────────────────────
+let editingPresetId = null;
+
+function openPresetModal(preset) {
+  editingPresetId = preset ? preset.id : null;
+  document.getElementById('preset-name').value      = preset ? preset.name  : '';
+  document.getElementById('preset-carbs-val').value = preset ? String(preset.carbs) : '';
+  document.getElementById('preset-delete-btn').style.display = preset ? 'block' : 'none';
+  document.getElementById('preset-modal').classList.remove('hidden');
+  setTimeout(() => document.getElementById('preset-name').focus(), 100);
+}
+
+function closePresetModal() { document.getElementById('preset-modal').classList.add('hidden'); }
+
+function savePreset() {
+  const name  = document.getElementById('preset-name').value.trim();
+  const carbs = parseDecimal(document.getElementById('preset-carbs-val').value);
+  if (!name || isNaN(carbs) || carbs <= 0) return;
+  const presets = loadPresets();
+  if (editingPresetId) {
+    const idx = presets.findIndex(p => p.id === editingPresetId);
+    if (idx !== -1) { presets[idx].name = name; presets[idx].carbs = carbs; }
+  } else {
+    presets.push({ id: 'p' + Date.now(), name, carbs });
+  }
+  savePresetsData(presets);
+  renderPresets();
+  closePresetModal();
+}
+
+function deletePreset() {
+  if (!editingPresetId) return;
+  const presets = loadPresets().filter(p => p.id !== editingPresetId);
+  savePresetsData(presets);
+  renderPresets();
+  closePresetModal();
+}
+
+// Close modals on overlay click
+document.getElementById('profile-modal').addEventListener('click', e => { if (e.target === e.currentTarget) { tempProfiles = null; closeProfileModal(); } });
+document.getElementById('preset-modal').addEventListener('click',  e => { if (e.target === e.currentTarget) closePresetModal(); });
+
+// Init profiles + presets
+document.addEventListener('DOMContentLoaded', () => {
+  switchProfile(currentProfile);
+  renderPresets();
+});
+
+// Re-apply profile values when unit changes
+document.addEventListener('langchange', () => {
+  renderPresets();
 });
 </script>
 </body>
