@@ -8,7 +8,6 @@
 <meta name="keywords" content="bolus insulin calculator, insulin dose calculator, how to calculate insulin dose for carbs, insulin to carb ratio calculator, ICR calculator, correction factor insulin formula, how much insulin for 50g carbs, how much insulin per carb, insulin sensitivity factor calculator, ISF calculator, type 1 diabetes calculator, T1D bolus calculator, diabetes carb calculator, insulin units calculator, blood glucose correction dose, basal bolus calculator, carb counting insulin, insulin dose per gram carbs, calculate insulin for meal, free insulin calculator app, offline insulin calculator, калькулятор инсулина, Insulinrechner, calculateur insuline, calculadora insulina, 胰岛素剂量计算器">
 <meta name="robots" content="index, follow">
 <meta name="author" content="insulin-calc">
-<!-- hreflang SEO -->
 <link rel="alternate" hreflang="en"    href="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/?lang=en">
 <link rel="alternate" hreflang="ru"    href="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/?lang=ru">
 <link rel="alternate" hreflang="de"    href="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/?lang=de">
@@ -17,7 +16,6 @@
 <link rel="alternate" hreflang="zh-CN" href="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/?lang=zh">
 <link rel="alternate" hreflang="x-default" href="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/">
 <link rel="canonical" href="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/">
-<!-- Open Graph -->
 <meta property="og:type"        content="website">
 <meta property="og:title"       content="Insulin Dose Calculator — Free Bolus Calculator">
 <meta property="og:description" content="Calculate your insulin bolus dose by blood glucose and carbohydrates. Works offline. Free, no registration.">
@@ -28,7 +26,6 @@
 <meta property="og:locale:alternate" content="fr_FR">
 <meta property="og:locale:alternate" content="es_ES">
 <meta property="og:locale:alternate" content="zh_CN">
-<!-- PWA -->
 <meta name="theme-color" content="#3fb68e">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -37,12 +34,10 @@
 <link rel="manifest" href="./manifest.json">
 <link rel="icon" type="image/png" href="./icons/icon-192.png">
 <link rel="apple-touch-icon" href="./icons/icon-192.png">
-<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./style.css">
-<!-- Schema.org -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Insulin Dose Calculator","description":"Free bolus insulin dose calculator by blood glucose and carbohydrates","url":"https://thexlebushek-s-maslom.github.io/insulin-app-DMN/","applicationCategory":"HealthApplication","operatingSystem":"Android, iOS, Web","inLanguage":["en","ru","de","fr","es","zh"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":"Offline support, 7 languages, Blood glucose tracking, Bolus calculation"}
 </script>
@@ -76,12 +71,13 @@
 
   <div class="ad-slot" id="ad-top"></div>
 
-  <div style="display:flex;align-items:flex-end;justify-content:space-between;padding:4px 0;gap:12px;">
+  <!-- Header + unit toggle -->
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 0;gap:12px;">
     <div>
-      <div style="font-size:24px;font-weight:600;letter-spacing:-.5px;line-height:1;" data-i18n="calc_title">Расчёт дозы</div>
+      <div style="font-size:24px;font-weight:600;letter-spacing:-.5px;line-height:1.2;" data-i18n="calc_title">Расчёт дозы</div>
       <div style="font-size:11px;color:var(--muted);font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;margin-top:3px;" data-i18n="calc_sub">Инсулин — калькулятор</div>
     </div>
-    <div class="unit-toggle">
+    <div class="unit-toggle" style="flex-shrink:0;">
       <button class="unit-btn active" id="btn-mmol" onclick="setUnit('mmol')" data-i18n="unit_mmol">ммоль/л</button>
       <button class="unit-btn"        id="btn-mgdl" onclick="setUnit('mgdl')" data-i18n="unit_mgdl">мг/дл</button>
     </div>
@@ -98,6 +94,7 @@
     <button class="profile-edit-btn" onclick="openProfileModal()" title="Edit profile">⚙️</button>
   </div>
 
+  <!-- Offline / Install -->
   <div class="offline-banner" id="offline-banner" data-i18n="offline_msg"></div>
   <div class="install-banner" id="install-banner">
     <span class="install-text" data-i18n="install_text"></span>
@@ -107,10 +104,11 @@
 
   <div class="disclaimer" data-i18n="disclaimer"></div>
 
-  <!-- Main inputs: glucose + carbs + target -->
+  <!-- ── Inputs card ── -->
   <div class="card">
     <div class="card-label" data-i18n="inputs_label">Данные для расчёта</div>
 
+    <!-- Glucose -->
     <div class="input-row">
       <div class="input-icon icon-glucose">🩸</div>
       <div class="input-group" id="grp-glucose">
@@ -127,6 +125,7 @@
       </div>
     </div>
 
+    <!-- Carbs — presets are INSIDE input-group, after input-wrap -->
     <div class="input-row">
       <div class="input-icon icon-carb">🥗</div>
       <div class="input-group" id="grp-carbs">
@@ -136,16 +135,17 @@
                  autocomplete="off" onkeydown="onEnterKey(event)">
           <span class="input-unit">г</span>
         </div>
-      </div>
-      <!-- Meal presets -->
-      <div class="preset-row" id="preset-row">
-        <div class="preset-label" data-i18n="preset_label">Быстрые углеводы</div>
-        <div id="preset-chips"></div>
-        <button class="preset-add-btn" onclick="openPresetModal(null)" data-i18n="preset_add">+ Добавить</button>
+        <!-- Presets: inside input-group so they don't escape the flex row -->
+        <div class="preset-row" id="preset-row">
+          <div class="preset-label" data-i18n="preset_label">Быстрые углеводы</div>
+          <div id="preset-chips" style="display:flex;gap:6px;flex-wrap:wrap;"></div>
+          <button class="preset-add-btn" onclick="openPresetModal(null)" data-i18n="preset_add">+ Добавить</button>
+        </div>
       </div>
     </div>
 
-    <div class="input-row">
+    <!-- Target glucose -->
+    <div class="input-row" style="margin-bottom:0;">
       <div class="input-icon icon-target">🎯</div>
       <div class="input-group" id="grp-target">
         <label data-i18n="label_target">Целевая глюкоза</label>
@@ -159,7 +159,7 @@
     </div>
   </div>
 
-  <!-- Settings: ICR + ISF -->
+  <!-- ── Settings card (ICR + ISF) ── -->
   <div class="card">
     <div class="card-label" data-i18n="settings_label">Параметры (задайте с врачом)</div>
     <div class="settings-grid">
@@ -182,6 +182,7 @@
 
   <div class="result-card" id="result-card"><div id="result-content"></div></div>
 
+  <!-- History -->
   <button class="history-toggle" onclick="toggleHistory()">
     <span>📋</span><span id="history-toggle-label"></span>
   </button>
@@ -226,257 +227,11 @@
 
 <button id="theme-toggle" title="Toggle theme">☀️</button>
 
-<script src="./app.js"></script>
-<script>
-// ── Defaults per unit ─────────────────────────────────────────
-const DEF = {
-  mmol: { icr:'12', isf:'2.5', target:'5.5' },
-  mgdl: { icr:'12', isf:'45',  target:'99'  },
-};
-let unit = 'mmol';
-
-// ── Unit switching ────────────────────────────────────────────
-function setUnit(u) {
-  const gEl  = document.getElementById('glucose');
-  const isfEl = document.getElementById('isf');
-  const tEl  = document.getElementById('target');
-  const gv   = parseDecimal(gEl.value);
-  const isfv = parseDecimal(isfEl.value);
-  const tv   = parseDecimal(tEl.value);
-  unit = u;
-
-  document.getElementById('btn-mmol').classList.toggle('active', u === 'mmol');
-  document.getElementById('btn-mgdl').classList.toggle('active', u === 'mgdl');
-  document.getElementById('glucose-unit-label').textContent = t(u === 'mmol' ? 'unit_mmol' : 'unit_mgdl');
-  document.getElementById('target-unit-label').textContent  = t(u === 'mmol' ? 'unit_mmol' : 'unit_mgdl');
-
-  const isfHintKey    = u === 'mmol' ? 'hint_isf_mmol'    : 'hint_isf_mgdl';
-  const targetHintKey = u === 'mmol' ? 'hint_target_mmol' : 'hint_target_mgdl';
-  document.getElementById('isf-hint').dataset.i18n    = isfHintKey;
-  document.getElementById('target-hint').dataset.i18n = targetHintKey;
-  document.getElementById('isf-hint').textContent     = t(isfHintKey);
-  document.getElementById('target-hint').textContent  = t(targetHintKey);
-
-  // Update placeholders — same key for glucose and target
-  updatePlaceholders(u);
-
-  // Convert existing values
-  if (u === 'mgdl') {
-    if (!isNaN(gv)   && gv > 0)   gEl.value   = String(Math.round(gv * 18.016));
-    if (!isNaN(isfv) && isfv > 0)  isfEl.value = String(Math.round(isfv * 18.016));
-    if (!isNaN(tv)   && tv > 0)    tEl.value   = String(Math.round(tv * 18.016));
-  } else {
-    if (!isNaN(gv)   && gv > 0)   gEl.value   = (gv / 18.016).toFixed(1);
-    if (!isNaN(isfv) && isfv > 0)  isfEl.value = (isfv / 18.016).toFixed(1);
-    if (!isNaN(tv)   && tv > 0)    tEl.value   = (tv / 18.016).toFixed(1);
-  }
-
-  clearAllErrors();
-  hideResult();
-  onGlucoseInput();
-  // Re-apply profile with new unit
-  if (typeof applyProfileToFields === 'function') applyProfileToFields();
-}
-
-function updatePlaceholders(u) {
-  const isU = u || unit;
-  document.getElementById('glucose').placeholder  = t(isU === 'mmol' ? 'ph_glucose_mmol' : 'ph_glucose_mgdl');
-  document.getElementById('target').placeholder   = t(isU === 'mmol' ? 'ph_target_mmol'  : 'ph_target_mgdl');
-  document.getElementById('isf').placeholder      = t(isU === 'mmol' ? 'ph_isf_mmol'     : 'ph_isf_mgdl');
-  document.getElementById('carbs').placeholder    = t('ph_carbs');
-  document.getElementById('icr').placeholder      = t('ph_icr');
-}
-
-// ── Glucose level indicator ───────────────────────────────────
-function getGlucoseLevel(mmol) {
-  if (mmol < 3.9)  return { label:'LOW',       cls:'level-low',       color:'#2e9e78' };
-  if (mmol <= 7.8) return { label:'OK',         cls:'level-ok',        color:'#1f9b72' };
-  if (mmol <= 11)  return { label:'HIGH',       cls:'level-high',      color:'#c47c10' };
-  return                  { label:'VERY HIGH',  cls:'level-very-high', color:'#c0392b' };
-}
-
-function onGlucoseInput() {
-  const val   = parseDecimal(document.getElementById('glucose').value);
-  const badge = document.getElementById('glucose-badge');
-  const zone  = document.getElementById('glucose-zone');
-  if (isNaN(val) || val <= 0) { badge.innerHTML = ''; zone.style.background = 'transparent'; return; }
-  const lv = getGlucoseLevel(unit === 'mgdl' ? val / 18.016 : val);
-  badge.innerHTML = `<span class="level-badge ${lv.cls}">${lv.label}</span>`;
-  zone.style.background = lv.color;
-}
-
-// ── Validation ────────────────────────────────────────────────
-function validateField(inputId, groupId) {
-  const el  = document.getElementById(inputId);
-  const grp = document.getElementById(groupId);
-  // Clear old error
-  el.classList.remove('input-error');
-  if (grp) grp.querySelectorAll('.field-error').forEach(e => e.remove());
-
-  const raw = el.value.trim();
-  if (!raw) { showErr(el, grp, t('err_required')); return false; }
-  const val = parseDecimal(raw);
-  if (isNaN(val)) { showErr(el, grp, t('err_invalid')); return false; }
-  if (val <= 0)   { showErr(el, grp, t('err_zero'));    return false; }
-  return true;
-}
-
-function showErr(el, grp, msg) {
-  el.classList.add('input-error');
-  const err = document.createElement('div');
-  err.className = 'field-error';
-  err.textContent = msg;
-  // Always insert INSIDE grp so validateField can remove it on next call
-  if (grp) { grp.appendChild(err); } else { el.after(err); }
-}
-
-// ── Enter key ─────────────────────────────────────────────────
-function onEnterKey(e) { if (e.key === 'Enter') { e.preventDefault(); calculate(); } }
-
-// ── Calculate ─────────────────────────────────────────────────
-function calculate() {
-  const valid = [
-    validateField('glucose','grp-glucose'),
-    validateField('carbs',  'grp-carbs'),
-    validateField('target', 'grp-target'),
-    validateField('icr',    'grp-icr'),
-    validateField('isf',    'grp-isf'),
-  ];
-  if (valid.includes(false)) {
-    const first = document.querySelector('.input-error');
-    if (first) first.scrollIntoView({ behavior:'smooth', block:'center' });
-    return;
-  }
-
-  const glucoseRaw = parseDecimal(document.getElementById('glucose').value);
-  const carbsG     = parseDecimal(document.getElementById('carbs').value);
-  const icr        = parseDecimal(document.getElementById('icr').value);
-  const isfRaw     = parseDecimal(document.getElementById('isf').value);
-  const targetRaw  = parseDecimal(document.getElementById('target').value);
-
-  const toM   = v => unit === 'mgdl' ? v / 18.016 : v;
-  const glucose = toM(glucoseRaw), isf = toM(isfRaw), tgt = toM(targetRaw);
-  const carbDose = carbsG / icr;
-  const corrDose = (glucose - tgt) / isf;
-  const total    = carbDose + corrDose;
-
-  const dUnit = t(unit === 'mmol' ? 'unit_mmol' : 'unit_mgdl');
-  const fmtG  = v => v.toFixed(unit === 'mmol' ? 1 : 0);
-  const now   = new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
-  const content = document.getElementById('result-content');
-
-  if (total <= 0) {
-    content.innerHTML = `
-      <div class="no-dose">${glucose < 3.9 ? t('no_dose_hypo') : t('no_dose_zero')}</div>
-      <div class="result-breakdown">
-        <div class="breakdown-row"><span class="breakdown-name">${t('breakdown_carbs')} (${carbsG}g ÷ ${icr})</span><span class="breakdown-val">${carbDose.toFixed(2)} u.</span></div>
-        <div class="breakdown-row"><span class="breakdown-name">${t('breakdown_corr')} (${fmtG(glucoseRaw)} → ${fmtG(targetRaw)} ${dUnit})</span><span class="breakdown-val negative">${corrDose.toFixed(2)} u.</span></div>
-      </div>`;
-    saveHistory(glucoseRaw, carbsG, 0, now);
-  } else {
-    const rounded = Math.round(total * 2) / 2;
-    content.innerHTML = `
-      <div class="result-main">
-        <div class="result-label">${t('result_label')}</div>
-        <div class="result-value">${rounded.toFixed(1)}</div>
-        <div class="result-unit">${t('result_unit')}</div>
-        <div class="result-time">${now}</div>
-      </div>
-      <div class="result-breakdown">
-        <div class="breakdown-row"><span class="breakdown-name">${t('breakdown_carbs')} (${carbsG}g ÷ ${icr})</span><span class="breakdown-val">${carbDose.toFixed(2)} u.</span></div>
-        <div class="breakdown-row"><span class="breakdown-name">${t('breakdown_corr')} (${fmtG(glucoseRaw)} → ${fmtG(targetRaw)} ${dUnit})</span><span class="breakdown-val ${corrDose>=0?'positive':'negative'}">${corrDose>=0?'+':''}${corrDose.toFixed(2)} u.</span></div>
-        <div class="breakdown-divider"></div>
-        <div class="breakdown-row"><span class="breakdown-name">${t('breakdown_exact')}</span><span class="breakdown-val">${total.toFixed(2)} u.</span></div>
-        <div class="breakdown-row"><span class="breakdown-name">${t('breakdown_round')}</span><span class="breakdown-val" style="color:var(--accent2)">${rounded.toFixed(1)} u.</span></div>
-      </div>`;
-    saveHistory(glucoseRaw, carbsG, rounded, now);
-  }
-
-  document.getElementById('result-card').classList.add('visible');
-  setTimeout(() => document.getElementById('result-card').scrollIntoView({ behavior:'smooth', block:'nearest' }), 60);
-}
-
-function hideResult() { document.getElementById('result-card').classList.remove('visible'); }
-
-// ── Reset: clear inputs, restore profile values ──────────────
-function resetAll() {
-  document.getElementById('glucose').value = '';
-  document.getElementById('carbs').value   = '';
-  clearAllErrors();
-  hideResult();
-  document.getElementById('glucose-badge').innerHTML = '';
-  document.getElementById('glucose-zone').style.background = 'transparent';
-  // Restore ICR / ISF / Target from active profile
-  if (typeof applyProfileToFields === 'function') applyProfileToFields();
-}
-
-// ── History ───────────────────────────────────────────────────
-function loadHistory() { try { return JSON.parse(localStorage.getItem('insulin_history')||'[]'); } catch { return []; } }
-
-function saveHistory(glucose, carbs, dose, time) {
-  const h = loadHistory();
-  h.unshift({ glucose, carbs, dose, time, unit, date: new Date().toLocaleDateString() });
-  if (h.length > 20) h.length = 20;
-  localStorage.setItem('insulin_history', JSON.stringify(h));
-  renderHistory(); updateHistoryLabel();
-}
-
-function renderHistory() {
-  const h    = loadHistory();
-  const list = document.getElementById('history-list');
-  if (!h.length) { list.innerHTML = `<div class="history-empty">${t('history_empty')}</div>`; return; }
-  list.innerHTML = h.map(e => `
-    <div class="history-item">
-      <div class="history-item-left">
-        <div>${e.date} ${e.time}</div>
-        <div>🩸 ${e.glucose} ${e.unit==='mmol'?'mmol/L':'mg/dL'} &nbsp;🥗 ${e.carbs}g</div>
-      </div>
-      <div class="history-item-dose">${e.dose>0?e.dose.toFixed(1)+' u.':'—'}</div>
-    </div>`).join('');
-}
-
-function clearHistory() {
-  if (!confirm(t('confirm_history'))) return;
-  localStorage.removeItem('insulin_history'); renderHistory(); updateHistoryLabel();
-}
-
-function updateHistoryLabel() {
-  const h = loadHistory();
-  const l = document.getElementById('history-toggle-label');
-  if (l) l.textContent = h.length ? `${t('btn_history')} (${h.length})` : t('btn_history');
-}
-
-let historyOpen = false;
-function toggleHistory() {
-  historyOpen = !historyOpen;
-  document.getElementById('history-panel').classList.toggle('visible', historyOpen);
-  if (historyOpen) { renderHistory(); setTimeout(() => document.getElementById('history-panel').scrollIntoView({ behavior:'smooth', block:'nearest' }), 60); }
-}
-
-// ── React to lang change ──────────────────────────────────────
-document.addEventListener('langchange', () => {
-  updateHistoryLabel();
-  updatePlaceholders(unit);
-  document.getElementById('glucose-unit-label').textContent = t(unit === 'mmol' ? 'unit_mmol' : 'unit_mgdl');
-  document.getElementById('target-unit-label').textContent  = t(unit === 'mmol' ? 'unit_mmol' : 'unit_mgdl');
-});
-
-// ── Init ──────────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-  // Only set placeholders — fields start empty
-  updateHistoryLabel();
-  updatePlaceholders('mmol');
-  // Read lang param from URL (?lang=en)
-  const urlLang = new URLSearchParams(location.search).get('lang');
-  if (urlLang && LANGS[urlLang]) applyLang(urlLang);
-});
-</script>
-
 <!-- ── Profile modal ── -->
 <div class="modal-overlay hidden" id="profile-modal">
   <div class="modal-box">
     <div class="modal-title">
-      <span id="profile-modal-title" data-i18n="profile_edit_title">Настройка профиля</span>
+      <span data-i18n="profile_edit_title">Настройка профиля</span>
       <button class="modal-close" onclick="closeProfileModal()">✕</button>
     </div>
     <div style="display:flex;gap:6px;margin-bottom:14px;">
@@ -529,13 +284,249 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </div>
 
+<script src="./app.js"></script>
 <script>
-// ═══════════════════════════════════════════════════════════════
-//  PROFILES
-// ═══════════════════════════════════════════════════════════════
+// ── Defaults ──────────────────────────────────────────────────
+const DEF = {
+  mmol: { icr:'12', isf:'2.5', target:'5.5' },
+  mgdl: { icr:'12', isf:'45',  target:'99'  },
+};
+let unit = 'mmol';
+
+// ── Unit switching ────────────────────────────────────────────
+function setUnit(u) {
+  const gEl   = document.getElementById('glucose');
+  const isfEl = document.getElementById('isf');
+  const tEl   = document.getElementById('target');
+  const gv    = parseDecimal(gEl.value);
+  const isfv  = parseDecimal(isfEl.value);
+  const tv    = parseDecimal(tEl.value);
+  unit = u;
+
+  document.getElementById('btn-mmol').classList.toggle('active', u === 'mmol');
+  document.getElementById('btn-mgdl').classList.toggle('active', u === 'mgdl');
+  document.getElementById('glucose-unit-label').textContent = t(u === 'mmol' ? 'unit_mmol' : 'unit_mgdl');
+  document.getElementById('target-unit-label').textContent  = t(u === 'mmol' ? 'unit_mmol' : 'unit_mgdl');
+
+  const isfHintKey    = u === 'mmol' ? 'hint_isf_mmol'    : 'hint_isf_mgdl';
+  const targetHintKey = u === 'mmol' ? 'hint_target_mmol' : 'hint_target_mgdl';
+  document.getElementById('isf-hint').dataset.i18n    = isfHintKey;
+  document.getElementById('target-hint').dataset.i18n = targetHintKey;
+  document.getElementById('isf-hint').textContent     = t(isfHintKey);
+  document.getElementById('target-hint').textContent  = t(targetHintKey);
+
+  updatePlaceholders(u);
+
+  if (u === 'mgdl') {
+    if (!isNaN(gv)   && gv > 0)   gEl.value   = String(Math.round(gv * 18.016));
+    if (!isNaN(isfv) && isfv > 0)  isfEl.value = String(Math.round(isfv * 18.016));
+    if (!isNaN(tv)   && tv > 0)    tEl.value   = String(Math.round(tv * 18.016));
+  } else {
+    if (!isNaN(gv)   && gv > 0)   gEl.value   = (gv / 18.016).toFixed(1);
+    if (!isNaN(isfv) && isfv > 0)  isfEl.value = (isfv / 18.016).toFixed(1);
+    if (!isNaN(tv)   && tv > 0)    tEl.value   = (tv / 18.016).toFixed(1);
+  }
+
+  clearAllErrors();
+  hideResult();
+  onGlucoseInput();
+  if (typeof applyProfileToFields === 'function') applyProfileToFields();
+}
+
+function updatePlaceholders(u) {
+  const isU = u || unit;
+  document.getElementById('glucose').placeholder = t(isU === 'mmol' ? 'ph_glucose_mmol' : 'ph_glucose_mgdl');
+  document.getElementById('target').placeholder  = t(isU === 'mmol' ? 'ph_target_mmol'  : 'ph_target_mgdl');
+  document.getElementById('isf').placeholder     = t(isU === 'mmol' ? 'ph_isf_mmol'     : 'ph_isf_mgdl');
+  document.getElementById('carbs').placeholder   = t('ph_carbs');
+  document.getElementById('icr').placeholder     = t('ph_icr');
+}
+
+// ── Glucose indicator ─────────────────────────────────────────
+function getGlucoseLevel(mmol) {
+  if (mmol < 3.9)  return { label:'LOW',       cls:'level-low',       color:'#2e9e78' };
+  if (mmol <= 7.8) return { label:'OK',         cls:'level-ok',        color:'#1f9b72' };
+  if (mmol <= 11)  return { label:'HIGH',       cls:'level-high',      color:'#c47c10' };
+  return                  { label:'VERY HIGH',  cls:'level-very-high', color:'#c0392b' };
+}
+
+function onGlucoseInput() {
+  const val   = parseDecimal(document.getElementById('glucose').value);
+  const badge = document.getElementById('glucose-badge');
+  const zone  = document.getElementById('glucose-zone');
+  if (isNaN(val) || val <= 0) { badge.innerHTML = ''; zone.style.background = 'transparent'; return; }
+  const lv = getGlucoseLevel(unit === 'mgdl' ? val / 18.016 : val);
+  badge.innerHTML = `<span class="level-badge ${lv.cls}">${lv.label}</span>`;
+  zone.style.background = lv.color;
+}
+
+// ── Validation ────────────────────────────────────────────────
+function validateField(inputId, groupId) {
+  const el  = document.getElementById(inputId);
+  const grp = document.getElementById(groupId);
+  el.classList.remove('input-error');
+  if (grp) grp.querySelectorAll('.field-error').forEach(e => e.remove());
+  const raw = el.value.trim();
+  if (!raw)               { showErr(el, grp, t('err_required')); return false; }
+  const val = parseDecimal(raw);
+  if (isNaN(val))         { showErr(el, grp, t('err_invalid'));  return false; }
+  if (val <= 0)           { showErr(el, grp, t('err_zero'));     return false; }
+  return true;
+}
+
+function showErr(el, grp, msg) {
+  el.classList.add('input-error');
+  const err = document.createElement('div');
+  err.className = 'field-error';
+  err.textContent = msg;
+  if (grp) { grp.appendChild(err); } else { el.after(err); }
+}
+
+function onEnterKey(e) { if (e.key === 'Enter') { e.preventDefault(); calculate(); } }
+
+// ── Calculate ─────────────────────────────────────────────────
+function calculate() {
+  const valid = [
+    validateField('glucose','grp-glucose'),
+    validateField('carbs',  'grp-carbs'),
+    validateField('target', 'grp-target'),
+    validateField('icr',    'grp-icr'),
+    validateField('isf',    'grp-isf'),
+  ];
+  if (valid.includes(false)) {
+    const first = document.querySelector('.input-error');
+    if (first) first.scrollIntoView({ behavior:'smooth', block:'center' });
+    return;
+  }
+
+  const glucoseRaw = parseDecimal(document.getElementById('glucose').value);
+  const carbsG     = parseDecimal(document.getElementById('carbs').value);
+  const icr        = parseDecimal(document.getElementById('icr').value);
+  const isfRaw     = parseDecimal(document.getElementById('isf').value);
+  const targetRaw  = parseDecimal(document.getElementById('target').value);
+
+  const toM      = v => unit === 'mgdl' ? v / 18.016 : v;
+  const glucose  = toM(glucoseRaw), isf = toM(isfRaw), tgt = toM(targetRaw);
+  const carbDose = carbsG / icr;
+  const corrDose = (glucose - tgt) / isf;
+  const total    = carbDose + corrDose;
+
+  const dUnit = t(unit === 'mmol' ? 'unit_mmol' : 'unit_mgdl');
+  const fmtG  = v => v.toFixed(unit === 'mmol' ? 1 : 0);
+  const now   = new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
+  const content = document.getElementById('result-content');
+
+  if (total <= 0) {
+    content.innerHTML = `
+      <div class="no-dose">${glucose < 3.9 ? t('no_dose_hypo') : t('no_dose_zero')}</div>
+      <div class="result-breakdown">
+        <div class="breakdown-row"><span class="breakdown-name">${t('breakdown_carbs')} (${carbsG}g ÷ ${icr})</span><span class="breakdown-val">${carbDose.toFixed(2)} u.</span></div>
+        <div class="breakdown-row"><span class="breakdown-name">${t('breakdown_corr')} (${fmtG(glucoseRaw)} → ${fmtG(targetRaw)} ${dUnit})</span><span class="breakdown-val negative">${corrDose.toFixed(2)} u.</span></div>
+      </div>`;
+    saveHistory(glucoseRaw, carbsG, 0, now);
+  } else {
+    const rounded = Math.round(total * 2) / 2;
+    content.innerHTML = `
+      <div class="result-main">
+        <div class="result-label">${t('result_label')}</div>
+        <div class="result-value">${rounded.toFixed(1)}</div>
+        <div class="result-unit">${t('result_unit')}</div>
+        <div class="result-time">${now}</div>
+      </div>
+      <div class="result-breakdown">
+        <div class="breakdown-row"><span class="breakdown-name">${t('breakdown_carbs')} (${carbsG}g ÷ ${icr})</span><span class="breakdown-val">${carbDose.toFixed(2)} u.</span></div>
+        <div class="breakdown-row"><span class="breakdown-name">${t('breakdown_corr')} (${fmtG(glucoseRaw)} → ${fmtG(targetRaw)} ${dUnit})</span><span class="breakdown-val ${corrDose>=0?'positive':'negative'}">${corrDose>=0?'+':''}${corrDose.toFixed(2)} u.</span></div>
+        <div class="breakdown-divider"></div>
+        <div class="breakdown-row"><span class="breakdown-name">${t('breakdown_exact')}</span><span class="breakdown-val">${total.toFixed(2)} u.</span></div>
+        <div class="breakdown-row"><span class="breakdown-name">${t('breakdown_round')}</span><span class="breakdown-val" style="color:var(--accent2)">${rounded.toFixed(1)} u.</span></div>
+      </div>`;
+    saveHistory(glucoseRaw, carbsG, rounded, now);
+  }
+
+  document.getElementById('result-card').classList.add('visible');
+  setTimeout(() => document.getElementById('result-card').scrollIntoView({ behavior:'smooth', block:'nearest' }), 60);
+}
+
+function hideResult() { document.getElementById('result-card').classList.remove('visible'); }
+
+// ── Reset ─────────────────────────────────────────────────────
+function resetAll() {
+  document.getElementById('glucose').value = '';
+  document.getElementById('carbs').value   = '';
+  document.getElementById('glucose-badge').innerHTML = '';
+  document.getElementById('glucose-zone').style.background = 'transparent';
+  clearAllErrors();
+  hideResult();
+  if (typeof applyProfileToFields === 'function') applyProfileToFields();
+}
+
+// ── History ───────────────────────────────────────────────────
+function loadHistory() { try { return JSON.parse(localStorage.getItem('insulin_history')||'[]'); } catch { return []; } }
+
+function saveHistory(glucose, carbs, dose, time) {
+  const h = loadHistory();
+  h.unshift({ glucose, carbs, dose, time, unit, date: new Date().toLocaleDateString() });
+  if (h.length > 20) h.length = 20;
+  localStorage.setItem('insulin_history', JSON.stringify(h));
+  renderHistory(); updateHistoryLabel();
+}
+
+function renderHistory() {
+  const h    = loadHistory();
+  const list = document.getElementById('history-list');
+  if (!h.length) { list.innerHTML = `<div class="history-empty">${t('history_empty')}</div>`; return; }
+  list.innerHTML = h.map(e => `
+    <div class="history-item">
+      <div class="history-item-left">
+        <div>${e.date} ${e.time}</div>
+        <div>🩸 ${e.glucose} ${e.unit==='mmol'?'mmol/L':'mg/dL'} &nbsp;🥗 ${e.carbs}g</div>
+      </div>
+      <div class="history-item-dose">${e.dose>0?e.dose.toFixed(1)+' u.':'—'}</div>
+    </div>`).join('');
+}
+
+function clearHistory() {
+  if (!confirm(t('confirm_history'))) return;
+  localStorage.removeItem('insulin_history'); renderHistory(); updateHistoryLabel();
+}
+
+function updateHistoryLabel() {
+  const h = loadHistory();
+  const l = document.getElementById('history-toggle-label');
+  if (l) l.textContent = h.length ? `${t('btn_history')} (${h.length})` : t('btn_history');
+}
+
+let historyOpen = false;
+function toggleHistory() {
+  historyOpen = !historyOpen;
+  document.getElementById('history-panel').classList.toggle('visible', historyOpen);
+  if (historyOpen) { renderHistory(); setTimeout(() => document.getElementById('history-panel').scrollIntoView({ behavior:'smooth', block:'nearest' }), 60); }
+}
+
+// ── Lang change ───────────────────────────────────────────────
+document.addEventListener('langchange', () => {
+  updateHistoryLabel();
+  updatePlaceholders(unit);
+  document.getElementById('glucose-unit-label').textContent = t(unit === 'mmol' ? 'unit_mmol' : 'unit_mgdl');
+  document.getElementById('target-unit-label').textContent  = t(unit === 'mmol' ? 'unit_mmol' : 'unit_mgdl');
+  renderPresets();
+});
+
+// ── Init ──────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  updateHistoryLabel();
+  updatePlaceholders('mmol');
+  const urlLang = new URLSearchParams(location.search).get('lang');
+  if (urlLang && LANGS[urlLang]) applyLang(urlLang);
+});
+</script>
+
+<!-- ── Profiles + Presets JS ── -->
+<script>
+// ── Profiles ──────────────────────────────────────────────────
 const PROFILE_DEFAULTS = {
-  morning: { icr:'10', isf_mmol:'2.0', isf_mgdl:'36', target_mmol:'5.5', target_mgdl:'99' },
-  day:     { icr:'12', isf_mmol:'2.5', isf_mgdl:'45', target_mmol:'5.5', target_mgdl:'99' },
+  morning: { icr:'10', isf_mmol:'2.0', isf_mgdl:'36', target_mmol:'5.5', target_mgdl:'99'  },
+  day:     { icr:'12', isf_mmol:'2.5', isf_mgdl:'45', target_mmol:'5.5', target_mgdl:'99'  },
   evening: { icr:'14', isf_mmol:'3.0', isf_mgdl:'54', target_mmol:'6.0', target_mgdl:'108' },
 };
 
@@ -543,7 +534,6 @@ function loadProfiles() {
   try { return JSON.parse(localStorage.getItem('profiles') || 'null') || JSON.parse(JSON.stringify(PROFILE_DEFAULTS)); }
   catch { return JSON.parse(JSON.stringify(PROFILE_DEFAULTS)); }
 }
-
 function saveProfiles(p) { localStorage.setItem('profiles', JSON.stringify(p)); }
 
 let currentProfile = localStorage.getItem('activeProfile') || 'morning';
@@ -551,58 +541,51 @@ let currentProfile = localStorage.getItem('activeProfile') || 'morning';
 function switchProfile(name) {
   currentProfile = name;
   localStorage.setItem('activeProfile', name);
-  // Update tab UI
-  ['morning','day','evening'].forEach(p => {
-    document.getElementById('ptab-' + p).classList.toggle('active', p === name);
-  });
-  // Apply profile values to fields
+  ['morning','day','evening'].forEach(p =>
+    document.getElementById('ptab-' + p).classList.toggle('active', p === name)
+  );
   applyProfileToFields();
 }
 
 function applyProfileToFields() {
-  const profiles = loadProfiles();
-  const p = profiles[currentProfile];
+  const p = loadProfiles()[currentProfile];
   document.getElementById('icr').value    = p.icr;
   document.getElementById('isf').value    = unit === 'mmol' ? p.isf_mmol    : p.isf_mgdl;
   document.getElementById('target').value = unit === 'mmol' ? p.target_mmol : p.target_mgdl;
 }
 
-// ── Profile modal ──────────────────────────────────────────────
+// ── Profile modal ─────────────────────────────────────────────
 let editingProfile = 'morning';
+let tempProfiles   = null;
 
 function openProfileModal() {
   editingProfile = currentProfile;
+  tempProfiles   = null;
   renderProfileModalTabs();
   loadProfileIntoModal(editingProfile);
   document.getElementById('profile-modal').classList.remove('hidden');
 }
-
 function closeProfileModal() {
+  tempProfiles = null;
   document.getElementById('profile-modal').classList.add('hidden');
 }
-
 function selectEditProfile(name) {
-  // Save current edits before switching tab
   saveCurrentEditToTemp();
   editingProfile = name;
   renderProfileModalTabs();
   loadProfileIntoModal(name);
 }
-
 function renderProfileModalTabs() {
-  ['morning','day','evening'].forEach(p => {
-    document.getElementById('medit-' + p).classList.toggle('active', p === editingProfile);
-  });
+  ['morning','day','evening'].forEach(p =>
+    document.getElementById('medit-' + p).classList.toggle('active', p === editingProfile)
+  );
 }
-
-let tempProfiles = null;
-
 function saveCurrentEditToTemp() {
   if (!tempProfiles) tempProfiles = loadProfiles();
   const icr    = document.getElementById('pedit-icr').value.trim();
   const isf    = document.getElementById('pedit-isf').value.trim();
   const target = document.getElementById('pedit-target').value.trim();
-  if (icr)    tempProfiles[editingProfile].icr = icr;
+  if (icr) tempProfiles[editingProfile].icr = icr;
   if (unit === 'mmol') {
     if (isf)    tempProfiles[editingProfile].isf_mmol    = isf;
     if (target) tempProfiles[editingProfile].target_mmol = target;
@@ -611,20 +594,17 @@ function saveCurrentEditToTemp() {
     if (target) tempProfiles[editingProfile].target_mgdl = target;
   }
 }
-
 function loadProfileIntoModal(name) {
   const p = (tempProfiles || loadProfiles())[name];
   document.getElementById('pedit-icr').value    = p.icr;
   document.getElementById('pedit-isf').value    = unit === 'mmol' ? p.isf_mmol    : p.isf_mgdl;
   document.getElementById('pedit-target').value = unit === 'mmol' ? p.target_mmol : p.target_mgdl;
 }
-
 function resetEditProfile() {
   if (!tempProfiles) tempProfiles = loadProfiles();
   tempProfiles[editingProfile] = JSON.parse(JSON.stringify(PROFILE_DEFAULTS[editingProfile]));
   loadProfileIntoModal(editingProfile);
 }
-
 function saveProfileModal() {
   saveCurrentEditToTemp();
   saveProfiles(tempProfiles);
@@ -633,31 +613,27 @@ function saveProfileModal() {
   applyProfileToFields();
 }
 
-// ═══════════════════════════════════════════════════════════════
-//  PRESETS
-// ═══════════════════════════════════════════════════════════════
+// ── Presets ───────────────────────────────────────────────────
 const DEFAULT_PRESETS = [
-  { id: 'p1', name: 'Завтрак', carbs: 45 },
-  { id: 'p2', name: 'Обед',    carbs: 70 },
-  { id: 'p3', name: 'Ужин',    carbs: 55 },
+  { id:'p1', name:'Завтрак', carbs:45 },
+  { id:'p2', name:'Обед',    carbs:70 },
+  { id:'p3', name:'Ужин',    carbs:55 },
 ];
-
 function loadPresets() {
   try { return JSON.parse(localStorage.getItem('meal_presets') || 'null') || DEFAULT_PRESETS; }
   catch { return DEFAULT_PRESETS; }
 }
-
-function savePresetsData(presets) { localStorage.setItem('meal_presets', JSON.stringify(presets)); }
+function savePresetsData(p) { localStorage.setItem('meal_presets', JSON.stringify(p)); }
 
 function renderPresets() {
-  const presets  = loadPresets();
+  const presets   = loadPresets();
   const container = document.getElementById('preset-chips');
   container.innerHTML = '';
   presets.forEach(p => {
     const chip = document.createElement('button');
     chip.className = 'preset-chip';
     chip.innerHTML = `${p.name} <span class="preset-chip-val">${p.carbs}г</span>`;
-    chip.onclick = () => applyPreset(p);
+    chip.addEventListener('click', () => applyPreset(p));
     chip.addEventListener('pointerdown', startLongPress(p));
     chip.addEventListener('pointerup',   cancelLongPress);
     chip.addEventListener('pointerleave',cancelLongPress);
@@ -665,12 +641,9 @@ function renderPresets() {
   });
 }
 
-// Long press → edit preset
 let longPressTimer = null;
 function startLongPress(preset) {
-  return () => {
-    longPressTimer = setTimeout(() => { openPresetModal(preset); }, 600);
-  };
+  return () => { longPressTimer = setTimeout(() => openPresetModal(preset), 600); };
 }
 function cancelLongPress() { clearTimeout(longPressTimer); }
 
@@ -680,18 +653,15 @@ function applyPreset(preset) {
   clearFieldError(document.getElementById('carbs'));
 }
 
-// ── Preset modal ───────────────────────────────────────────────
 let editingPresetId = null;
-
 function openPresetModal(preset) {
   editingPresetId = preset ? preset.id : null;
-  document.getElementById('preset-name').value      = preset ? preset.name  : '';
+  document.getElementById('preset-name').value      = preset ? preset.name        : '';
   document.getElementById('preset-carbs-val').value = preset ? String(preset.carbs) : '';
   document.getElementById('preset-delete-btn').style.display = preset ? 'block' : 'none';
   document.getElementById('preset-modal').classList.remove('hidden');
   setTimeout(() => document.getElementById('preset-name').focus(), 100);
 }
-
 function closePresetModal() { document.getElementById('preset-modal').classList.add('hidden'); }
 
 function savePreset() {
@@ -703,7 +673,7 @@ function savePreset() {
     const idx = presets.findIndex(p => p.id === editingPresetId);
     if (idx !== -1) { presets[idx].name = name; presets[idx].carbs = carbs; }
   } else {
-    presets.push({ id: 'p' + Date.now(), name, carbs });
+    presets.push({ id:'p' + Date.now(), name, carbs });
   }
   savePresetsData(presets);
   renderPresets();
@@ -712,26 +682,25 @@ function savePreset() {
 
 function deletePreset() {
   if (!editingPresetId) return;
-  const presets = loadPresets().filter(p => p.id !== editingPresetId);
-  savePresetsData(presets);
+  savePresetsData(loadPresets().filter(p => p.id !== editingPresetId));
   renderPresets();
   closePresetModal();
 }
 
-// Close modals on overlay click
-document.getElementById('profile-modal').addEventListener('click', e => { if (e.target === e.currentTarget) { tempProfiles = null; closeProfileModal(); } });
-document.getElementById('preset-modal').addEventListener('click',  e => { if (e.target === e.currentTarget) closePresetModal(); });
+// Close modals on backdrop click
+document.getElementById('profile-modal').addEventListener('click', e => {
+  if (e.target === e.currentTarget) { tempProfiles = null; closeProfileModal(); }
+});
+document.getElementById('preset-modal').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closePresetModal();
+});
 
-// Init profiles + presets
+// ── Init ──────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   switchProfile(currentProfile);
   renderPresets();
 });
-
-// Re-apply profile values when unit changes
-document.addEventListener('langchange', () => {
-  renderPresets();
-});
 </script>
+
 </body>
 </html>
