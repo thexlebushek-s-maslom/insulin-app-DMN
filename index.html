@@ -532,9 +532,11 @@ let currentProfile = localStorage.getItem('activeProfile') || 'morning';
 function switchProfile(name) {
   currentProfile = name;
   localStorage.setItem('activeProfile', name);
-  ['morning','day','evening'].forEach(p =>
-    document.getElementById('ptab-' + p).classList.toggle('active', p === name)
-  );
+  // Tab buttons may not exist if profile bar is hidden
+  ['morning','day','evening'].forEach(p => {
+    const el = document.getElementById('ptab-' + p);
+    if (el) el.classList.toggle('active', p === name);
+  });
   applyProfileToFields();
 }
 
@@ -567,9 +569,10 @@ function selectEditProfile(name) {
   loadProfileIntoModal(name);
 }
 function renderProfileModalTabs() {
-  ['morning','day','evening'].forEach(p =>
-    document.getElementById('medit-' + p).classList.toggle('active', p === editingProfile)
-  );
+  ['morning','day','evening'].forEach(p => {
+    const el = document.getElementById('medit-' + p);
+    if (el) el.classList.toggle('active', p === editingProfile);
+  });
 }
 function saveCurrentEditToTemp() {
   if (!tempProfiles) tempProfiles = loadProfiles();
