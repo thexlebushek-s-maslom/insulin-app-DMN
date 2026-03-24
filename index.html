@@ -83,16 +83,7 @@
     </div>
   </div>
 
-  <!-- Profile switcher -->
-  <div class="profile-bar">
-    <span class="profile-bar-label" data-i18n="profile_label">Профиль</span>
-    <div class="profile-tabs">
-      <button class="profile-tab active" id="ptab-morning" onclick="switchProfile('morning')" data-i18n="profile_morning">☀️ Утро</button>
-      <button class="profile-tab"        id="ptab-day"     onclick="switchProfile('day')"     data-i18n="profile_day">🌤 День</button>
-      <button class="profile-tab"        id="ptab-evening" onclick="switchProfile('evening')"  data-i18n="profile_evening">🌙 Вечер</button>
-    </div>
-    <button class="profile-edit-btn" onclick="openProfileModal()" title="Edit profile">⚙️</button>
-  </div>
+
 
   <!-- Offline / Install -->
   <div class="offline-banner" id="offline-banner" data-i18n="offline_msg"></div>
@@ -137,7 +128,7 @@
         </div>
         <!-- Presets: inside input-group so they don't escape the flex row -->
         <div class="preset-row" id="preset-row">
-          <div class="preset-label" data-i18n="preset_label">Быстрые углеводы</div>
+          <div class="preset-label" data-i18n="preset_label">Углеводы</div>
           <div id="preset-chips" style="display:flex;gap:6px;flex-wrap:wrap;"></div>
           <button class="preset-add-btn" onclick="openPresetModal(null)" data-i18n="preset_add">+ Добавить</button>
         </div>
