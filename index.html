@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Калькулятор дозы инсулина | Insulin Dose Calculator | Insulinrechner</title>
-<meta name="description" content="Free insulin bolus dose calculator. Calculate insulin dose by blood glucose and carbohydrates. Works offline on Android and iPhone. Бесплатный калькулятор дозы инсулина. Kostenloser Insulindosisrechner.">
-<meta name="keywords" content="insulin dose calculator, bolus calculator, insulin to carb ratio, ICR ISF calculator, type 1 diabetes, T1D, калькулятор инсулина, Insulinrechner, calculateur insuline, calculadora insulina">
+<title>Bolus Insulin Calculator — ICR & ISF Dose Tool | Калькулятор инсулина | Insulinrechner</title>
+<meta name="description" content="Free bolus insulin dose calculator. Calculate how much insulin for carbs using ICR and correction factor ISF. Works offline on Android & iPhone. Type 1 diabetes tool.">
+<meta name="keywords" content="bolus insulin calculator, insulin dose calculator, how to calculate insulin dose for carbs, insulin to carb ratio calculator, ICR calculator, correction factor insulin formula, how much insulin for 50g carbs, how much insulin per carb, insulin sensitivity factor calculator, ISF calculator, type 1 diabetes calculator, T1D bolus calculator, diabetes carb calculator, insulin units calculator, blood glucose correction dose, basal bolus calculator, carb counting insulin, insulin dose per gram carbs, calculate insulin for meal, free insulin calculator app, offline insulin calculator, калькулятор инсулина, Insulinrechner, calculateur insuline, calculadora insulina, 胰岛素剂量计算器">
 <meta name="robots" content="index, follow">
 <meta name="author" content="insulin-calc">
 <!-- hreflang SEO -->
@@ -378,16 +378,11 @@ function calculate() {
 
 function hideResult() { document.getElementById('result-card').classList.remove('visible'); }
 
-// ── Reset ALL fields including settings ───────────────────────
+// ── Reset ALL fields to empty ─────────────────────────────────
 function resetAll() {
-  // Clear variable inputs
-  document.getElementById('glucose').value = '';
-  document.getElementById('carbs').value   = '';
-  // Reset settings to unit-appropriate defaults
-  document.getElementById('icr').value    = DEF[unit].icr;
-  document.getElementById('isf').value    = DEF[unit].isf;
-  document.getElementById('target').value = DEF[unit].target;
-  // Clear glucose indicator
+  ['glucose', 'carbs', 'target', 'icr', 'isf'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
   document.getElementById('glucose-badge').innerHTML = '';
   document.getElementById('glucose-zone').style.background = 'transparent';
   clearAllErrors();
@@ -447,10 +442,7 @@ document.addEventListener('langchange', () => {
 
 // ── Init ──────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-  // Set default values
-  document.getElementById('icr').value    = DEF.mmol.icr;
-  document.getElementById('isf').value    = DEF.mmol.isf;
-  document.getElementById('target').value = DEF.mmol.target;
+  // Only set placeholders — fields start empty
   updateHistoryLabel();
   updatePlaceholders('mmol');
   // Read lang param from URL (?lang=en)
