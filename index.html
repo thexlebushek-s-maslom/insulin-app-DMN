@@ -3,26 +3,47 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Калькулятор дозы инсулина — расчёт по глюкозе и углеводам</title>
-<meta name="description" content="Бесплатный онлайн-калькулятор дозы инсулина. Рассчитайте дозу по текущему уровню глюкозы и количеству углеводов. Работает офлайн на Android и iPhone.">
+<title>Калькулятор дозы инсулина | Insulin Dose Calculator | Insulinrechner</title>
+<meta name="description" content="Free insulin bolus dose calculator. Calculate insulin dose by blood glucose and carbohydrates. Works offline on Android and iPhone. Бесплатный калькулятор дозы инсулина. Kostenloser Insulindosisrechner.">
+<meta name="keywords" content="insulin dose calculator, bolus calculator, insulin to carb ratio, ICR ISF calculator, type 1 diabetes, T1D, калькулятор инсулина, Insulinrechner, calculateur insuline, calculadora insulina">
 <meta name="robots" content="index, follow">
+<meta name="author" content="insulin-calc">
+<!-- hreflang SEO -->
+<link rel="alternate" hreflang="en"    href="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/?lang=en">
+<link rel="alternate" hreflang="ru"    href="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/?lang=ru">
+<link rel="alternate" hreflang="de"    href="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/?lang=de">
+<link rel="alternate" hreflang="fr"    href="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/?lang=fr">
+<link rel="alternate" hreflang="es"    href="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/?lang=es">
+<link rel="alternate" hreflang="zh-CN" href="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/?lang=zh">
+<link rel="alternate" hreflang="x-default" href="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/">
 <link rel="canonical" href="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Калькулятор дозы инсулина">
-<meta property="og:description" content="Рассчитайте дозу инсулина по уровню глюкозы и количеству углеводов.">
+<!-- Open Graph -->
+<meta property="og:type"        content="website">
+<meta property="og:title"       content="Insulin Dose Calculator — Free Bolus Calculator">
+<meta property="og:description" content="Calculate your insulin bolus dose by blood glucose and carbohydrates. Works offline. Free, no registration.">
+<meta property="og:url"         content="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/">
+<meta property="og:locale"      content="en_US">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="de_DE">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:locale:alternate" content="zh_CN">
+<!-- PWA -->
 <meta name="theme-color" content="#3fb68e">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Инсулин">
+<meta name="apple-mobile-web-app-title" content="Insulin Calc">
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="manifest" href="./manifest.json">
 <link rel="apple-touch-icon" href="./icons/icon-192.png">
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./style.css">
+<!-- Schema.org -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"Калькулятор дозы инсулина","applicationCategory":"HealthApplication","operatingSystem":"Android, iOS","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+{"@context":"https://schema.org","@type":"WebApplication","name":"Insulin Dose Calculator","description":"Free bolus insulin dose calculator by blood glucose and carbohydrates","url":"https://thexlebushek-s-maslom.github.io/insulin-app-DMN/","applicationCategory":"HealthApplication","operatingSystem":"Android, iOS, Web","inLanguage":["en","ru","de","fr","es","zh"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":"Offline support, 7 languages, Blood glucose tracking, Bolus calculation"}
 </script>
 <!-- AdSense: раскомментируйте после одобрения
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
@@ -52,11 +73,8 @@
 
 <main class="page">
 
-  <div class="ad-slot" id="ad-top">
-    <!-- AdSense slot -->
-  </div>
+  <div class="ad-slot" id="ad-top"></div>
 
-  <!-- Header row -->
   <div style="display:flex;align-items:flex-end;justify-content:space-between;padding:4px 0;gap:12px;">
     <div>
       <div style="font-size:24px;font-weight:600;letter-spacing:-.5px;line-height:1;" data-i18n="calc_title">Расчёт дозы</div>
@@ -68,7 +86,6 @@
     </div>
   </div>
 
-  <!-- Offline / Install -->
   <div class="offline-banner" id="offline-banner" data-i18n="offline_msg"></div>
   <div class="install-banner" id="install-banner">
     <span class="install-text" data-i18n="install_text"></span>
@@ -76,51 +93,47 @@
     <button class="install-close" onclick="closeInstall()">✕</button>
   </div>
 
-  <!-- Disclaimer -->
   <div class="disclaimer" data-i18n="disclaimer"></div>
 
-  <!-- ── Main inputs card (glucose + carbs + target) ── -->
+  <!-- Main inputs: glucose + carbs + target -->
   <div class="card">
     <div class="card-label" data-i18n="inputs_label">Данные для расчёта</div>
 
-    <!-- Glucose -->
     <div class="input-row">
       <div class="input-icon icon-glucose">🩸</div>
       <div class="input-group" id="grp-glucose">
-        <label id="lbl-glucose" data-i18n="label_glucose">Глюкоза сейчас <span id="glucose-badge"></span></label>
+        <label>
+          <span data-i18n="label_glucose">Глюкоза сейчас</span>
+          <span id="glucose-badge"></span>
+        </label>
         <div class="input-wrap">
           <input type="text" inputmode="decimal" id="glucose"
-                 placeholder="5.5" autocomplete="off"
-                 oninput="onGlucoseInput()" onkeydown="onEnterKey(event)">
+                 autocomplete="off" oninput="onGlucoseInput()" onkeydown="onEnterKey(event)">
           <span class="input-unit" id="glucose-unit-label">ммоль/л</span>
         </div>
         <div class="glucose-zone" id="glucose-zone"></div>
       </div>
     </div>
 
-    <!-- Carbs -->
     <div class="input-row">
       <div class="input-icon icon-carb">🥗</div>
       <div class="input-group" id="grp-carbs">
         <label data-i18n="label_carbs">Углеводы в еде</label>
         <div class="input-wrap">
           <input type="text" inputmode="decimal" id="carbs"
-                 placeholder="60" autocomplete="off"
-                 onkeydown="onEnterKey(event)">
+                 autocomplete="off" onkeydown="onEnterKey(event)">
           <span class="input-unit">г</span>
         </div>
       </div>
     </div>
 
-    <!-- Target glucose — moved here from settings -->
     <div class="input-row">
       <div class="input-icon icon-target">🎯</div>
       <div class="input-group" id="grp-target">
         <label data-i18n="label_target">Целевая глюкоза</label>
         <div class="input-wrap">
           <input type="text" inputmode="decimal" id="target"
-                 placeholder="5.5" autocomplete="off"
-                 onkeydown="onEnterKey(event)">
+                 autocomplete="off" onkeydown="onEnterKey(event)">
           <span class="input-unit" id="target-unit-label">ммоль/л</span>
         </div>
         <div class="setting-hint" id="target-hint" style="margin-top:5px;" data-i18n="hint_target_mmol">ммоль/л</div>
@@ -128,36 +141,29 @@
     </div>
   </div>
 
-  <!-- ── Settings card (ICR + ISF only) ── -->
+  <!-- Settings: ICR + ISF -->
   <div class="card">
     <div class="card-label" data-i18n="settings_label">Параметры (задайте с врачом)</div>
     <div class="settings-grid">
       <div class="setting-item" id="grp-icr">
         <label data-i18n="label_icr">ICR</label>
-        <input type="text" inputmode="decimal" id="icr"
-               value="12" autocomplete="off"
-               onkeydown="onEnterKey(event)">
+        <input type="text" inputmode="decimal" id="icr" autocomplete="off" onkeydown="onEnterKey(event)">
         <div class="setting-hint" data-i18n="hint_icr">г углеводов / 1 ед.</div>
       </div>
       <div class="setting-item" id="grp-isf">
         <label data-i18n="label_isf">ISF</label>
-        <input type="text" inputmode="decimal" id="isf"
-               value="2.5" autocomplete="off"
-               onkeydown="onEnterKey(event)">
+        <input type="text" inputmode="decimal" id="isf" autocomplete="off" onkeydown="onEnterKey(event)">
         <div class="setting-hint" id="isf-hint" data-i18n="hint_isf_mmol">ммоль/л / 1 ед.</div>
       </div>
     </div>
   </div>
 
-  <div class="ad-slot" id="ad-middle"><!-- AdSense slot --></div>
+  <div class="ad-slot" id="ad-middle"></div>
 
-  <button class="calc-btn" id="calc-btn" onclick="calculate()" data-i18n="btn_calc">Рассчитать дозу →</button>
+  <button class="calc-btn" onclick="calculate()" data-i18n="btn_calc">Рассчитать дозу →</button>
 
-  <div class="result-card" id="result-card">
-    <div id="result-content"></div>
-  </div>
+  <div class="result-card" id="result-card"><div id="result-content"></div></div>
 
-  <!-- History -->
   <button class="history-toggle" onclick="toggleHistory()">
     <span>📋</span><span id="history-toggle-label"></span>
   </button>
@@ -172,7 +178,7 @@
 
   <button class="reset-btn" onclick="resetAll()" data-i18n="btn_reset">Сбросить всё</button>
 
-  <div class="ad-slot" id="ad-bottom"><!-- AdSense slot --></div>
+  <div class="ad-slot" id="ad-bottom"></div>
 
 </main>
 
@@ -191,7 +197,7 @@
   <div class="cookie-inner">
     <p class="cookie-text">
       <span data-i18n="cookie_text"></span>
-      <a href="./privacy.html">Privacy</a>
+      <a href="./privacy.html">Privacy Policy</a>
     </p>
     <div class="cookie-btns">
       <button class="cookie-accept"  onclick="acceptCookies()"  data-i18n="cookie_accept">Принять</button>
@@ -204,10 +210,14 @@
 
 <script src="./app.js"></script>
 <script>
-// ── Unit state ────────────────────────────────────────────────
-const DEFAULTS = { icr: '12', isf_mmol: '2.5', isf_mgdl: '45', target_mmol: '5.5', target_mgdl: '99' };
+// ── Defaults per unit ─────────────────────────────────────────
+const DEF = {
+  mmol: { icr:'12', isf:'2.5', target:'5.5' },
+  mgdl: { icr:'12', isf:'45',  target:'99'  },
+};
 let unit = 'mmol';
 
+// ── Unit switching ────────────────────────────────────────────
 function setUnit(u) {
   const gEl  = document.getElementById('glucose');
   const isfEl = document.getElementById('isf');
@@ -222,18 +232,17 @@ function setUnit(u) {
   document.getElementById('glucose-unit-label').textContent = t(u === 'mmol' ? 'unit_mmol' : 'unit_mgdl');
   document.getElementById('target-unit-label').textContent  = t(u === 'mmol' ? 'unit_mmol' : 'unit_mgdl');
 
-  // Update hints via data-i18n
-  document.getElementById('isf-hint').dataset.i18n    = u === 'mmol' ? 'hint_isf_mmol'    : 'hint_isf_mgdl';
-  document.getElementById('target-hint').dataset.i18n = u === 'mmol' ? 'hint_target_mmol' : 'hint_target_mgdl';
-  document.getElementById('isf-hint').textContent    = t(document.getElementById('isf-hint').dataset.i18n);
-  document.getElementById('target-hint').textContent = t(document.getElementById('target-hint').dataset.i18n);
+  const isfHintKey    = u === 'mmol' ? 'hint_isf_mmol'    : 'hint_isf_mgdl';
+  const targetHintKey = u === 'mmol' ? 'hint_target_mmol' : 'hint_target_mgdl';
+  document.getElementById('isf-hint').dataset.i18n    = isfHintKey;
+  document.getElementById('target-hint').dataset.i18n = targetHintKey;
+  document.getElementById('isf-hint').textContent     = t(isfHintKey);
+  document.getElementById('target-hint').textContent  = t(targetHintKey);
 
-  // Update placeholders
-  gEl.placeholder  = t(u === 'mmol' ? 'ph_glucose_mmol' : 'ph_glucose_mgdl');
-  isfEl.placeholder = t(u === 'mmol' ? 'ph_isf_mmol'    : 'ph_isf_mgdl');
-  tEl.placeholder   = t(u === 'mmol' ? 'ph_target_mmol' : 'ph_target_mgdl');
+  // Update placeholders — same key for glucose and target
+  updatePlaceholders(u);
 
-  // Convert values if they were filled
+  // Convert existing values
   if (u === 'mgdl') {
     if (!isNaN(gv)   && gv > 0)   gEl.value   = String(Math.round(gv * 18.016));
     if (!isNaN(isfv) && isfv > 0)  isfEl.value = String(Math.round(isfv * 18.016));
@@ -249,85 +258,73 @@ function setUnit(u) {
   onGlucoseInput();
 }
 
-function toMmol(v) { return unit === 'mgdl' ? v / 18.016 : v; }
+function updatePlaceholders(u) {
+  const isU = u || unit;
+  document.getElementById('glucose').placeholder  = t(isU === 'mmol' ? 'ph_glucose_mmol' : 'ph_glucose_mgdl');
+  document.getElementById('target').placeholder   = t(isU === 'mmol' ? 'ph_target_mmol'  : 'ph_target_mgdl');
+  document.getElementById('isf').placeholder      = t(isU === 'mmol' ? 'ph_isf_mmol'     : 'ph_isf_mgdl');
+  document.getElementById('carbs').placeholder    = t('ph_carbs');
+  document.getElementById('icr').placeholder      = t('ph_icr');
+}
 
 // ── Glucose level indicator ───────────────────────────────────
 function getGlucoseLevel(mmol) {
-  if (mmol < 3.9)  return { label: 'LOW',        cls: 'level-low',        color: '#2e9e78' };
-  if (mmol <= 7.8) return { label: 'OK',          cls: 'level-ok',         color: '#1f9b72' };
-  if (mmol <= 11)  return { label: 'HIGH',        cls: 'level-high',       color: '#c47c10' };
-  return                  { label: 'VERY HIGH',   cls: 'level-very-high',  color: '#c0392b' };
+  if (mmol < 3.9)  return { label:'LOW',       cls:'level-low',       color:'#2e9e78' };
+  if (mmol <= 7.8) return { label:'OK',         cls:'level-ok',        color:'#1f9b72' };
+  if (mmol <= 11)  return { label:'HIGH',       cls:'level-high',      color:'#c47c10' };
+  return                  { label:'VERY HIGH',  cls:'level-very-high', color:'#c0392b' };
 }
 
 function onGlucoseInput() {
   const val   = parseDecimal(document.getElementById('glucose').value);
   const badge = document.getElementById('glucose-badge');
   const zone  = document.getElementById('glucose-zone');
-  if (isNaN(val) || val <= 0) {
-    badge.innerHTML = '';
-    zone.style.background = 'transparent';
-    return;
-  }
-  const lv = getGlucoseLevel(toMmol(val));
+  if (isNaN(val) || val <= 0) { badge.innerHTML = ''; zone.style.background = 'transparent'; return; }
+  const lv = getGlucoseLevel(unit === 'mgdl' ? val / 18.016 : val);
   badge.innerHTML = `<span class="level-badge ${lv.cls}">${lv.label}</span>`;
   zone.style.background = lv.color;
 }
 
 // ── Validation ────────────────────────────────────────────────
-function validateField(id, containerId) {
-  const el = document.getElementById(id);
-  const container = document.getElementById(containerId);
-  const raw = el.value.trim();
-
-  // Clear previous error
+function validateField(inputId, groupId) {
+  const el  = document.getElementById(inputId);
+  const grp = document.getElementById(groupId);
+  // Clear old error
   el.classList.remove('input-error');
-  container.querySelectorAll('.field-error').forEach(e => e.remove());
+  if (grp) grp.querySelectorAll('.field-error').forEach(e => e.remove());
 
-  if (!raw) {
-    showFieldError(el, container, t('err_required'));
-    return false;
-  }
+  const raw = el.value.trim();
+  if (!raw) { showErr(el, grp, t('err_required')); return false; }
   const val = parseDecimal(raw);
-  if (isNaN(val)) {
-    showFieldError(el, container, t('err_invalid'));
-    return false;
-  }
-  if (val <= 0) {
-    showFieldError(el, container, t('err_zero'));
-    return false;
-  }
+  if (isNaN(val)) { showErr(el, grp, t('err_invalid')); return false; }
+  if (val <= 0)   { showErr(el, grp, t('err_zero'));    return false; }
   return true;
 }
 
-function showFieldError(inputEl, containerEl, msg) {
-  inputEl.classList.add('input-error');
+function showErr(el, grp, msg) {
+  el.classList.add('input-error');
   const err = document.createElement('div');
   err.className = 'field-error';
   err.textContent = msg;
-  // Insert after the input-wrap or input
-  const wrap = inputEl.closest('.input-wrap') || inputEl;
-  wrap.after(err);
+  const wrap = el.closest('.input-wrap') || el.parentElement;
+  if (wrap) wrap.after(err); else el.after(err);
 }
 
 // ── Enter key ─────────────────────────────────────────────────
-function onEnterKey(e) {
-  if (e.key === 'Enter') { e.preventDefault(); calculate(); }
-}
+function onEnterKey(e) { if (e.key === 'Enter') { e.preventDefault(); calculate(); } }
 
 // ── Calculate ─────────────────────────────────────────────────
 function calculate() {
-  // Validate all fields
-  const ok = [
-    validateField('glucose', 'grp-glucose'),
-    validateField('carbs',   'grp-carbs'),
-    validateField('target',  'grp-target'),
-    validateField('icr',     'grp-icr'),
-    validateField('isf',     'grp-isf'),
+  const valid = [
+    validateField('glucose','grp-glucose'),
+    validateField('carbs',  'grp-carbs'),
+    validateField('target', 'grp-target'),
+    validateField('icr',    'grp-icr'),
+    validateField('isf',    'grp-isf'),
   ];
-  if (ok.includes(false)) {
-    // Scroll to first error
-    const firstErr = document.querySelector('.input-error');
-    if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  if (valid.includes(false)) {
+    const first = document.querySelector('.input-error');
+    if (first) first.scrollIntoView({ behavior:'smooth', block:'center' });
     return;
   }
 
@@ -337,31 +334,23 @@ function calculate() {
   const isfRaw     = parseDecimal(document.getElementById('isf').value);
   const targetRaw  = parseDecimal(document.getElementById('target').value);
 
-  const glucose  = toMmol(glucoseRaw);
-  const isf      = toMmol(isfRaw);
-  const tgt      = toMmol(targetRaw);
+  const toM   = v => unit === 'mgdl' ? v / 18.016 : v;
+  const glucose = toM(glucoseRaw), isf = toM(isfRaw), tgt = toM(targetRaw);
   const carbDose = carbsG / icr;
   const corrDose = (glucose - tgt) / isf;
   const total    = carbDose + corrDose;
 
   const dUnit = t(unit === 'mmol' ? 'unit_mmol' : 'unit_mgdl');
   const fmtG  = v => v.toFixed(unit === 'mmol' ? 1 : 0);
-  const now   = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  const now   = new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
   const content = document.getElementById('result-content');
 
   if (total <= 0) {
-    const msg = glucose < 3.9 ? t('no_dose_hypo') : t('no_dose_zero');
     content.innerHTML = `
-      <div class="no-dose">${msg}</div>
+      <div class="no-dose">${glucose < 3.9 ? t('no_dose_hypo') : t('no_dose_zero')}</div>
       <div class="result-breakdown">
-        <div class="breakdown-row">
-          <span class="breakdown-name">${t('breakdown_carbs')} (${carbsG}g ÷ ${icr})</span>
-          <span class="breakdown-val">${carbDose.toFixed(2)} u.</span>
-        </div>
-        <div class="breakdown-row">
-          <span class="breakdown-name">${t('breakdown_corr')} (${fmtG(glucoseRaw)} → ${fmtG(targetRaw)} ${dUnit})</span>
-          <span class="breakdown-val negative">${corrDose.toFixed(2)} u.</span>
-        </div>
+        <div class="breakdown-row"><span class="breakdown-name">${t('breakdown_carbs')} (${carbsG}g ÷ ${icr})</span><span class="breakdown-val">${carbDose.toFixed(2)} u.</span></div>
+        <div class="breakdown-row"><span class="breakdown-name">${t('breakdown_corr')} (${fmtG(glucoseRaw)} → ${fmtG(targetRaw)} ${dUnit})</span><span class="breakdown-val negative">${corrDose.toFixed(2)} u.</span></div>
       </div>`;
     saveHistory(glucoseRaw, carbsG, 0, now);
   } else {
@@ -374,42 +363,31 @@ function calculate() {
         <div class="result-time">${now}</div>
       </div>
       <div class="result-breakdown">
-        <div class="breakdown-row">
-          <span class="breakdown-name">${t('breakdown_carbs')} (${carbsG}g ÷ ${icr})</span>
-          <span class="breakdown-val">${carbDose.toFixed(2)} u.</span>
-        </div>
-        <div class="breakdown-row">
-          <span class="breakdown-name">${t('breakdown_corr')} (${fmtG(glucoseRaw)} → ${fmtG(targetRaw)} ${dUnit})</span>
-          <span class="breakdown-val ${corrDose >= 0 ? 'positive' : 'negative'}">${corrDose >= 0 ? '+' : ''}${corrDose.toFixed(2)} u.</span>
-        </div>
+        <div class="breakdown-row"><span class="breakdown-name">${t('breakdown_carbs')} (${carbsG}g ÷ ${icr})</span><span class="breakdown-val">${carbDose.toFixed(2)} u.</span></div>
+        <div class="breakdown-row"><span class="breakdown-name">${t('breakdown_corr')} (${fmtG(glucoseRaw)} → ${fmtG(targetRaw)} ${dUnit})</span><span class="breakdown-val ${corrDose>=0?'positive':'negative'}">${corrDose>=0?'+':''}${corrDose.toFixed(2)} u.</span></div>
         <div class="breakdown-divider"></div>
-        <div class="breakdown-row">
-          <span class="breakdown-name">${t('breakdown_exact')}</span>
-          <span class="breakdown-val">${total.toFixed(2)} u.</span>
-        </div>
-        <div class="breakdown-row">
-          <span class="breakdown-name">${t('breakdown_round')}</span>
-          <span class="breakdown-val" style="color:var(--accent2)">${rounded.toFixed(1)} u.</span>
-        </div>
+        <div class="breakdown-row"><span class="breakdown-name">${t('breakdown_exact')}</span><span class="breakdown-val">${total.toFixed(2)} u.</span></div>
+        <div class="breakdown-row"><span class="breakdown-name">${t('breakdown_round')}</span><span class="breakdown-val" style="color:var(--accent2)">${rounded.toFixed(1)} u.</span></div>
       </div>`;
     saveHistory(glucoseRaw, carbsG, rounded, now);
   }
 
   document.getElementById('result-card').classList.add('visible');
-  setTimeout(() => document.getElementById('result-card').scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 60);
+  setTimeout(() => document.getElementById('result-card').scrollIntoView({ behavior:'smooth', block:'nearest' }), 60);
 }
 
 function hideResult() { document.getElementById('result-card').classList.remove('visible'); }
 
-// ── Reset ALL (including settings) ───────────────────────────
+// ── Reset ALL fields including settings ───────────────────────
 function resetAll() {
-  // Clear inputs
-  ['glucose', 'carbs'].forEach(id => { document.getElementById(id).value = ''; });
-  // Reset settings to defaults
-  document.getElementById('icr').value    = DEFAULTS.icr;
-  document.getElementById('isf').value    = unit === 'mmol' ? DEFAULTS.isf_mmol    : DEFAULTS.isf_mgdl;
-  document.getElementById('target').value = unit === 'mmol' ? DEFAULTS.target_mmol : DEFAULTS.target_mgdl;
-  // Clear UI
+  // Clear variable inputs
+  document.getElementById('glucose').value = '';
+  document.getElementById('carbs').value   = '';
+  // Reset settings to unit-appropriate defaults
+  document.getElementById('icr').value    = DEF[unit].icr;
+  document.getElementById('isf').value    = DEF[unit].isf;
+  document.getElementById('target').value = DEF[unit].target;
+  // Clear glucose indicator
   document.getElementById('glucose-badge').innerHTML = '';
   document.getElementById('glucose-zone').style.background = 'transparent';
   clearAllErrors();
@@ -417,81 +395,67 @@ function resetAll() {
 }
 
 // ── History ───────────────────────────────────────────────────
-function loadHistory() {
-  try { return JSON.parse(localStorage.getItem('insulin_history') || '[]'); }
-  catch { return []; }
-}
+function loadHistory() { try { return JSON.parse(localStorage.getItem('insulin_history')||'[]'); } catch { return []; } }
 
 function saveHistory(glucose, carbs, dose, time) {
   const h = loadHistory();
   h.unshift({ glucose, carbs, dose, time, unit, date: new Date().toLocaleDateString() });
   if (h.length > 20) h.length = 20;
   localStorage.setItem('insulin_history', JSON.stringify(h));
-  renderHistory();
-  updateHistoryLabel();
+  renderHistory(); updateHistoryLabel();
 }
 
 function renderHistory() {
   const h    = loadHistory();
   const list = document.getElementById('history-list');
-  if (!h.length) {
-    list.innerHTML = `<div class="history-empty">${t('history_empty')}</div>`;
-    return;
-  }
+  if (!h.length) { list.innerHTML = `<div class="history-empty">${t('history_empty')}</div>`; return; }
   list.innerHTML = h.map(e => `
     <div class="history-item">
       <div class="history-item-left">
         <div>${e.date} ${e.time}</div>
-        <div>🩸 ${e.glucose} ${e.unit === 'mmol' ? 'mmol/L' : 'mg/dL'} &nbsp;🥗 ${e.carbs}g</div>
+        <div>🩸 ${e.glucose} ${e.unit==='mmol'?'mmol/L':'mg/dL'} &nbsp;🥗 ${e.carbs}g</div>
       </div>
-      <div class="history-item-dose">${e.dose > 0 ? e.dose.toFixed(1) + ' u.' : '—'}</div>
+      <div class="history-item-dose">${e.dose>0?e.dose.toFixed(1)+' u.':'—'}</div>
     </div>`).join('');
 }
 
 function clearHistory() {
   if (!confirm(t('confirm_history'))) return;
-  localStorage.removeItem('insulin_history');
-  renderHistory();
-  updateHistoryLabel();
+  localStorage.removeItem('insulin_history'); renderHistory(); updateHistoryLabel();
 }
 
 function updateHistoryLabel() {
-  const h   = loadHistory();
-  const lbl = document.getElementById('history-toggle-label');
-  if (lbl) lbl.textContent = h.length ? `${t('btn_history')} (${h.length})` : t('btn_history');
+  const h = loadHistory();
+  const l = document.getElementById('history-toggle-label');
+  if (l) l.textContent = h.length ? `${t('btn_history')} (${h.length})` : t('btn_history');
 }
 
 let historyOpen = false;
 function toggleHistory() {
   historyOpen = !historyOpen;
   document.getElementById('history-panel').classList.toggle('visible', historyOpen);
-  if (historyOpen) {
-    renderHistory();
-    setTimeout(() => document.getElementById('history-panel').scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 60);
-  }
+  if (historyOpen) { renderHistory(); setTimeout(() => document.getElementById('history-panel').scrollIntoView({ behavior:'smooth', block:'nearest' }), 60); }
 }
 
-// ── React to language changes ─────────────────────────────────
+// ── React to lang change ──────────────────────────────────────
 document.addEventListener('langchange', () => {
   updateHistoryLabel();
-  // Re-apply unit labels
+  updatePlaceholders(unit);
   document.getElementById('glucose-unit-label').textContent = t(unit === 'mmol' ? 'unit_mmol' : 'unit_mgdl');
   document.getElementById('target-unit-label').textContent  = t(unit === 'mmol' ? 'unit_mmol' : 'unit_mgdl');
-  document.getElementById('glucose').placeholder  = t(unit === 'mmol' ? 'ph_glucose_mmol' : 'ph_glucose_mgdl');
-  document.getElementById('isf').placeholder      = t(unit === 'mmol' ? 'ph_isf_mmol'    : 'ph_isf_mgdl');
-  document.getElementById('target').placeholder   = t(unit === 'mmol' ? 'ph_target_mmol' : 'ph_target_mgdl');
 });
 
 // ── Init ──────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
+  // Set default values
+  document.getElementById('icr').value    = DEF.mmol.icr;
+  document.getElementById('isf').value    = DEF.mmol.isf;
+  document.getElementById('target').value = DEF.mmol.target;
   updateHistoryLabel();
-  // Set correct placeholder
-  document.getElementById('glucose').placeholder  = t('ph_glucose_mmol');
-  document.getElementById('isf').placeholder      = t('ph_isf_mmol');
-  document.getElementById('target').placeholder   = t('ph_target_mmol');
-  document.getElementById('carbs').placeholder    = t('ph_carbs');
-  // Target default value
-  document.getElementById('target').value = DEFAULTS.target_mmol;
+  updatePlaceholders('mmol');
+  // Read lang param from URL (?lang=en)
+  const urlLang = new URLSearchParams(location.search).get('lang');
+  if (urlLang && LANGS[urlLang]) applyLang(urlLang);
 });
 </script>
 </body>
