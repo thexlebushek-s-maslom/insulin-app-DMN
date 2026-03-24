@@ -321,7 +321,6 @@ function setUnit(u) {
   clearAllErrors();
   hideResult();
   onGlucoseInput();
-  if (typeof applyProfileToFields === 'function') applyProfileToFields();
 }
 
 function updatePlaceholders(u) {
@@ -442,13 +441,13 @@ function hideResult() { document.getElementById('result-card').classList.remove(
 
 // ── Reset ─────────────────────────────────────────────────────
 function resetAll() {
-  document.getElementById('glucose').value = '';
-  document.getElementById('carbs').value   = '';
+  ['glucose','carbs','target','icr','isf'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
   document.getElementById('glucose-badge').innerHTML = '';
   document.getElementById('glucose-zone').style.background = 'transparent';
   clearAllErrors();
   hideResult();
-  if (typeof applyProfileToFields === 'function') applyProfileToFields();
 }
 
 // ── History ───────────────────────────────────────────────────
@@ -691,7 +690,7 @@ document.getElementById('preset-modal').addEventListener('click', e => {
 
 // ── Init ──────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-  switchProfile(currentProfile);
+  // Don't pre-fill fields — show placeholders instead
   renderPresets();
 });
 </script>
