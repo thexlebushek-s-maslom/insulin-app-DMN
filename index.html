@@ -123,7 +123,7 @@
         <label data-i18n="label_carbs">Углеводы в еде</label>
         <div class="input-wrap">
           <input type="text" inputmode="decimal" id="carbs"
-                 autocomplete="off" onkeydown="onEnterKey(event)">
+                 autocomplete="off" onkeydown="onEnterKey(event)" oninput="onCarbsInput()">
           <span class="input-unit">г</span>
         </div>
         <!-- Presets: inside input-group so they don't escape the flex row -->
@@ -145,7 +145,7 @@
                  autocomplete="off" onkeydown="onEnterKey(event)">
           <span class="input-unit" id="target-unit-label">ммоль/л</span>
         </div>
-        <div class="setting-hint" id="target-hint" style="margin-top:5px;" data-i18n="hint_target_mmol">ммоль/л</div>
+
       </div>
     </div>
   </div>
@@ -340,6 +340,16 @@ function getGlucoseLevel(mmol) {
   return                  { label:'VERY HIGH',  cls:'level-very-high', color:'#c0392b' };
 }
 
+function onCarbsInput() {
+  // Clear active preset if user manually edits carbs field
+  const val = document.getElementById('carbs').value.trim();
+  const presets = loadPresets();
+  const matched = presets.some(p => String(p.carbs) === val);
+  if (!matched) {
+    document.querySelectorAll('.preset-chip').forEach(c => c.classList.remove('preset-chip-active'));
+  }
+}
+
 function onGlucoseInput() {
   const val   = parseDecimal(document.getElementById('glucose').value);
   const badge = document.getElementById('glucose-badge');
@@ -446,6 +456,7 @@ function resetAll() {
   });
   document.getElementById('glucose-badge').innerHTML = '';
   document.getElementById('glucose-zone').style.background = 'transparent';
+  document.querySelectorAll('.preset-chip').forEach(c => c.classList.remove('preset-chip-active'));
   clearAllErrors();
   hideResult();
 }
@@ -607,14 +618,16 @@ function saveProfileModal() {
 }
 
 // ── Presets ───────────────────────────────────────────────────
-const DEFAULT_PRESETS = [
-  { id:'p1', name:'Завтрак', carbs:45 },
-  { id:'p2', name:'Обед',    carbs:70 },
-  { id:'p3', name:'Ужин',    carbs:55 },
-];
+function getDefaultPresets() {
+  return [
+    { id:'p1', name: t('preset_breakfast'), carbs:45 },
+    { id:'p2', name: t('preset_lunch'),     carbs:70 },
+    { id:'p3', name: t('preset_dinner'),    carbs:55 },
+  ];
+}
 function loadPresets() {
-  try { return JSON.parse(localStorage.getItem('meal_presets') || 'null') || DEFAULT_PRESETS; }
-  catch { return DEFAULT_PRESETS; }
+  try { return JSON.parse(localStorage.getItem('meal_presets') || 'null') || getDefaultPresets(); }
+  catch { return getDefaultPresets(); }
 }
 function savePresetsData(p) { localStorage.setItem('meal_presets', JSON.stringify(p)); }
 
@@ -644,6 +657,13 @@ function applyPreset(preset) {
   clearTimeout(longPressTimer);
   document.getElementById('carbs').value = String(preset.carbs);
   clearFieldError(document.getElementById('carbs'));
+  // Mark active chip
+  document.querySelectorAll('.preset-chip').forEach(c => c.classList.remove('preset-chip-active'));
+  const chips = document.querySelectorAll('.preset-chip');
+  const presets = loadPresets();
+  chips.forEach((chip, i) => {
+    if (presets[i] && presets[i].id === preset.id) chip.classList.add('preset-chip-active');
+  });
 }
 
 let editingPresetId = null;

@@ -93,6 +93,7 @@ const LANGS = {
     preset_label:'Углеводы', preset_add:'+ Добавить', preset_edit_title:'Пресет еды',
     preset_name_ph:'Название (напр. Завтрак)', preset_carbs_ph:'Углеводы (г)',
     preset_save:'Сохранить', preset_cancel:'Отмена', preset_delete:'Удалить',
+    preset_breakfast:'Завтрак', preset_lunch:'Обед', preset_dinner:'Ужин',
   },
 
   en: {
@@ -182,6 +183,7 @@ const LANGS = {
     preset_label:'Carbs', preset_add:'+ Add', preset_edit_title:'Meal preset',
     preset_name_ph:'Name (e.g. Breakfast)', preset_carbs_ph:'Carbohydrates (g)',
     preset_save:'Save', preset_cancel:'Cancel', preset_delete:'Delete',
+    preset_breakfast:'Breakfast', preset_lunch:'Lunch', preset_dinner:'Dinner',
   },
 
   es: {
@@ -263,6 +265,7 @@ const LANGS = {
     preset_label:'Carbohidratos', preset_add:'+ Agregar', preset_edit_title:'Preset de comida',
     preset_name_ph:'Nombre (p.ej. Desayuno)', preset_carbs_ph:'Carbohidratos (g)',
     preset_save:'Guardar', preset_cancel:'Cancelar', preset_delete:'Eliminar',
+    preset_breakfast:'Desayuno', preset_lunch:'Almuerzo', preset_dinner:'Cena',
   },
 
   de: {
@@ -344,6 +347,7 @@ const LANGS = {
     preset_label:'KH', preset_add:'+ Hinzufügen', preset_edit_title:'Mahlzeit-Preset',
     preset_name_ph:'Name (z.B. Frühstück)', preset_carbs_ph:'Kohlenhydrate (g)',
     preset_save:'Speichern', preset_cancel:'Abbrechen', preset_delete:'Löschen',
+    preset_breakfast:'Frühstück', preset_lunch:'Mittagessen', preset_dinner:'Abendessen',
   },
 
   fr: {
@@ -425,6 +429,7 @@ const LANGS = {
     preset_label:'Glucides', preset_add:'+ Ajouter', preset_edit_title:'Preset repas',
     preset_name_ph:'Nom (ex. Petit-déjeuner)', preset_carbs_ph:'Glucides (g)',
     preset_save:'Enregistrer', preset_cancel:'Annuler', preset_delete:'Supprimer',
+    preset_breakfast:'Petit-déjeuner', preset_lunch:'Déjeuner', preset_dinner:'Dîner',
   },
 
   be: {
@@ -506,6 +511,7 @@ const LANGS = {
     preset_label:'Вугляводы', preset_add:'+ Дадаць', preset_edit_title:'Прэсет ежы',
     preset_name_ph:'Назва (напр. Сняданак)', preset_carbs_ph:'Вугляводы (г)',
     preset_save:'Захаваць', preset_cancel:'Адмена', preset_delete:'Выдаліць',
+    preset_breakfast:'Сняданак', preset_lunch:'Абед', preset_dinner:'Вячэра',
   },
 
   zh: {
@@ -587,6 +593,7 @@ const LANGS = {
     preset_label:'碳水', preset_add:'+ 添加', preset_edit_title:'餐食预设',
     preset_name_ph:'名称（如 早餐）', preset_carbs_ph:'碳水化合物 (g)',
     preset_save:'保存', preset_cancel:'取消', preset_delete:'删除',
+    preset_breakfast:'早餐', preset_lunch:'午餐', preset_dinner:'晚餐',
   },
 };
 
