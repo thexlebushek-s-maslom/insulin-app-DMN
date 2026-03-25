@@ -704,18 +704,7 @@ function attachDecimalInput(el) {
 }
 
 // ── Validation ────────────────────────────────────────────────
-function setFieldError(inputEl, containerId, msg) {
-  inputEl.classList.add('input-error');
-  const container = typeof containerId === 'string' ? document.getElementById(containerId) : containerId;
-  if (!container) return;
-  container.querySelectorAll('.field-error').forEach(e => e.remove());
-  const err = document.createElement('div');
-  err.className = 'field-error';
-  err.textContent = msg;
-  const wrap = inputEl.closest('.input-wrap') || inputEl.parentElement;
-  if (wrap) wrap.after(err); else inputEl.after(err);
-}
-
+// Validation helpers — used by page-level scripts via global scope
 function clearFieldError(inputEl) {
   inputEl.classList.remove('input-error');
   const container = inputEl.closest('.input-group, .setting-item');

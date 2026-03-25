@@ -112,8 +112,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .calc-btn{background:var(--accent);color:#fff;font-family:var(--sans);font-size:16px;font-weight:600;border:none;border-radius:14px;padding:17px;width:100%;cursor:pointer;transition:opacity .15s,transform .1s;letter-spacing:-.2px}
 [data-theme="light"] .calc-btn{color:#000}
 .calc-btn:active{transform:scale(.97);opacity:.85}
-.reset-btn{background:none;border:1px solid var(--border);color:var(--muted);font-family:var(--sans);font-size:13px;border-radius:10px;padding:11px;width:100%;cursor:pointer;transition:border-color .15s,color .15s}
-.reset-btn:active{border-color:var(--accent);color:var(--accent)}
+
 .history-toggle{background:none;border:1px solid var(--border);color:var(--muted);font-family:var(--sans);font-size:12px;border-radius:8px;padding:8px 14px;cursor:pointer;width:100%;transition:all .15s;display:flex;align-items:center;justify-content:center;gap:6px}
 .history-toggle:active{border-color:var(--accent);color:var(--accent)}
 
@@ -223,7 +222,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
   padding: 5px 12px; cursor: pointer; transition: all .15s; white-space: nowrap;
   display: flex; align-items: center; gap: 4px;
 }
-.preset-chip:active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.preset-chip:active { opacity: 0.7; transform: scale(0.97); }
 .preset-chip-val { font-family: var(--mono); font-size: 11px; color: var(--muted); flex-shrink: 0; }
 .preset-add-btn {
   background: none; border: 1px dashed var(--border); border-radius: 20px;

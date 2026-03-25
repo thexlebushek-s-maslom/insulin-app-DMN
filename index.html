@@ -218,39 +218,6 @@
 
 <button id="theme-toggle" title="Toggle theme">☀️</button>
 
-<!-- ── Profile modal ── -->
-<div class="modal-overlay hidden" id="profile-modal">
-  <div class="modal-box">
-    <div class="modal-title">
-      <span data-i18n="profile_edit_title">Настройка профиля</span>
-      <button class="modal-close" onclick="closeProfileModal()">✕</button>
-    </div>
-    <div style="display:flex;gap:6px;margin-bottom:14px;">
-      <button class="profile-tab active" id="medit-morning" onclick="selectEditProfile('morning')" data-i18n="profile_morning">☀️ Утро</button>
-      <button class="profile-tab"        id="medit-day"     onclick="selectEditProfile('day')"     data-i18n="profile_day">🌤 День</button>
-      <button class="profile-tab"        id="medit-evening" onclick="selectEditProfile('evening')"  data-i18n="profile_evening">🌙 Вечер</button>
-    </div>
-    <div class="profile-grid">
-      <div class="profile-field">
-        <label data-i18n="label_icr">ICR</label>
-        <input type="text" inputmode="decimal" id="pedit-icr" placeholder="12">
-      </div>
-      <div class="profile-field">
-        <label data-i18n="label_isf">ISF</label>
-        <input type="text" inputmode="decimal" id="pedit-isf" placeholder="2.5">
-      </div>
-      <div class="profile-field">
-        <label data-i18n="label_target">Цель</label>
-        <input type="text" inputmode="decimal" id="pedit-target" placeholder="5.5">
-      </div>
-    </div>
-    <button class="profile-reset-btn" onclick="resetEditProfile()" data-i18n="profile_reset">Сбросить к умолчаниям</button>
-    <div class="modal-btns">
-      <button class="modal-cancel" onclick="closeProfileModal()" data-i18n="profile_cancel">Отмена</button>
-      <button class="modal-save"   onclick="saveProfileModal()"  data-i18n="profile_save">Сохранить</button>
-    </div>
-  </div>
-</div>
 
 <!-- ── Preset modal ── -->
 <div class="modal-overlay hidden" id="preset-modal">
@@ -299,12 +266,10 @@ function setUnit(u) {
   document.getElementById('glucose-unit-label').textContent = t(u === 'mmol' ? 'unit_mmol' : 'unit_mgdl');
   document.getElementById('target-unit-label').textContent  = t(u === 'mmol' ? 'unit_mmol' : 'unit_mgdl');
 
-  const isfHintKey    = u === 'mmol' ? 'hint_isf_mmol'    : 'hint_isf_mgdl';
-  const targetHintKey = u === 'mmol' ? 'hint_target_mmol' : 'hint_target_mgdl';
-  document.getElementById('isf-hint').dataset.i18n    = isfHintKey;
-  document.getElementById('target-hint').dataset.i18n = targetHintKey;
-  document.getElementById('isf-hint').textContent     = t(isfHintKey);
-  document.getElementById('target-hint').textContent  = t(targetHintKey);
+  const isfHintKey = u === 'mmol' ? 'hint_isf_mmol' : 'hint_isf_mgdl';
+  const isfHintEl  = document.getElementById('isf-hint');
+  if (isfHintEl) { isfHintEl.dataset.i18n = isfHintKey; isfHintEl.textContent = t(isfHintKey); }
+  // #target-hint element removed — unit label in input-unit span is sufficient
 
   updatePlaceholders(u);
 
@@ -504,119 +469,6 @@ function toggleHistory() {
   if (historyOpen) { renderHistory(); setTimeout(() => document.getElementById('history-panel').scrollIntoView({ behavior:'smooth', block:'nearest' }), 60); }
 }
 
-// ── Lang change ───────────────────────────────────────────────
-document.addEventListener('langchange', () => {
-  updateHistoryLabel();
-  updatePlaceholders(unit);
-  document.getElementById('glucose-unit-label').textContent = t(unit === 'mmol' ? 'unit_mmol' : 'unit_mgdl');
-  document.getElementById('target-unit-label').textContent  = t(unit === 'mmol' ? 'unit_mmol' : 'unit_mgdl');
-  renderPresets();
-});
-
-// ── Init ──────────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-  updateHistoryLabel();
-  updatePlaceholders('mmol');
-  const urlLang = new URLSearchParams(location.search).get('lang');
-  if (urlLang && LANGS[urlLang]) applyLang(urlLang);
-});
-</script>
-
-<!-- ── Profiles + Presets JS ── -->
-<script>
-// ── Profiles ──────────────────────────────────────────────────
-const PROFILE_DEFAULTS = {
-  morning: { icr:'10', isf_mmol:'2.0', isf_mgdl:'36', target_mmol:'5.5', target_mgdl:'99'  },
-  day:     { icr:'12', isf_mmol:'2.5', isf_mgdl:'45', target_mmol:'5.5', target_mgdl:'99'  },
-  evening: { icr:'14', isf_mmol:'3.0', isf_mgdl:'54', target_mmol:'6.0', target_mgdl:'108' },
-};
-
-function loadProfiles() {
-  try { return JSON.parse(localStorage.getItem('profiles') || 'null') || JSON.parse(JSON.stringify(PROFILE_DEFAULTS)); }
-  catch { return JSON.parse(JSON.stringify(PROFILE_DEFAULTS)); }
-}
-function saveProfiles(p) { localStorage.setItem('profiles', JSON.stringify(p)); }
-
-let currentProfile = localStorage.getItem('activeProfile') || 'morning';
-
-function switchProfile(name) {
-  currentProfile = name;
-  localStorage.setItem('activeProfile', name);
-  // Tab buttons may not exist if profile bar is hidden
-  ['morning','day','evening'].forEach(p => {
-    const el = document.getElementById('ptab-' + p);
-    if (el) el.classList.toggle('active', p === name);
-  });
-  applyProfileToFields();
-}
-
-function applyProfileToFields() {
-  const p = loadProfiles()[currentProfile];
-  document.getElementById('icr').value    = p.icr;
-  document.getElementById('isf').value    = unit === 'mmol' ? p.isf_mmol    : p.isf_mgdl;
-  document.getElementById('target').value = unit === 'mmol' ? p.target_mmol : p.target_mgdl;
-}
-
-// ── Profile modal ─────────────────────────────────────────────
-let editingProfile = 'morning';
-let tempProfiles   = null;
-
-function openProfileModal() {
-  editingProfile = currentProfile;
-  tempProfiles   = null;
-  renderProfileModalTabs();
-  loadProfileIntoModal(editingProfile);
-  document.getElementById('profile-modal').classList.remove('hidden');
-}
-function closeProfileModal() {
-  tempProfiles = null;
-  document.getElementById('profile-modal').classList.add('hidden');
-}
-function selectEditProfile(name) {
-  saveCurrentEditToTemp();
-  editingProfile = name;
-  renderProfileModalTabs();
-  loadProfileIntoModal(name);
-}
-function renderProfileModalTabs() {
-  ['morning','day','evening'].forEach(p => {
-    const el = document.getElementById('medit-' + p);
-    if (el) el.classList.toggle('active', p === editingProfile);
-  });
-}
-function saveCurrentEditToTemp() {
-  if (!tempProfiles) tempProfiles = loadProfiles();
-  const icr    = document.getElementById('pedit-icr').value.trim();
-  const isf    = document.getElementById('pedit-isf').value.trim();
-  const target = document.getElementById('pedit-target').value.trim();
-  if (icr) tempProfiles[editingProfile].icr = icr;
-  if (unit === 'mmol') {
-    if (isf)    tempProfiles[editingProfile].isf_mmol    = isf;
-    if (target) tempProfiles[editingProfile].target_mmol = target;
-  } else {
-    if (isf)    tempProfiles[editingProfile].isf_mgdl    = isf;
-    if (target) tempProfiles[editingProfile].target_mgdl = target;
-  }
-}
-function loadProfileIntoModal(name) {
-  const p = (tempProfiles || loadProfiles())[name];
-  document.getElementById('pedit-icr').value    = p.icr;
-  document.getElementById('pedit-isf').value    = unit === 'mmol' ? p.isf_mmol    : p.isf_mgdl;
-  document.getElementById('pedit-target').value = unit === 'mmol' ? p.target_mmol : p.target_mgdl;
-}
-function resetEditProfile() {
-  if (!tempProfiles) tempProfiles = loadProfiles();
-  tempProfiles[editingProfile] = JSON.parse(JSON.stringify(PROFILE_DEFAULTS[editingProfile]));
-  loadProfileIntoModal(editingProfile);
-}
-function saveProfileModal() {
-  saveCurrentEditToTemp();
-  saveProfiles(tempProfiles);
-  tempProfiles = null;
-  closeProfileModal();
-  applyProfileToFields();
-}
-
 // ── Presets ───────────────────────────────────────────────────
 function getDefaultPresets() {
   return [
@@ -701,19 +553,30 @@ function deletePreset() {
 }
 
 // Close modals on backdrop click
-document.getElementById('profile-modal').addEventListener('click', e => {
-  if (e.target === e.currentTarget) { tempProfiles = null; closeProfileModal(); }
-});
 document.getElementById('preset-modal').addEventListener('click', e => {
   if (e.target === e.currentTarget) closePresetModal();
 });
 
-// ── Init ──────────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-  // Don't pre-fill fields — show placeholders instead
+// ── Lang change ───────────────────────────────────────────────
+document.addEventListener('langchange', () => {
+  updateHistoryLabel();
+  updatePlaceholders(unit);
+  document.getElementById('glucose-unit-label').textContent = t(unit === 'mmol' ? 'unit_mmol' : 'unit_mgdl');
+  document.getElementById('target-unit-label').textContent  = t(unit === 'mmol' ? 'unit_mmol' : 'unit_mgdl');
   renderPresets();
 });
+
+// ── Init ──────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  updateHistoryLabel();
+  updatePlaceholders('mmol');
+  renderPresets();
+  const urlLang = new URLSearchParams(location.search).get('lang');
+  if (urlLang && LANGS[urlLang]) applyLang(urlLang);
+});
 </script>
+
+<!-- ── Profiles + Presets JS ── -->
 
 </body>
 </html>
