@@ -20,7 +20,7 @@
 .terms-plain{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:10px;padding:10px 12px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--accent)}
 .terms-plain strong{color:var(--text)}
 .terms-plain a{color:var(--accent)}
-.terms-legal{font-size:12px;color:var(--muted);line-height:1.65;opacity:.7;padding:0 4px}
+.terms-legal{font-size:12px;color:var(--muted);line-height:1.65;opacity:.7;padding:0 4px;font-family:var(--mono)}
 .terms-legal strong{color:var(--text)}
 .terms-legal a{color:var(--accent)}
 .terms-legal ol{padding-left:18px;margin:8px 0}
@@ -222,5 +222,11 @@
 
 <button id="theme-toggle" title="Toggle theme">☀️</button>
 <script src="./app.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const urlLang = new URLSearchParams(location.search).get('lang');
+  if (urlLang && LANGS[urlLang]) applyLang(urlLang);
+});
+</script>
 </body>
 </html>
