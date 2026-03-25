@@ -5,7 +5,7 @@
   --bg:#0d1117; --surface:#161b22; --surface2:#1c2230; --border:#2a3244;
   --accent:#3fb68e; --accent2:#5bc4a0; --warn:#e8a84c; --danger:#e05c5c;
   --text:#e6edf3; --muted:#7d8ea8; --shadow:0 2px 12px rgba(0,0,0,.4);
-  --mono:'DM Mono',monospace; --sans:'DM Sans',sans-serif; --max:480px;
+  --mono:'IBM Plex Mono',monospace; --sans:'IBM Plex Sans',sans-serif; --max:480px;
 }
 [data-theme="light"] {
   --bg:#f4f6f9; --surface:#fff; --surface2:#eef1f5; --border:#d0d7e3;
