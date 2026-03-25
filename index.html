@@ -75,7 +75,7 @@
   <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 0;gap:12px;">
     <div>
       <div style="font-size:24px;font-weight:600;letter-spacing:-.5px;line-height:1.2;" data-i18n="calc_title">Расчёт дозы</div>
-      <div style="font-size:11px;color:var(--muted);font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;margin-top:3px;" data-i18n="calc_sub">Инсулин — калькулятор</div>
+
     </div>
     <div class="unit-toggle" style="flex-shrink:0;">
       <button class="unit-btn active" id="btn-mmol" onclick="setUnit('mmol')" data-i18n="unit_mmol">ммоль/л</button>
@@ -228,11 +228,11 @@
     </div>
     <div class="modal-field">
       <label data-i18n="preset_name_ph">Название</label>
-      <input type="text" id="preset-name" autocomplete="off" maxlength="20">
+      <input type="text" id="preset-name" autocomplete="off" maxlength="20" data-i18n="preset_name_ph">
     </div>
     <div class="modal-field">
       <label data-i18n="preset_carbs_ph">Углеводы (г)</label>
-      <input type="text" inputmode="decimal" id="preset-carbs-val" autocomplete="off">
+      <input type="text" inputmode="decimal" id="preset-carbs-val" autocomplete="off" data-i18n="preset_carbs_ph">
     </div>
     <div class="modal-btns">
       <button class="modal-delete" id="preset-delete-btn" onclick="deletePreset()" style="display:none" data-i18n="preset_delete">Удалить</button>
