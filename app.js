@@ -86,6 +86,7 @@ const LANGS = {
     faq_q9:'Безопасно ли использовать этот калькулятор?',
     faq_a9:'Калькулятор реализует стандартные формулы расчёта болюса. <strong>Однако он не учитывает</strong> активный инсулин (IOB), гликемический индекс продуктов, влияние физической нагрузки и болезней. Используйте как ориентир.',
     faq_btn:'Перейти к калькулятору →',
+    faq_regulatory:'⚠️ Данное приложение не является сертифицированным медицинским устройством и не одобрено ни одним регуляторным органом (FDA, EMA или аналогичным).',
 
     // profiles & presets
     profile_label:'Профиль', profile_morning:'☀️ Утро', profile_day:'🌤 День', profile_evening:'🌙 Вечер',
@@ -177,6 +178,7 @@ const LANGS = {
     faq_q9:'Is this calculator safe to use?',
     faq_a9:'The calculator uses standard bolus formulas. <strong>However, it does not account for</strong> active insulin (IOB), glycemic index of foods, or the effects of exercise and illness. Use as a reference only.',
     faq_btn:'Go to calculator →',
+    faq_regulatory:'⚠️ This application is not a certified medical device and has not been approved by any regulatory authority (FDA, EMA, or equivalent).',
 
     profile_label:'Profile', profile_morning:'☀️ Morning', profile_day:'🌤 Day', profile_evening:'🌙 Evening',
     profile_edit_title:'Edit profile', profile_save:'Save', profile_cancel:'Cancel', profile_reset:'Reset to defaults',
@@ -259,6 +261,7 @@ const LANGS = {
     faq_q8:'¿Funciona sin internet?', faq_a8:'Sí. Se almacena en caché y funciona completamente sin conexión.',
     faq_q9:'¿Es seguro usar esta calculadora?', faq_a9:'Usa fórmulas estándar de bolo. <strong>No tiene en cuenta</strong> la insulina activa (IOB), el índice glucémico ni el ejercicio. Úsela como referencia.',
     faq_btn:'Ir a la calculadora →',
+    faq_regulatory:'⚠️ Esta aplicación no es un dispositivo médico certificado y no ha sido aprobada por ninguna autoridad reguladora (FDA, EMA o equivalente).',
 
     profile_label:'Perfil', profile_morning:'☀️ Mañana', profile_day:'🌤 Día', profile_evening:'🌙 Noche',
     profile_edit_title:'Editar perfil', profile_save:'Guardar', profile_cancel:'Cancelar', profile_reset:'Restablecer',
@@ -341,6 +344,7 @@ const LANGS = {
     faq_q8:'Funktioniert die App offline?', faq_a8:'Ja. Beim ersten Laden wird die App gecacht und funktioniert vollständig offline.',
     faq_q9:'Ist der Rechner sicher?', faq_a9:'Er verwendet Standardformeln. <strong>Nicht berücksichtigt</strong> werden aktives Insulin (IOB), glykämischer Index und Sport. Als Richtwert verwenden.',
     faq_btn:'Zum Rechner →',
+    faq_regulatory:'⚠️ Diese Anwendung ist kein zugelassenes Medizinprodukt und wurde von keiner Aufsichtsbehörde (FDA, EMA oder gleichwertig) genehmigt.',
 
     profile_label:'Profil', profile_morning:'☀️ Morgen', profile_day:'🌤 Tag', profile_evening:'🌙 Abend',
     profile_edit_title:'Profil bearbeiten', profile_save:'Speichern', profile_cancel:'Abbrechen', profile_reset:'Zurücksetzen',
@@ -423,6 +427,7 @@ const LANGS = {
     faq_q8:'L\'app fonctionne-t-elle hors ligne ?', faq_a8:'Oui. Elle est mise en cache et fonctionne entièrement hors ligne.',
     faq_q9:'L\'utilisation est-elle sûre ?', faq_a9:"Utilise les formules standard. <strong>Ne tient pas compte</strong> de l'insuline active (IOB) ni du sport. À utiliser comme référence.",
     faq_btn:'Aller au calculateur →',
+    faq_regulatory:'⚠️ Cette application n'est pas un dispositif médical certifié et n'a pas été approuvée par une autorité réglementaire (FDA, EMA ou équivalent).',
 
     profile_label:'Profil', profile_morning:'☀️ Matin', profile_day:'🌤 Journée', profile_evening:'🌙 Soir',
     profile_edit_title:'Modifier le profil', profile_save:'Enregistrer', profile_cancel:'Annuler', profile_reset:'Réinitialiser',
@@ -505,6 +510,7 @@ const LANGS = {
     faq_q8:'Працуе без інтэрнэту?', faq_a8:'Так. Кэшуецца пры першым адкрыцці і працуе поўнасцю афлайн.',
     faq_q9:'Бяспечна ли выкарыстоўваць?', faq_a9:'Выкарыстоўвае стандартныя формулы. <strong>Не ўлічвае</strong> актыўны інсулін (IOB) і фізічную нагрузку.',
     faq_btn:'Перайсці да калькулятара →',
+    faq_regulatory:'⚠️ Гэтае прыкладанне не з'яўляецца сертыфікаваным медыцынскім прыборам і не зацверджана ніводным рэгулятарным органам (FDA, EMA або аналагічным).',
 
     profile_label:'Профіль', profile_morning:'☀️ Раніца', profile_day:'🌤 Дзень', profile_evening:'🌙 Вечар',
     profile_edit_title:'Наладка профілю', profile_save:'Захаваць', profile_cancel:'Адмена', profile_reset:'Скінуць да змаўчання',
@@ -587,6 +593,7 @@ const LANGS = {
     faq_q8:'应用程序可以离线工作吗？', faq_a8:'可以。首次加载后缓存，完全离线运行，历史记录存储在本地。',
     faq_q9:'使用安全吗？', faq_a9:'使用标准计算公式。<strong>不考虑</strong>活性胰岛素（IOB）、食物升糖指数和运动影响。仅作参考。',
     faq_btn:'前往计算器 →',
+    faq_regulatory:'⚠️ 本应用程序不是经认证的医疗设备，未经任何监管机构（FDA、EMA或同等机构）批准。',
 
     profile_label:'方案', profile_morning:'☀️ 早晨', profile_day:'🌤 白天', profile_evening:'🌙 晚上',
     profile_edit_title:'编辑方案', profile_save:'保存', profile_cancel:'取消', profile_reset:'重置为默认值',
@@ -638,14 +645,32 @@ function applyTheme(theme) {
 }
 function toggleTheme() { applyTheme(currentTheme === 'dark' ? 'light' : 'dark'); }
 
-// ── Cookie ────────────────────────────────────────────────────
+// ── Cookie + GDPR version-bump re-consent ─────────────────────
+const PRIVACY_VERSION = '2'; // Increment on every Privacy Policy update
+
 function checkCookieConsent() {
-  if (!localStorage.getItem('cookieConsent')) {
+  const consent = localStorage.getItem('cookieConsent');
+  const savedVersion = localStorage.getItem('privacyVersion');
+
+  // No consent yet, or policy version changed since last consent → re-trigger banner
+  if (!consent || savedVersion !== PRIVACY_VERSION) {
+    // Clear stale consent so the new choice is recorded fresh
+    if (savedVersion !== PRIVACY_VERSION) {
+      localStorage.removeItem('cookieConsent');
+    }
     setTimeout(() => { const b = document.getElementById('cookie-banner'); if (b) b.classList.add('show'); }, 1800);
   }
 }
-function acceptCookies()  { localStorage.setItem('cookieConsent','accepted');  const b=document.getElementById('cookie-banner'); if(b) b.classList.remove('show'); }
-function declineCookies() { localStorage.setItem('cookieConsent','declined');  const b=document.getElementById('cookie-banner'); if(b) b.classList.remove('show'); }
+function acceptCookies()  {
+  localStorage.setItem('cookieConsent', 'accepted');
+  localStorage.setItem('privacyVersion', PRIVACY_VERSION);
+  const b = document.getElementById('cookie-banner'); if (b) b.classList.remove('show');
+}
+function declineCookies() {
+  localStorage.setItem('cookieConsent', 'declined');
+  localStorage.setItem('privacyVersion', PRIVACY_VERSION);
+  const b = document.getElementById('cookie-banner'); if (b) b.classList.remove('show');
+}
 
 // ── PWA Install ───────────────────────────────────────────────
 let deferredInstall = null;
