@@ -427,7 +427,7 @@ const LANGS = {
     faq_q8:'L\'app fonctionne-t-elle hors ligne ?', faq_a8:'Oui. Elle est mise en cache et fonctionne entièrement hors ligne.',
     faq_q9:'L\'utilisation est-elle sûre ?', faq_a9:"Utilise les formules standard. <strong>Ne tient pas compte</strong> de l'insuline active (IOB) ni du sport. À utiliser comme référence.",
     faq_btn:'Aller au calculateur →',
-    faq_regulatory:'⚠️ Cette application n'est pas un dispositif médical certifié et n'a pas été approuvée par une autorité réglementaire (FDA, EMA ou équivalent).',
+    faq_regulatory:'⚠️ Cette application n\'est pas un dispositif médical certifié et n\'a pas été approuvée par une autorité réglementaire (FDA, EMA ou équivalent)',
 
     profile_label:'Profil', profile_morning:'☀️ Matin', profile_day:'🌤 Journée', profile_evening:'🌙 Soir',
     profile_edit_title:'Modifier le profil', profile_save:'Enregistrer', profile_cancel:'Annuler', profile_reset:'Réinitialiser',
@@ -510,7 +510,7 @@ const LANGS = {
     faq_q8:'Працуе без інтэрнэту?', faq_a8:'Так. Кэшуецца пры першым адкрыцці і працуе поўнасцю афлайн.',
     faq_q9:'Бяспечна ли выкарыстоўваць?', faq_a9:'Выкарыстоўвае стандартныя формулы. <strong>Не ўлічвае</strong> актыўны інсулін (IOB) і фізічную нагрузку.',
     faq_btn:'Перайсці да калькулятара →',
-    faq_regulatory:'⚠️ Гэтае прыкладанне не з'яўляецца сертыфікаваным медыцынскім прыборам і не зацверджана ніводным рэгулятарным органам (FDA, EMA або аналагічным).',
+    faq_regulatory:'⚠️ Гэтае прыкладанне не з\'яўляецца сертыфікаваным медыцынскім прыборам і не зацверджана ніводным рэгулятарным органам (FDA, EMA або аналагічным).',
 
     profile_label:'Профіль', profile_morning:'☀️ Раніца', profile_day:'🌤 Дзень', profile_evening:'🌙 Вечар',
     profile_edit_title:'Наладка профілю', profile_save:'Захаваць', profile_cancel:'Адмена', profile_reset:'Скінуць да змаўчання',
