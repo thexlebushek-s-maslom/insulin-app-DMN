@@ -87,6 +87,12 @@ const LANGS = {
     faq_a9:'Калькулятор реализует стандартные формулы расчёта болюса. <strong>Однако он не учитывает</strong> активный инсулин (IOB), гликемический индекс продуктов, влияние физической нагрузки и болезней. Используйте как ориентир.',
     faq_btn:'Перейти к калькулятору →',
     faq_regulatory:'⚠️ Данное приложение не является сертифицированным медицинским устройством и не одобрено ни одним регуляторным органом (FDA, EMA или аналогичным).',
+    consent_title:'Прежде чем продолжить',
+    consent_p1:'⚠️ Приложение вычисляет предполагаемую дозу на основе введённых данных. Оно не учитывает активный инсулин, болезнь, стресс и другие факторы. <strong>Результат не является медицинской рекомендацией.</strong>',
+    consent_p2:'⚠️ <strong>Все решения о введении дозы принимаете вы совместно с врачом.</strong> Разработчик (DMN) не несёт ответственности за любой вред, возникший в результате использования приложения.',
+    consent_p3:'⚠️ Приложение <strong>не является сертифицированным медицинским устройством</strong> и не одобрено FDA, EMA или иными регуляторными органами.',
+    consent_checkbox:'Я прочитал(а) и принимаю <a href="./terms.html" target="_blank">Условия использования</a> и <a href="./privacy.html" target="_blank">Политику конфиденциальности</a>. Я понимаю, что приложение является информационным инструментом, а все решения о дозировании — моя ответственность.',
+    consent_btn:'Продолжить',
     terms_title:'Условия использования',
     terms_date:'Последнее обновление: 25 марта 2026 &middot; Версия 1.2',
     terms_intro:'Настоящие Условия использования («Условия») регулируют доступ к веб-приложению «Калькулятор дозы инсулина» («Приложение») и его использование. Используя Приложение любым способом — просматривая, вводя данные или читая результаты — вы подтверждаете, что ознакомились с настоящими Условиями, поняли их и согласны соблюдать их в полном объёме. Если вы не согласны, не используйте Приложение.',
@@ -212,6 +218,12 @@ const LANGS = {
     faq_a9:'The calculator uses standard bolus formulas. <strong>However, it does not account for</strong> active insulin (IOB), glycemic index of foods, or the effects of exercise and illness. Use as a reference only.',
     faq_btn:'Go to calculator →',
     faq_regulatory:'⚠️ This application is not a certified medical device and has not been approved by any regulatory authority (FDA, EMA, or equivalent).',
+    consent_title:'Before you continue',
+    consent_p1:'⚠️ This app calculates a suggested dose based on the numbers you enter. It does not account for active insulin, illness, stress, or other factors. <strong>The result is not a medical recommendation.</strong>',
+    consent_p2:'⚠️ <strong>All dosing decisions are made by you and your doctor.</strong> The app developer (DMN) is not liable for any harm resulting from use of this app.',
+    consent_p3:'⚠️ This app is <strong>not a certified medical device</strong> and has not been approved by FDA, EMA, or any regulatory authority.',
+    consent_checkbox:'I have read and accept the <a href="./terms.html" target="_blank">Terms of Use</a> and <a href="./privacy.html" target="_blank">Privacy Policy</a>. I understand that this app is an informational tool only and that all dosing decisions are my responsibility.',
+    consent_btn:'Continue',
     terms_title:'Terms of Use',
     terms_date:'Last updated: 25 March 2026 &middot; Version 1.3',
     terms_intro:'These Terms of Use ("Terms") govern your access to and use of the Insulin Dose Calculator web application ("Application", "App"). By accessing or using the App in any way — including viewing, entering data, or reading results — you acknowledge that you have read, understood, and agree to be bound by these Terms in their entirety. If you do not agree, do not use the App.',
@@ -328,6 +340,12 @@ const LANGS = {
     faq_q9:'¿Es seguro usar esta calculadora?', faq_a9:'Usa fórmulas estándar de bolo. <strong>No tiene en cuenta</strong> la insulina activa (IOB), el índice glucémico ni el ejercicio. Úsela como referencia.',
     faq_btn:'Ir a la calculadora →',
     faq_regulatory:'⚠️ Esta aplicación no es un dispositivo médico certificado y no ha sido aprobada por ninguna autoridad reguladora (FDA, EMA o equivalente).',
+    consent_title:'Antes de continuar',
+    consent_p1:'⚠️ Esta aplicación calcula una dosis sugerida basada en los datos que introduce. No tiene en cuenta la insulina activa, enfermedad, estrés u otros factores. <strong>El resultado no es una recomendación médica.</strong>',
+    consent_p2:'⚠️ <strong>Todas las decisiones de dosificación las toman usted y su médico.</strong> El desarrollador (DMN) no es responsable de ningún daño derivado del uso de esta aplicación.',
+    consent_p3:'⚠️ Esta aplicación <strong>no es un dispositivo médico certificado</strong> y no ha sido aprobada por FDA, EMA ni ninguna autoridad reguladora.',
+    consent_checkbox:'He leído y acepto las <a href="./terms.html" target="_blank">Condiciones de uso</a> y la <a href="./privacy.html" target="_blank">Política de privacidad</a>. Entiendo que esta aplicación es solo informativa y que todas las decisiones de dosificación son mi responsabilidad.',
+    consent_btn:'Continuar',
     terms_title:'Condiciones de uso',
     terms_date:'Última actualización: 25 de marzo de 2026 &middot; Versión 1.2',
     terms_intro:'Estas Condiciones de uso ("Condiciones") rigen el acceso y uso de la aplicación web Calculadora de dosis de insulina ("Aplicación"). Al acceder o usar la Aplicación de cualquier forma, usted reconoce que ha leído, comprendido y acepta estar sujeto a estas Condiciones en su totalidad. Si no está de acuerdo, no utilice la Aplicación.',
@@ -444,6 +462,12 @@ const LANGS = {
     faq_q9:'Ist der Rechner sicher?', faq_a9:'Er verwendet Standardformeln. <strong>Nicht berücksichtigt</strong> werden aktives Insulin (IOB), glykämischer Index und Sport. Als Richtwert verwenden.',
     faq_btn:'Zum Rechner →',
     faq_regulatory:'⚠️ Diese Anwendung ist kein zugelassenes Medizinprodukt und wurde von keiner Aufsichtsbehörde (FDA, EMA oder gleichwertig) genehmigt.',
+    consent_title:'Bevor Sie fortfahren',
+    consent_p1:'⚠️ Diese Anwendung berechnet eine vorgeschlagene Dosis anhand der eingegebenen Werte. Sie berücksichtigt kein aktives Insulin, Krankheit, Stress oder andere Faktoren. <strong>Das Ergebnis ist keine medizinische Empfehlung.</strong>',
+    consent_p2:'⚠️ <strong>Alle Dosierungsentscheidungen treffen Sie gemeinsam mit Ihrem Arzt.</strong> Der Entwickler (DMN) haftet nicht für Schäden, die durch die Nutzung dieser Anwendung entstehen.',
+    consent_p3:'⚠️ Diese Anwendung ist <strong>kein zugelassenes Medizinprodukt</strong> und wurde nicht von der FDA, EMA oder einer anderen Aufsichtsbehörde genehmigt.',
+    consent_checkbox:'Ich habe die <a href="./terms.html" target="_blank">Nutzungsbedingungen</a> und die <a href="./privacy.html" target="_blank">Datenschutzerklärung</a> gelesen und akzeptiere sie. Ich verstehe, dass diese Anwendung nur ein Informationswerkzeug ist und alle Dosierungsentscheidungen meine Verantwortung sind.',
+    consent_btn:'Weiter',
     terms_title:'Nutzungsbedingungen',
     terms_date:'Zuletzt aktualisiert: 25. März 2026 &middot; Version 1.3',
     terms_intro:'Diese Nutzungsbedingungen ("Bedingungen") regeln den Zugang zur und die Nutzung der Webanwendung Insulindosisrechner ("Anwendung"). Durch den Zugriff auf oder die Nutzung der Anwendung auf jede Weise bestätigen Sie, dass Sie diese Bedingungen gelesen, verstanden haben und ihnen zustimmen. Falls Sie nicht einverstanden sind, nutzen Sie die Anwendung nicht.',
@@ -560,6 +584,12 @@ const LANGS = {
     faq_q9:'L\'utilisation est-elle sûre ?', faq_a9:"Utilise les formules standard. <strong>Ne tient pas compte</strong> de l'insuline active (IOB) ni du sport. À utiliser comme référence.",
     faq_btn:'Aller au calculateur →',
     faq_regulatory:'⚠️ Cette application n\'est pas un dispositif médical certifié et n\'a pas été approuvée par une autorité réglementaire (FDA, EMA ou équivalent)',
+    consent_title:'Avant de continuer',
+    consent_p1:'⚠️ Cette application calcule une dose suggérée à partir des données saisies. Elle ne tient pas compte de l\'insuline active, de la maladie, du stress ou d\'autres facteurs. <strong>Le résultat n\'est pas une recommandation médicale.</strong>',
+    consent_p2:'⚠️ <strong>Toutes les décisions de dosage sont prises par vous et votre médecin.</strong> Le développeur (DMN) n\'est pas responsable des dommages résultant de l\'utilisation de cette application.',
+    consent_p3:'⚠️ Cette application <strong>n\'est pas un dispositif médical certifié</strong> et n\'a pas été approuvée par la FDA, l\'EMA ou toute autre autorité réglementaire.',
+    consent_checkbox:'J\'ai lu et j\'accepte les <a href="./terms.html" target="_blank">Conditions d\'utilisation</a> et la <a href="./privacy.html" target="_blank">Politique de confidentialité</a>. Je comprends que cette application est un outil informatif et que toutes les décisions de dosage sont de ma responsabilité.',
+    consent_btn:'Continuer',
     terms_title:'Conditions d\'utilisation',
     terms_date:'Dernière mise à jour : 25 mars 2026 &middot; Version 1.3',
     terms_intro:'Les présentes Conditions d\'utilisation ("Conditions") régissent votre accès et votre utilisation de l\'application web Calculateur de dose d\'insuline ("Application"). En accédant ou en utilisant l\'Application, vous reconnaissez avoir lu, compris et accepté d\'être lié par ces Conditions. Si vous n\'acceptez pas, n\'utilisez pas l\'Application.',
@@ -676,6 +706,12 @@ const LANGS = {
     faq_q9:'Бяспечна ли выкарыстоўваць?', faq_a9:'Выкарыстоўвае стандартныя формулы. <strong>Не ўлічвае</strong> актыўны інсулін (IOB) і фізічную нагрузку.',
     faq_btn:'Перайсці да калькулятара →',
     faq_regulatory:'⚠️ Гэтае прыкладанне не з\'яўляецца сертыфікаваным медыцынскім прыборам і не зацверджана ніводным рэгулятарным органам (FDA, EMA або аналагічным).',
+    consent_title:'Перш чым працягнуць',
+    consent_p1:'⚠️ Прыкладанне вылічвае прапанаваную дозу на аснове ўведзеных даных. Яно не ўлічвае актыўны інсулін, хваробу, стрэс і іншыя фактары. <strong>Вынік не з\'яўляецца медыцынскай рэкамендацыяй.</strong>',
+    consent_p2:'⚠️ <strong>Усе рашэнні аб увядзенні дозы прымаеце вы разам з урачом.</strong> Распрацоўшчык (DMN) не нясе адказнасці за любую шкоду, якая ўзнікла ў выніку выкарыстання прыкладання.',
+    consent_p3:'⚠️ Прыкладанне <strong>не з\'яўляецца сертыфікаваным медыцынскім прыборам</strong> і не зацверджана FDA, EMA або іншымі рэгулятарнымі органамі.',
+    consent_checkbox:'Я прачытаў(ла) і прымаю <a href="./terms.html" target="_blank">Умовы выкарыстання</a> і <a href="./privacy.html" target="_blank">Палітыку канфідэнцыяльнасці</a>. Я разумею, што прыкладанне з\'яўляецца інфармацыйным інструментам, а ўсе рашэнні аб дазаванні — мая адказнасць.',
+    consent_btn:'Працягнуць',
     terms_title:'Умовы выкарыстання',
     terms_date:'Апошняе абнаўленне: 25 сакавіка 2026 &middot; Версія 1.2',
     terms_intro:'Гэтыя Умовы выкарыстання («Умовы») рэгулюць доступ да вэб-прыкладання «Калькулятар дозы інсуліну» («Прыкладанне») і яго выкарыстанне. Выкарыстоўваючы Прыкладанне любым чынам, вы пацвярджаеце, што азнаёміліся з гэтымі Умовамі, зразумелі іх і згодны прытрымлівацца іх у поўным аб\'ёме. Калі вы не згодны, не выкарыстоўвайце Прыкладанне.',
@@ -792,6 +828,12 @@ const LANGS = {
     faq_q9:'使用安全吗？', faq_a9:'使用标准计算公式。<strong>不考虑</strong>活性胰岛素（IOB）、食物升糖指数和运动影响。仅作参考。',
     faq_btn:'前往计算器 →',
     faq_regulatory:'⚠️ 本应用程序不是经认证的医疗设备，未经任何监管机构（FDA、EMA或同等机构）批准。',
+    consent_title:'继续之前',
+    consent_p1:'⚠️ 本应用程序根据您输入的数据计算建议剂量。它不考虑活性胰岛素、疾病、压力或其他因素。<strong>结果不是医疗建议。</strong>',
+    consent_p2:'⚠️ <strong>所有剂量决策由您和您的医生共同做出。</strong>应用程序开发者（DMN）对使用本应用程序造成的任何伤害不承担责任。',
+    consent_p3:'⚠️ 本应用程序<strong>不是经认证的医疗器械</strong>，未经FDA、EMA或任何监管机构批准。',
+    consent_checkbox:'我已阅读并接受<a href="./terms.html" target="_blank">使用条款</a>和<a href="./privacy.html" target="_blank">隐私政策</a>。我理解本应用程序仅为参考工具，所有剂量决策均由我负责。',
+    consent_btn:'继续',
     terms_title:'使用条款',
     terms_date:'最后更新：2026年3月25日 &middot; 版本 1.2',
     terms_intro:'本使用条款（"条款"）规范您对胰岛素剂量计算器网络应用程序（"应用程序"）的访问和使用。通过以任何方式访问或使用本应用程序，您确认已阅读、理解并同意完全受本条款约束。如您不同意，请勿使用本应用程序。',
@@ -878,6 +920,7 @@ function toggleTheme() { applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
 
 // ── Cookie + GDPR version-bump re-consent ─────────────────────
 const PRIVACY_VERSION = '2'; // Increment on every Privacy Policy update
+const TERMS_VERSION   = '1.3'; // Increment on every Terms of Use update
 
 function checkCookieConsent() {
   const consent = localStorage.getItem('cookieConsent');
@@ -901,6 +944,31 @@ function declineCookies() {
   localStorage.setItem('cookieConsent', 'declined');
   localStorage.setItem('privacyVersion', PRIVACY_VERSION);
   const b = document.getElementById('cookie-banner'); if (b) b.classList.remove('show');
+}
+
+// ── Terms clickwrap ───────────────────────────────────────────
+function checkTermsConsent() {
+  const accepted = localStorage.getItem('terms_accepted');
+  const savedVer = localStorage.getItem('terms_version');
+  if (accepted === 'true' && savedVer === TERMS_VERSION) return; // already accepted
+  const modal = document.getElementById('terms-consent-modal');
+  if (modal) modal.classList.add('show');
+  // Block cookie banner until terms accepted
+}
+
+function acceptTerms() {
+  localStorage.setItem('terms_accepted', 'true');
+  localStorage.setItem('terms_version', TERMS_VERSION);
+  localStorage.setItem('accepted_at', new Date().toISOString());
+  const modal = document.getElementById('terms-consent-modal');
+  if (modal) modal.classList.remove('show');
+  // Now trigger cookie banner
+  checkCookieConsent();
+}
+
+function onConsentCheckbox(cb) {
+  const btn = document.getElementById('consent-continue-btn');
+  if (btn) btn.disabled = !cb.checked;
 }
 
 // ── PWA Install ───────────────────────────────────────────────
@@ -986,7 +1054,12 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('input[inputmode="decimal"]').forEach(attachDecimalInput);
 
   applyLang(currentLang);
-  checkCookieConsent();
+  checkTermsConsent(); // Shows modal if needed; cookie banner fires inside acceptTerms()
+  // checkCookieConsent() is called inside acceptTerms() to prevent two overlapping banners
+  if (localStorage.getItem('terms_accepted') === 'true' &&
+      localStorage.getItem('terms_version') === TERMS_VERSION) {
+    checkCookieConsent(); // Already accepted — show cookie banner normally
+  }
   updateOnline();
 
   if ('serviceWorker' in navigator) {

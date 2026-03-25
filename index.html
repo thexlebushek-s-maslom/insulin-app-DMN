@@ -44,6 +44,35 @@
 <!-- AdSense: раскомментируйте после одобрения
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
 -->
+<style>
+/* ── Terms consent modal ─────────────────────────────────────── */
+#terms-consent-modal{display:none;position:fixed;inset:0;z-index:9999;
+  background:rgba(0,0,0,.75);backdrop-filter:blur(4px);
+  align-items:center;justify-content:center;padding:16px}
+#terms-consent-modal.show{display:flex}
+.consent-box{background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;padding:24px;max-width:440px;width:100%;
+  max-height:90dvh;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
+.consent-title{font-family:var(--mono);font-size:15px;font-weight:700;
+  color:var(--text);margin:0}
+.consent-points{display:flex;flex-direction:column;gap:8px}
+.consent-point{font-size:12px;color:var(--muted);line-height:1.6;
+  padding:8px 10px;background:var(--surface2);border-radius:8px}
+.consent-point strong{color:var(--text)}
+.consent-check-row{display:flex;align-items:flex-start;gap:10px;
+  padding:10px;background:rgba(63,182,142,.07);border-radius:8px;
+  border:1px solid rgba(63,182,142,.2)}
+.consent-check-row input[type=checkbox]{
+  width:18px;height:18px;flex-shrink:0;margin-top:1px;
+  accent-color:var(--accent);cursor:pointer}
+.consent-check-label{font-size:12px;color:var(--muted);line-height:1.55;cursor:pointer}
+.consent-check-label a{color:var(--accent);text-decoration:underline}
+.consent-continue{width:100%;padding:13px;background:var(--accent);
+  color:#fff;border:none;border-radius:10px;font-family:var(--mono);
+  font-size:14px;font-weight:600;cursor:pointer;transition:opacity .2s}
+.consent-continue:disabled{opacity:.35;cursor:not-allowed}
+.consent-continue:not(:disabled):hover{opacity:.88}
+</style>
 </head>
 <body>
 
@@ -580,6 +609,22 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 <!-- ── Profiles + Presets JS ── -->
+<!-- ── Terms clickwrap consent modal (P0-1) ── -->
+<div id="terms-consent-modal" role="dialog" aria-modal="true" aria-labelledby="consent-modal-title">
+  <div class="consent-box">
+    <p class="consent-title" id="consent-modal-title" data-i18n="consent_title">Before you continue</p>
+    <div class="consent-points">
+      <div class="consent-point" data-i18n="consent_p1">&#9888;&#65039; This app calculates a suggested dose based on the numbers you enter. It does not account for active insulin, illness, stress, or other factors. <strong>The result is not a medical recommendation.</strong></div>
+      <div class="consent-point" data-i18n="consent_p2">&#9888;&#65039; <strong>All dosing decisions are made by you and your doctor.</strong> The app developer (DMN) is not liable for any harm resulting from use of this app.</div>
+      <div class="consent-point" data-i18n="consent_p3">&#9888;&#65039; This app is <strong>not a certified medical device</strong> and has not been approved by FDA, EMA, or any regulatory authority.</div>
+    </div>
+    <div class="consent-check-row">
+      <input type="checkbox" id="consent-checkbox" onchange="onConsentCheckbox(this)">
+      <label class="consent-check-label" for="consent-checkbox" data-i18n="consent_checkbox">I have read and accept the <a href="./terms.html" target="_blank">Terms of Use</a> and <a href="./privacy.html" target="_blank">Privacy Policy</a>. I understand that this app is an informational tool only and that all dosing decisions are my responsibility.</label>
+    </div>
+    <button id="consent-continue-btn" class="consent-continue" onclick="acceptTerms()" disabled data-i18n="consent_btn">Continue</button>
+  </div>
+</div>
 
 </body>
 </html>
