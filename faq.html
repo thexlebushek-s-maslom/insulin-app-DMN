@@ -21,7 +21,7 @@
 <link rel="apple-touch-icon" href="./icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./style.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
@@ -40,6 +40,7 @@
       <a href="./index.html"  class="nav-link" data-i18n="nav_calc">Калькулятор</a>
       <a href="./about.html"  class="nav-link" data-i18n="nav_about">О расчёте</a>
       <a href="./faq.html"    class="nav-link active" data-i18n="nav_faq">FAQ</a>
+      <a href="./terms.html"  class="nav-link">Terms</a>
       <select id="lang-select" class="lang-select" title="Language">
         <option value="ru">RU</option>
         <option value="en">EN</option>
@@ -75,6 +76,11 @@
       <li data-i18n="faq_w5"></li>
       <li data-i18n="faq_w6"></li>
     </ul>
+  </div>
+
+  <!-- REQ-3: Regulatory disclaimer — visible without interaction, no accordion -->
+  <div class="card" id="regulatory-disclaimer" style="background:rgba(224,92,92,.07);border-color:rgba(224,92,92,.25);">
+    <p style="font-size:13px;color:var(--danger);line-height:1.6;margin:0;" data-i18n="faq_regulatory"></p>
   </div>
 
   <!-- FAQ accordion -->
@@ -168,6 +174,8 @@
     <span class="footer-sep">·</span>
     <a href="./faq.html"     class="footer-link" data-i18n="nav_faq">FAQ</a>
     <span class="footer-sep">·</span>
+    <a href="./terms.html"   class="footer-link">Terms</a>
+    <span class="footer-sep">&middot;</span>
     <a href="./privacy.html" class="footer-link">Privacy</a>
     <div class="footer-copy" data-i18n="footer_copy">© 2026 insulin-calc.</div>
   </div>
