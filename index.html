@@ -2,8 +2,8 @@
 <html lang="ru" data-theme="dark">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Bolus Insulin Calculator — ICR & ISF Dose Tool | Калькулятор инсулина | Insulinrechner</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bolus Insulin Calculator — Free ICR & ISF Tool</title>
 <meta name="description" content="Free bolus insulin dose calculator. Calculate how much insulin for carbs using ICR and correction factor ISF. Works offline on Android & iPhone.">
 <meta name="keywords" content="bolus insulin calculator, insulin dose calculator, how to calculate insulin dose for carbs, insulin to carb ratio calculator, ICR calculator, correction factor insulin formula, how much insulin for 50g carbs, how much insulin per carb, insulin sensitivity factor calculator, ISF calculator, type 1 diabetes calculator, T1D bolus calculator, diabetes carb calculator, insulin units calculator, blood glucose correction dose, basal bolus calculator, carb counting insulin, insulin dose per gram carbs, calculate insulin for meal, free insulin calculator app, offline insulin calculator, калькулятор инсулина, Insulinrechner, calculateur insuline, calculadora insulina, 胰岛素剂量计算器">
 <meta name="robots" content="index, follow">
@@ -16,10 +16,18 @@
 <link rel="alternate" hreflang="zh-CN" href="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/?lang=zh">
 <link rel="alternate" hreflang="x-default" href="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/">
 <link rel="canonical" href="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/">
+<meta name="twitter:card"        content="summary">
+<meta name="twitter:title"       content="Bolus Insulin Calculator — Free ICR &amp; ISF Tool">
+<meta name="twitter:description" content="Free offline bolus insulin dose calculator. Calculate insulin for carbs using ICR and correction factor ISF. Works on any device.">
+<meta name="twitter:image"       content="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/icons/icon-512.png">
 <meta property="og:type"        content="website">
 <meta property="og:title"       content="Insulin Dose Calculator — Free Bolus Calculator">
 <meta property="og:description" content="Calculate your insulin bolus dose by blood glucose and carbohydrates. Works offline. Free, no registration.">
 <meta property="og:url"         content="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/">
+<meta property="og:image"       content="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/icons/icon-512.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height"content="512">
+<meta property="og:image:alt"   content="Insulin.app — Free Bolus Insulin Calculator">
 <meta property="og:locale"      content="en_US">
 <meta property="og:locale:alternate" content="ru_RU">
 <meta property="og:locale:alternate" content="de_DE">
@@ -36,6 +44,7 @@
 <link rel="apple-touch-icon" href="./icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./style.css">
 <script type="application/ld+json">
@@ -155,7 +164,7 @@
   <!-- Header + unit toggle -->
   <div class="calc-header">
     <div>
-      <div class="calc-title" data-i18n="calc_title">Расчёт дозы</div>
+      <h1 class="calc-title" data-i18n="calc_title">Расчёт дозы</h1>
 
     </div>
     <div class="unit-toggle" style="flex-shrink:0;" data-active="mmol">
@@ -206,7 +215,7 @@
         <div class="input-wrap">
           <input type="text" inputmode="decimal" id="carbs"
                  autocomplete="off" onkeydown="onEnterKey(event)" oninput="onCarbsInput()">
-          <span class="input-unit">г</span>
+          <span class="input-unit" id="carbs-unit-label">г</span>
         </div>
         <!-- Presets: inside input-group so they don't escape the flex row -->
         <div class="preset-row" id="preset-row">
@@ -273,17 +282,18 @@
 
   <button class="reset-btn" onclick="resetAll()" data-i18n="btn_reset">Сбросить всё</button>
 
+  <a href="https://ko-fi.com/sugar_under_control"
+     class="kofi-link"
+     target="_blank"
+     rel="noopener"
+     data-i18n="kofi_btn">☕ Поддержать на Ko-fi</a>
+
   <div class="ad-slot" id="ad-bottom"></div>
 
 </main>
 
 <footer class="footer">
   <div class="footer-inner">
-    <a href="https://ko-fi.com/sugar_under_control"
-       class="kofi-link"
-       target="_blank"
-       rel="noopener"
-       data-i18n="kofi_btn">☕ Поддержать на Ko-fi</a>
     <a href="./about.html"   class="footer-link" data-i18n="nav_about">О расчёте</a>
     <span class="footer-sep">·</span>
     <a href="./faq.html"     class="footer-link" data-i18n="nav_faq">FAQ</a>
@@ -483,29 +493,51 @@ function calculate() {
   const content = document.getElementById('result-content');
 
   if (total <= 0) {
-    content.innerHTML = `
-      <div class="no-dose">${glucose < GLUCOSE_LOW ? t('no_dose_hypo') : t('no_dose_zero')}</div>
-      <div class="result-breakdown">
-        <div class="breakdown-row"><span class="breakdown-name">${t('breakdown_carbs')} (${carbsG}g ÷ ${icr})</span><span class="breakdown-val">${carbDose.toFixed(2)} u.</span></div>
-        <div class="breakdown-row"><span class="breakdown-name">${t('breakdown_corr')} (${fmtG(glucoseRaw)} → ${fmtG(targetRaw)} ${dUnit})</span><span class="breakdown-val negative">${corrDose.toFixed(2)} u.</span></div>
-      </div>`;
+    // TECH-01: safe DOM building — no user data in innerHTML
+    content.innerHTML = '';
+    const noDoseDiv = document.createElement('div');
+    noDoseDiv.className = 'no-dose';
+    noDoseDiv.textContent = glucose < GLUCOSE_LOW ? t('no_dose_hypo') : t('no_dose_zero');
+    const bdZero = document.createElement('div');
+    bdZero.className = 'result-breakdown';
+    bdZero.innerHTML = '<div class="breakdown-row"></div><div class="breakdown-row"></div>';
+    const [r1z, r2z] = bdZero.children;
+    const n1z = document.createElement('span'); n1z.className = 'breakdown-name';
+    n1z.textContent = t('breakdown_carbs') + ' (' + carbsG + t('unit_carbs_short') + ' ÷ ' + icr + ')';
+    const v1z = document.createElement('span'); v1z.className = 'breakdown-val';
+    v1z.textContent = carbDose.toFixed(2) + ' ' + t('unit_dose_short');
+    r1z.appendChild(n1z); r1z.appendChild(v1z);
+    const n2z = document.createElement('span'); n2z.className = 'breakdown-name';
+    n2z.textContent = t('breakdown_corr') + ' (' + fmtG(glucoseRaw) + ' → ' + fmtG(targetRaw) + ' ' + dUnit + ')';
+    const v2z = document.createElement('span'); v2z.className = 'breakdown-val negative';
+    v2z.textContent = corrDose.toFixed(2) + ' ' + t('unit_dose_short');
+    r2z.appendChild(n2z); r2z.appendChild(v2z);
+    content.appendChild(noDoseDiv);
+    content.appendChild(bdZero);
     saveHistory(glucoseRaw, carbsG, 0, now);
   } else {
     const rounded = Math.round(total / DOSE_STEP) * DOSE_STEP;
-    content.innerHTML = `
-      <div class="result-main">
-        <div class="result-label">${t('result_label')}</div>
-        <div class="result-value">${rounded.toFixed(1)}</div>
-        <div class="result-unit">${t('result_unit')}</div>
-        <div class="result-time">${now}</div>
-      </div>
-      <div class="result-breakdown">
-        <div class="breakdown-row"><span class="breakdown-name">${t('breakdown_carbs')} (${carbsG}g ÷ ${icr})</span><span class="breakdown-val">${carbDose.toFixed(2)} u.</span></div>
-        <div class="breakdown-row"><span class="breakdown-name">${t('breakdown_corr')} (${fmtG(glucoseRaw)} → ${fmtG(targetRaw)} ${dUnit})</span><span class="breakdown-val ${corrDose>=0?'positive':'negative'}">${corrDose>=0?'+':''}${corrDose.toFixed(2)} u.</span></div>
-        <div class="breakdown-divider"></div>
-        <div class="breakdown-row"><span class="breakdown-name">${t('breakdown_exact')}</span><span class="breakdown-val">${total.toFixed(2)} u.</span></div>
-        <div class="breakdown-row"><span class="breakdown-name">${t('breakdown_round')}</span><span class="breakdown-val" class="breakdown-val-accent">${rounded.toFixed(1)} u.</span></div>
-      </div>`;
+    // TECH-01: safe DOM — no user data in innerHTML
+    content.innerHTML = '';
+    const rm = document.createElement('div'); rm.className = 'result-main';
+    rm.innerHTML = '<div class="result-label"></div><div class="result-value"></div><div class="result-unit"></div><div class="result-time"></div>';
+    rm.querySelector('.result-label').textContent = t('result_label');
+    rm.querySelector('.result-value').textContent = rounded.toFixed(1);
+    rm.querySelector('.result-unit').textContent  = t('result_unit');
+    rm.querySelector('.result-time').textContent  = now;
+    const bd = document.createElement('div'); bd.className = 'result-breakdown';
+    const mkRow = (nameText, valText, extraClass) => {
+      const row = document.createElement('div'); row.className = 'breakdown-row';
+      const n = document.createElement('span'); n.className = 'breakdown-name'; n.textContent = nameText;
+      const v = document.createElement('span'); v.className = 'breakdown-val' + (extraClass ? ' ' + extraClass : ''); v.textContent = valText;
+      row.appendChild(n); row.appendChild(v); return row;
+    };
+    bd.appendChild(mkRow(t('breakdown_carbs') + ' (' + carbsG + t('unit_carbs_short') + ' ÷ ' + icr + ')', carbDose.toFixed(2) + ' ' + t('unit_dose_short')));
+    bd.appendChild(mkRow(t('breakdown_corr') + ' (' + fmtG(glucoseRaw) + ' → ' + fmtG(targetRaw) + ' ' + dUnit + ')', (corrDose >= 0 ? '+' : '') + corrDose.toFixed(2) + ' ' + t('unit_dose_short'), corrDose >= 0 ? 'positive' : 'negative'));
+    const divEl = document.createElement('div'); divEl.className = 'breakdown-divider'; bd.appendChild(divEl);
+    bd.appendChild(mkRow(t('breakdown_exact'), total.toFixed(2) + ' ' + t('unit_dose_short')));
+    bd.appendChild(mkRow(t('breakdown_round'), rounded.toFixed(1) + ' ' + t('unit_dose_short'), 'breakdown-val-accent'));
+    content.appendChild(rm); content.appendChild(bd);
     saveHistory(glucoseRaw, carbsG, rounded, now);
   }
 
@@ -674,6 +706,24 @@ document.getElementById('preset-modal').addEventListener('click', e => {
   if (e.target === e.currentTarget) closePresetModal();
 });
 
+// ── Consent modal focus trap (TECH-03) ──────────────────────
+function _trapConsentFocus(e) {
+  const modal = document.getElementById('terms-consent-modal');
+  if (!modal || !modal.classList.contains('show')) return;
+  if (e.key !== 'Tab') return;
+  const focusable = [...modal.querySelectorAll(
+    'a[href],button:not([disabled]),input,[tabindex="0"]'
+  )].filter(el => !el.disabled && el.offsetParent !== null);
+  if (!focusable.length) return;
+  const first = focusable[0], last = focusable[focusable.length - 1];
+  if (e.shiftKey && document.activeElement === first) {
+    e.preventDefault(); last.focus();
+  } else if (!e.shiftKey && document.activeElement === last) {
+    e.preventDefault(); first.focus();
+  }
+}
+document.addEventListener('keydown', _trapConsentFocus);
+
 // ── Ko-fi toast ───────────────────────────────────────────────
 function showKofiToastIfNeeded() {
   if (safeStorage.get('kofi_toast_shown')) return;
@@ -698,6 +748,8 @@ document.addEventListener('langchange', () => {
   updatePlaceholders(unit);
   document.getElementById('glucose-unit-label').textContent = t(unit === 'mmol' ? 'unit_mmol' : 'unit_mgdl');
   document.getElementById('target-unit-label').textContent  = t(unit === 'mmol' ? 'unit_mmol' : 'unit_mgdl');
+  const cu = document.getElementById('carbs-unit-label');
+  if (cu) cu.textContent = t('unit_carbs_short');
   renderPresets();
 });
 
@@ -709,6 +761,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const urlLang = new URLSearchParams(location.search).get('lang');
   if (urlLang && LANGS[urlLang]) applyLang(urlLang);
   updateHistoryLabel(); // keep label/visibility in sync on lang switch
+  const cu = document.getElementById('carbs-unit-label');
+  if (cu) cu.textContent = t('unit_carbs_short');
 });
 </script>
 
@@ -748,11 +802,6 @@ document.addEventListener('DOMContentLoaded', () => {
 <div id="terms-consent-modal" role="dialog" aria-modal="true" aria-labelledby="consent-modal-title">
   <div class="consent-box">
     <p class="consent-title" id="consent-modal-title" data-i18n="consent_title">Before you continue</p>
-    <div class="consent-points">
-      <div class="consent-point" data-i18n="consent_p1">&#9888;&#65039; This app calculates a suggested dose based on the numbers you enter. It does not account for active insulin, illness, stress, or other factors. <strong>The result is not a medical recommendation.</strong></div>
-      <div class="consent-point" data-i18n="consent_p2">&#9888;&#65039; <strong>All dosing decisions are made by you and your doctor.</strong> The app developer (DMN) is not liable for any harm resulting from use of this app.</div>
-      <div class="consent-point" data-i18n="consent_p3">&#9888;&#65039; This app is <strong>not a certified medical device</strong> and has not been approved by FDA, EMA, or any regulatory authority.</div>
-    </div>
     <div class="consent-check-row">
       <input type="checkbox" id="consent-checkbox" onchange="onConsentCheckbox(this)">
       <label class="consent-check-label" for="consent-checkbox" data-i18n="consent_checkbox">I have read and accept the <a href="./terms.html" target="_blank">Terms of Use</a> and <a href="./privacy.html" target="_blank">Privacy Policy</a>. I understand that this app is an informational tool only and that all dosing decisions are my responsibility.</label>

@@ -34,6 +34,7 @@ const LANGS = {
     unit_mmol:'ммоль/л', unit_mgdl:'мг/дл',
     ph_glucose_mmol:'e.g. 5.5', ph_glucose_mgdl:'e.g. 99',
     ph_carbs:'0', ph_icr:'8 – 20',
+    unit_carbs_short:'г', unit_dose_short:'ед.',
     ph_isf_mmol:'1.5 – 4.0', ph_isf_mgdl:'27 – 72',
     ph_target_mmol:'5.0 – 7.0', ph_target_mgdl:'90 – 126',
     // about page
@@ -172,6 +173,7 @@ const LANGS = {
     unit_mmol:'mmol/L', unit_mgdl:'mg/dL',
     ph_glucose_mmol:'e.g. 5.5', ph_glucose_mgdl:'e.g. 99',
     ph_carbs:'0', ph_icr:'8 – 20',
+    unit_carbs_short:'g', unit_dose_short:'u.',
     ph_isf_mmol:'1.5 – 4.0', ph_isf_mgdl:'27 – 72',
     ph_target_mmol:'5.0 – 7.0', ph_target_mgdl:'90 – 126',
     about_title:'How insulin dose is calculated',
@@ -307,6 +309,7 @@ const LANGS = {
     unit_mmol:'mmol/L', unit_mgdl:'mg/dL',
     ph_glucose_mmol:'e.g. 5.5', ph_glucose_mgdl:'e.g. 99',
     ph_carbs:'0', ph_icr:'8 – 20',
+    unit_carbs_short:'g', unit_dose_short:'u.',
     ph_isf_mmol:'1.5 – 4.0', ph_isf_mgdl:'27 – 72',
     ph_target_mmol:'5.0 – 7.0', ph_target_mgdl:'90 – 126',
     about_title:'Cómo se calcula la dosis de insulina',
@@ -434,6 +437,7 @@ const LANGS = {
     unit_mmol:'mmol/L', unit_mgdl:'mg/dL',
     ph_glucose_mmol:'z.B. 5,5', ph_glucose_mgdl:'e.g. 99',
     ph_carbs:'0', ph_icr:'8 – 20',
+    unit_carbs_short:'g', unit_dose_short:'Einh.',
     ph_isf_mmol:'1,5 – 4,0', ph_isf_mgdl:'27 – 72',
     ph_target_mmol:'5,0 – 7,0', ph_target_mgdl:'90 – 126',
     about_title:'Wie die Insulindosis berechnet wird',
@@ -561,6 +565,7 @@ const LANGS = {
     unit_mmol:'mmol/L', unit_mgdl:'mg/dL',
     ph_glucose_mmol:'e.g. 5.5', ph_glucose_mgdl:'e.g. 99',
     ph_carbs:'0', ph_icr:'8 – 20',
+    unit_carbs_short:'g', unit_dose_short:'u.',
     ph_isf_mmol:'1.5 – 4.0', ph_isf_mgdl:'27 – 72',
     ph_target_mmol:'5.0 – 7.0', ph_target_mgdl:'90 – 126',
     about_title:'Comment la dose d\'insuline est calculée',
@@ -688,6 +693,7 @@ const LANGS = {
     unit_mmol:'ммаль/л', unit_mgdl:'мг/дл',
     ph_glucose_mmol:'e.g. 5.5', ph_glucose_mgdl:'e.g. 99',
     ph_carbs:'0', ph_icr:'8 – 20',
+    unit_carbs_short:'г', unit_dose_short:'ад.',
     ph_isf_mmol:'1.5 – 4.0', ph_isf_mgdl:'27 – 72',
     ph_target_mmol:'5.0 – 7.0', ph_target_mgdl:'90 – 126',
     about_title:'Як разлічваецца доза інсуліну',
@@ -815,6 +821,7 @@ const LANGS = {
     unit_mmol:'mmol/L', unit_mgdl:'mg/dL',
     ph_glucose_mmol:'e.g. 5.5', ph_glucose_mgdl:'e.g. 99',
     ph_carbs:'0', ph_icr:'8 – 20',
+    unit_carbs_short:'g', unit_dose_short:'单位',
     ph_isf_mmol:'1.5 – 4.0', ph_isf_mgdl:'27 – 72',
     ph_target_mmol:'5.0 – 7.0', ph_target_mgdl:'90 – 126',
     about_title:'胰岛素剂量如何计算',
@@ -915,6 +922,7 @@ const LANGS = {
 // ── State ─────────────────────────────────────────────────────
 const PRIVACY_VERSION = '5'; // Increment on every Privacy Policy update
 const TERMS_VERSION   = '1.4'; // Increment on every Terms of Use update
+let __focusBeforeConsent = null; // TECH-03: focus trap
 
 // ── Safe localStorage (crashes in Safari Private Mode otherwise) ──
 const safeStorage = {
@@ -994,10 +1002,13 @@ function declineCookies() {
 function checkTermsConsent() {
   const accepted = safeStorage.get('terms_accepted');
   const savedVer = safeStorage.get('terms_version');
-  if (accepted === 'true' && savedVer === TERMS_VERSION) return; // already accepted
+  if (accepted === 'true' && savedVer === TERMS_VERSION) return;
+  __focusBeforeConsent = document.activeElement;
   const modal = document.getElementById('terms-consent-modal');
-  if (modal) modal.classList.add('show');
-  // Block cookie banner until terms accepted
+  if (modal) {
+    modal.classList.add('show');
+    setTimeout(() => { const cb = document.getElementById('consent-checkbox'); if (cb) cb.focus(); }, 60);
+  }
 }
 
 function acceptTerms() {
@@ -1006,7 +1017,10 @@ function acceptTerms() {
   safeStorage.set('accepted_at', new Date().toISOString());
   const modal = document.getElementById('terms-consent-modal');
   if (modal) modal.classList.remove('show');
-  // Now trigger cookie banner
+  // TECH-03: restore focus to pre-modal element
+  if (__focusBeforeConsent && typeof __focusBeforeConsent.focus === 'function') {
+    setTimeout(() => __focusBeforeConsent.focus(), 50);
+  }
   checkCookieConsent();
 }
 

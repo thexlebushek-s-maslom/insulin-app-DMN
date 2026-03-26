@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="ru" data-theme="dark">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FAQ — Insulin Calculator | Häufige Fragen Insulinrechner | Questions insuline</title>
 <meta name="description" content="Frequently asked questions about insulin dose calculation, ICR, ISF, hypoglycemia, and app safety. Free bolus calculator FAQ for type 1 diabetes.">
 <meta name="keywords" content="insulin calculator FAQ, bolus insulin calculator questions, ICR ISF questions, how to calculate insulin dose for carbs, correction factor insulin formula, insulin to carb ratio explained, how much insulin for 50g carbs, insulin sensitivity factor, type 1 diabetes bolus help, diabetes calculator FAQ">
@@ -14,6 +14,17 @@
 <link rel="alternate" hreflang="es"    href="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/faq.html?lang=es">
 <link rel="alternate" hreflang="zh-CN" href="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/faq.html?lang=zh">
 <link rel="alternate" hreflang="x-default" href="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/faq.html">
+<meta name="twitter:card"        content="summary">
+<meta name="twitter:title"       content="FAQ — Insulin Calculator | Häufige Fragen Insulinrechner | Questions i">
+<meta name="twitter:description" content="Frequently asked questions about insulin dose calculation, ICR, ISF, hypoglycemia, and app safety. Free bolus calculator FAQ for type 1 diab">
+<meta name="twitter:image"       content="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/icons/icon-512.png">
+<meta property="og:type"        content="article">
+<meta property="og:title"       content="Faq — Insulin.app">
+<meta property="og:description" content="Free bolus insulin dose calculator. Works offline on any device.">
+<meta property="og:url"         content="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/faq.html">
+<meta property="og:image"       content="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/icons/icon-512.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height"content="512">
 <link rel="canonical" href="https://thexlebushek-s-maslom.github.io/insulin-app-DMN/faq.html">
 <meta name="theme-color" content="#3fb68e">
 <link rel="manifest" href="./manifest.json">
@@ -21,6 +32,7 @@
 <link rel="apple-touch-icon" href="./icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./style.css">
 <script type="application/ld+json">
@@ -161,7 +173,38 @@
   </div>
 
   <div style="text-align:center;padding:4px 0;">
-    <a href="./index.html" class="calc-btn"
+  
+  <div class="faq-item">
+    <div class="faq-question">
+      <span>How accurate is a bolus insulin calculator?</span>
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-body">
+      A bolus calculator applies your personal ICR and ISF values to a standard formula used by endocrinologists worldwide. The mathematical result is only as accurate as the values you enter. The formula does not account for: active insulin on board (IOB) from previous injections, the glycemic index of food, physical activity (which increases insulin sensitivity), illness or infection (which increases insulin resistance), stress hormones, alcohol consumption, or injection site absorption differences. Always treat the result as a starting point for discussion with your diabetes care team, not as a final dose.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      <span>What is the difference between mmol/L and mg/dL?</span>
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-body">
+      Both are units used to measure blood glucose concentration. <strong>mmol/L</strong> (millimoles per liter) is used in most of Europe, Canada, Australia, and Asia. <strong>mg/dL</strong> (milligrams per deciliter) is used in the United States and some other countries. To convert: multiply mmol/L by 18.016 to get mg/dL. For example, 5.5 mmol/L = 99 mg/dL. This calculator supports both units — use the toggle at the top of the calculator screen to switch.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      <span>Can I use this calculator for Type 2 diabetes?</span>
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-body">
+      This calculator uses the standard ICR/ISF bolus formula, designed for people on a basal-bolus insulin regimen — most commonly people with Type 1 diabetes and some with insulin-dependent Type 2 diabetes. If your doctor has prescribed bolus insulin and provided ICR and ISF values, this calculator may be useful. Always consult your diabetes care team before changing your insulin dosing approach.
+    </div>
+  </div>
+
+  <a href="./index.html" class="calc-btn"
        style="display:inline-block;text-decoration:none;padding:14px 32px;border-radius:12px;width:auto;"
        data-i18n="faq_btn">Перейти к калькулятору →</a>
   </div>
