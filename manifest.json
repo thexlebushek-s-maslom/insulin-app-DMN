@@ -1,21 +1,42 @@
 {
-  "name": "Калькулятор инсулина",
-  "short_name": "Инсулин",
-  "description": "Расчёт дозы инсулина по уровню глюкозы и углеводам",
+  "name": "Insulo.app — Insulin Calculator",
+  "short_name": "Insulo.app",
+  "description": "Free bolus insulin dose calculator. ICR & ISF formula. Works offline.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#0d1117",
   "theme_color": "#3fb68e",
   "orientation": "portrait",
-  "lang": "ru",
-  "categories": ["health", "medical"],
+  "lang": "en",
+  "categories": [
+    "health",
+    "utilities"
+  ],
   "icons": [
-    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
-    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
   ],
   "shortcuts": [
-    { "name": "Калькулятор", "url": "./index.html", "description": "Рассчитать дозу" },
-    { "name": "FAQ",         "url": "./faq.html",   "description": "Частые вопросы" }
+    {
+      "name": "Calculator",
+      "url": "./index.html",
+      "description": "Calculate dose"
+    },
+    {
+      "name": "FAQ",
+      "url": "./faq.html",
+      "description": "Frequently asked questions"
+    }
   ]
 }
