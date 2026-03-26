@@ -42,7 +42,7 @@
 <main class="page">
   <div class="card prose">
     <h1>Privacy Policy</h1>
-    <p class="date">Last updated: 25 March 2026 &middot; Policy Version 3</p>
+    <p class="date">Last updated: 26 March 2026 &middot; Policy Version 4</p>
 
     <h2>1. Overview</h2>
     <p>This Privacy Policy describes how the Insulin Dose Calculator web application (the "App") collects, uses and protects user information. By using the App, you agree to this policy.</p>
@@ -69,12 +69,20 @@
     <h2>5. Your rights (GDPR)</h2>
     <p>Under the EU General Data Protection Regulation (GDPR) you have the right to withdraw consent, access your data, and request deletion — all of which can be done by clearing localStorage in your browser, as we hold no data on servers.</p>
 
-    <h2>6. Medical Disclaimer &amp; Limitation of Liability</h2>
+    <h2>6. Data Retention and Local Storage</h2>
+    <p>Calculation history is stored <strong>locally on your device only</strong> (via browser localStorage). It is never transmitted to any server. A maximum of 20 entries are retained; older entries are automatically deleted. You may delete all history at any time using the "Clear History" function in the app.</p>
+    <p>Consent records (Terms acceptance timestamp and version) are also stored locally on your device. The developer does not maintain server-side records of individual user consent.</p>
+    <p>Language and theme preferences are stored locally and not transmitted.</p>
+
+    <h2>6a. Medical Disclaimer &amp; Limitation of Liability</h2>
     <p>The App is intended <strong>for informational purposes only</strong>. It does not constitute medical advice. Always consult a qualified healthcare professional before making insulin dosing decisions.</p>
     <p><strong>The developer shall not be liable for any harm, injury, loss, or adverse outcome — direct or indirect — resulting from use of, or reliance on, calculations provided by this application.</strong> This includes but is not limited to incorrect dosing, hypoglycaemia, hyperglycaemia, or any other medical event.</p>
     <p>For complete legal terms including the full Limitation of Liability clause, No Warranties, Regulatory Status, and Governing Law, please read the <a href="./terms.html">Terms of Use</a>.</p>
 
-    <h2>6a. Third-Party Advertising (Google AdSense)</h2>
+    <h2>6b. Third-Party Fonts (Google Fonts)</h2>
+    <p>The App loads fonts from Google Fonts (fonts.googleapis.com / fonts.gstatic.com). When your browser requests these fonts, your IP address is transmitted to Google's servers. This constitutes processing of personal data under GDPR. Google's use of this data is governed by <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>. The fonts are cached by the app's Service Worker after the first load; subsequent use does not require a network request to Google.</p>
+
+    <h2>6c. Third-Party Advertising (Google AdSense)</h2>
     <p>The App may display advertising served by Google AdSense. When enabled, Google and its partners may use cookies and device identifiers to serve personalised ads based on your prior visits to this and other websites. Google's use of advertising cookies is governed by <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>. You may opt out of personalised advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google Ads Settings</a>. The "Essential only" option in the consent banner will disable non-essential cookies including advertising cookies.</p>
 
     <h2>7. Children</h2>
@@ -88,6 +96,7 @@
     <p>For privacy-related questions or to exercise any rights under GDPR (access, rectification, erasure, portability, objection), please contact:</p>
     <p><strong>Email:</strong> <a href="mailto:basedoseapp@gmail.com">basedoseapp@gmail.com</a><br>
     <strong>Response time:</strong> up to 30 calendar days, as required by GDPR Article 12.</p>
+    <p>You also have the right to <strong>lodge a complaint with your national data protection supervisory authority</strong> (e.g., UODO in Poland, ICO in the UK, CNIL in France, BfDI in Germany, or the equivalent in your country) if you consider that the processing of your personal data is unlawful.</p>
   </div>
 </main>
 

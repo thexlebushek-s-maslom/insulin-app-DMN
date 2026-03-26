@@ -1,5 +1,5 @@
 // sw.js — Service Worker v4
-const CACHE = 'insulin-v17b';
+const CACHE = 'insulin-v18';
 const ASSETS = [
   './',
   './index.html',
@@ -12,6 +12,11 @@ const ASSETS = [
   './manifest.json',
   './icons/icon-192.png',
   './icons/icon-512.png',
+];
+
+// Cross-origin fonts — cached on first load, served offline thereafter
+const FONT_URLS = [
+  'https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap',
 ];
 
 self.addEventListener('install', event => {
@@ -33,6 +38,22 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
+  // Cache Google Fonts CSS + woff2 files
+  if (event.request.url.includes('fonts.googleapis.com') ||
+      event.request.url.includes('fonts.gstatic.com')) {
+    event.respondWith(
+      caches.open(CACHE).then(cache =>
+        cache.match(event.request).then(cached => {
+          if (cached) return cached;
+          return fetch(event.request).then(response => {
+            if (response.ok) cache.put(event.request, response.clone());
+            return response;
+          }).catch(() => cached);
+        })
+      )
+    );
+    return;
+  }
   const url = new URL(event.request.url);
   // Skip cross-origin (fonts, ads, analytics) — no caching, no errors
   if (url.origin !== self.location.origin) return;

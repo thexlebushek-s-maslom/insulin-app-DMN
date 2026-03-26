@@ -121,7 +121,7 @@
   <div class="install-banner" id="install-banner">
     <span class="install-text" data-i18n="install_text"></span>
     <button class="install-btn" onclick="installApp()" data-i18n="install_btn">Установить</button>
-    <button class="install-close" onclick="closeInstall()">✕</button>
+    <button class="install-close" onclick="closeInstall()" aria-label="Close">✕</button>
   </div>
 
   <div class="disclaimer" data-i18n="disclaimer"></div>
@@ -134,7 +134,7 @@
     <div class="input-row">
       <div class="input-icon icon-glucose">🩸</div>
       <div class="input-group" id="grp-glucose">
-        <label>
+        <label for="glucose">
           <span data-i18n="label_glucose">Глюкоза сейчас</span>
           <span id="glucose-badge"></span>
         </label>
@@ -151,7 +151,7 @@
     <div class="input-row">
       <div class="input-icon icon-carb">🥗</div>
       <div class="input-group" id="grp-carbs">
-        <label data-i18n="label_carbs">Углеводы в еде</label>
+        <label for="carbs" data-i18n="label_carbs">Углеводы в еде</label>
         <div class="input-wrap">
           <input type="text" inputmode="decimal" id="carbs"
                  autocomplete="off" onkeydown="onEnterKey(event)" oninput="onCarbsInput()">
@@ -170,7 +170,7 @@
     <div class="input-row input-row--last">
       <div class="input-icon icon-target">🎯</div>
       <div class="input-group" id="grp-target">
-        <label data-i18n="label_target">Целевая глюкоза</label>
+        <label for="target" data-i18n="label_target">Целевая глюкоза</label>
         <div class="input-wrap">
           <input type="text" inputmode="decimal" id="target"
                  autocomplete="off" onkeydown="onEnterKey(event)">
@@ -189,12 +189,12 @@
     </div>
     <div class="settings-grid">
       <div class="setting-item" id="grp-icr">
-        <label data-i18n="label_icr">ICR</label>
+        <label for="icr" data-i18n="label_icr">ICR</label>
         <input type="text" inputmode="decimal" id="icr" autocomplete="off" onkeydown="onEnterKey(event)">
         <div class="setting-hint" data-i18n="hint_icr">г углеводов / 1 ед.</div>
       </div>
       <div class="setting-item" id="grp-isf">
-        <label data-i18n="label_isf">ISF</label>
+        <label for="isf" data-i18n="label_isf">ISF</label>
         <input type="text" inputmode="decimal" id="isf" autocomplete="off" onkeydown="onEnterKey(event)">
         <div class="setting-hint" id="isf-hint" data-i18n="hint_isf_mmol">ммоль/л / 1 ед.</div>
       </div>
@@ -260,7 +260,7 @@
   <div class="modal-box">
     <div class="modal-title">
       <span data-i18n="preset_edit_title">Пресет еды</span>
-      <button class="modal-close" onclick="closePresetModal()">✕</button>
+      <button class="modal-close" onclick="closePresetModal()" aria-label="Close">✕</button>
     </div>
     <div class="modal-field">
       <label data-i18n="preset_name_ph">Название</label>
@@ -278,7 +278,7 @@
   </div>
 </div>
 
-<script src="./app.js"></script>
+<script src="./app.js" defer></script>
 <script>
 // ── Constants ────────────────────────────────────────────────
 const MMOL_TO_MGDL  = 18.016;   // conversion factor
@@ -472,13 +472,13 @@ function resetAll() {
 }
 
 // ── History ───────────────────────────────────────────────────
-function loadHistory() { try { return JSON.parse(localStorage.getItem('insulin_history')||'[]'); } catch { return []; } }
+function loadHistory() { try { return JSON.parse(safeStorage.get('insulin_history')||'[]'); } catch { return []; } }
 
 function saveHistory(glucose, carbs, dose, time) {
   const h = loadHistory();
   h.unshift({ glucose, carbs, dose, time, unit, date: new Date().toLocaleDateString() });
   if (h.length > HISTORY_MAX) h.length = HISTORY_MAX;
-  localStorage.setItem('insulin_history', JSON.stringify(h));
+  safeStorage.set('insulin_history', JSON.stringify(h));
   renderHistory(); updateHistoryLabel();
 }
 
@@ -497,8 +497,9 @@ function renderHistory() {
 }
 
 function clearHistory() {
-  if (!confirm(t('confirm_history'))) return;
-  localStorage.removeItem('insulin_history'); renderHistory(); updateHistoryLabel();
+  openConfirmDialog(t('confirm_history'), () => {
+    safeStorage.remove('insulin_history'); renderHistory(); updateHistoryLabel();
+  });
 }
 
 function updateHistoryLabel() {
@@ -525,10 +526,10 @@ function getDefaultPresets() {
   ];
 }
 function loadPresets() {
-  try { return JSON.parse(localStorage.getItem('meal_presets') || 'null') || getDefaultPresets(); }
+  try { return JSON.parse(safeStorage.get('meal_presets') || 'null') || getDefaultPresets(); }
   catch { return getDefaultPresets(); }
 }
-function savePresetsData(p) { localStorage.setItem('meal_presets', JSON.stringify(p)); }
+function savePresetsData(p) { safeStorage.set('meal_presets', JSON.stringify(p)); }
 
 function renderPresets() {
   const presets   = loadPresets();
@@ -575,6 +576,18 @@ function openPresetModal(preset) {
   setTimeout(() => document.getElementById('preset-name').focus(), 100);
 }
 function closePresetModal() { document.getElementById('preset-modal').classList.add('hidden'); }
+
+function openConfirmDialog(message, onConfirm) {
+  document.getElementById('confirm-message').textContent = message;
+  document.getElementById('confirm-modal').classList.remove('hidden');
+  document.getElementById('confirm-ok-btn').onclick = () => {
+    document.getElementById('confirm-modal').classList.add('hidden');
+    onConfirm();
+  };
+  document.getElementById('confirm-cancel-btn').onclick = () => {
+    document.getElementById('confirm-modal').classList.add('hidden');
+  };
+}
 
 function savePreset() {
   const name  = document.getElementById('preset-name').value.trim();
@@ -625,6 +638,17 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 <!-- ── Profiles + Presets JS ── -->
+<!-- ── Confirm dialog (replaces window.confirm) ── -->
+<div class="modal-overlay hidden" id="confirm-modal" role="alertdialog" aria-modal="true" aria-labelledby="confirm-message">
+  <div class="modal-box">
+    <p id="confirm-message" style="margin:0 0 16px;font-size:14px;color:var(--text);line-height:1.5"></p>
+    <div class="modal-btns">
+      <button class="modal-cancel" id="confirm-cancel-btn" data-i18n="preset_cancel">Отмена</button>
+      <button class="modal-delete" id="confirm-ok-btn" data-i18n="history_clear">Очистить</button>
+    </div>
+  </div>
+</div>
+
 <!-- ── Terms clickwrap consent modal (P0-1) ── -->
 <div id="terms-consent-modal" role="dialog" aria-modal="true" aria-labelledby="consent-modal-title">
   <div class="consent-box">

@@ -94,7 +94,7 @@ const LANGS = {
     consent_checkbox:'Я прочитал(а) и принимаю <a href="./terms.html" target="_blank">Условия использования</a> и <a href="./privacy.html" target="_blank">Политику конфиденциальности</a>. Я понимаю, что приложение является информационным инструментом, а все решения о дозировании — моя ответственность.',
     consent_btn:'Продолжить',
     terms_title:'Условия использования',
-    terms_date:'Последнее обновление: 25 марта 2026 &middot; Версия 1.3',
+    terms_date:'Последнее обновление: 25 марта 2026 &middot; Версия 1.4',
     terms_intro:'Настоящие Условия использования («Условия») регулируют доступ к веб-приложению «Калькулятор дозы инсулина» («Приложение») и его использование. Используя Приложение любым способом — просматривая, вводя данные или читая результаты — вы подтверждаете, что ознакомились с настоящими Условиями, поняли их и согласны соблюдать их в полном объёме. Если вы не согласны, не используйте Приложение.',
     terms_s01_label:'Характер и назначение приложения',
     terms_s01_plain:'Приложение является <strong>инструментом для математических вычислений исключительно в информационных целях</strong>. Оно применяет введённые вами значения к стандартной формуле болюса. Результат <strong>не является рекомендацией по дозированию и не заменяет клиническое суждение</strong>.<br><br>Приложение <strong>не</strong> учитывает: активный инсулин (IOB), гликемический индекс, физическую активность, болезнь, стресс, гормональные изменения и другие физиологические факторы. Результаты необходимо проверять с врачом.',
@@ -225,7 +225,7 @@ const LANGS = {
     consent_checkbox:'I have read and accept the <a href="./terms.html" target="_blank">Terms of Use</a> and <a href="./privacy.html" target="_blank">Privacy Policy</a>. I understand that this app is an informational tool only and that all dosing decisions are my responsibility.',
     consent_btn:'Continue',
     terms_title:'Terms of Use',
-    terms_date:'Last updated: 25 March 2026 &middot; Version 1.3',
+    terms_date:'Last updated: 25 March 2026 &middot; Version 1.4',
     terms_intro:'These Terms of Use ("Terms") govern your access to and use of the Insulin Dose Calculator web application ("Application", "App"). By accessing or using the App in any way — including viewing, entering data, or reading results — you acknowledge that you have read, understood, and agree to be bound by these Terms in their entirety. If you do not agree, do not use the App.',
     terms_s01_label:'Nature and Purpose of the Application',
     terms_s01_plain:'This App is a <strong>mathematical calculation tool for informational purposes only</strong>. It applies values you enter (glucose, carbs, ICR, ISF, target glucose) to a standard bolus formula and returns a numeric output. This output is <strong>not a dosing recommendation, not medical advice, and not a substitute for clinical judgment</strong>.<br><br>The App does <strong>not</strong> account for: active insulin on board (IOB), glycaemic index of foods, physical activity, illness, stress, hormonal variation, pump settings, or any other physiological factor. Results must be verified by you and your healthcare professional.',
@@ -347,7 +347,7 @@ const LANGS = {
     consent_checkbox:'He leído y acepto las <a href="./terms.html" target="_blank">Condiciones de uso</a> y la <a href="./privacy.html" target="_blank">Política de privacidad</a>. Entiendo que esta aplicación es solo informativa y que todas las decisiones de dosificación son mi responsabilidad.',
     consent_btn:'Continuar',
     terms_title:'Condiciones de uso',
-    terms_date:'Última actualización: 25 de marzo de 2026 &middot; Versión 1.3',
+    terms_date:'Última actualización: 25 de marzo de 2026 &middot; Versión 1.4',
     terms_intro:'Estas Condiciones de uso ("Condiciones") rigen el acceso y uso de la aplicación web Calculadora de dosis de insulina ("Aplicación"). Al acceder o usar la Aplicación de cualquier forma, usted reconoce que ha leído, comprendido y acepta estar sujeto a estas Condiciones en su totalidad. Si no está de acuerdo, no utilice la Aplicación.',
     terms_s01_label:'Naturaleza y propósito de la aplicación',
     terms_s01_plain:'Esta Aplicación es una <strong>herramienta de cálculo matemático sólo para fines informativos</strong>. Aplica los valores que introduce a una fórmula de bolo estándar. El resultado <strong>no es una recomendación de dosis, no es consejo médico y no sustituye al criterio clínico</strong>.<br><br>La Aplicación <strong>no</strong> tiene en cuenta: insulina activa (IOB), índice glucémico, actividad física, enfermedad, estrés u otros factores fisiológicos. Los resultados deben verificarse con su médico.',
@@ -469,7 +469,7 @@ const LANGS = {
     consent_checkbox:'Ich habe die <a href="./terms.html" target="_blank">Nutzungsbedingungen</a> und die <a href="./privacy.html" target="_blank">Datenschutzerklärung</a> gelesen und akzeptiere sie. Ich verstehe, dass diese Anwendung nur ein Informationswerkzeug ist und alle Dosierungsentscheidungen meine Verantwortung sind.',
     consent_btn:'Weiter',
     terms_title:'Nutzungsbedingungen',
-    terms_date:'Zuletzt aktualisiert: 25. März 2026 &middot; Version 1.3',
+    terms_date:'Zuletzt aktualisiert: 25. März 2026 &middot; Version 1.4',
     terms_intro:'Diese Nutzungsbedingungen ("Bedingungen") regeln den Zugang zur und die Nutzung der Webanwendung Insulindosisrechner ("Anwendung"). Durch den Zugriff auf oder die Nutzung der Anwendung auf jede Weise bestätigen Sie, dass Sie diese Bedingungen gelesen, verstanden haben und ihnen zustimmen. Falls Sie nicht einverstanden sind, nutzen Sie die Anwendung nicht.',
     terms_s01_label:'Art und Zweck der Anwendung',
     terms_s01_plain:'Diese Anwendung ist ein <strong>mathematisches Berechnungswerkzeug ausschließlich zu Informationszwecken</strong>. Sie wendet Ihre eingegebenen Werte auf eine Standard-Bolusformel an. Das Ergebnis ist <strong>keine Dosierungsempfehlung, kein medizinischer Rat und kein Ersatz für klinisches Urteilsvermögen</strong>.<br><br>Die Anwendung berücksichtigt <strong>nicht</strong>: aktives Insulin (IOB), glykämischen Index, körperliche Aktivität, Krankheit, Stress oder andere physiologische Faktoren. Ergebnisse müssen mit Ihrem Arzt überprüft werden.',
@@ -591,7 +591,7 @@ const LANGS = {
     consent_checkbox:'J\'ai lu et j\'accepte les <a href="./terms.html" target="_blank">Conditions d\'utilisation</a> et la <a href="./privacy.html" target="_blank">Politique de confidentialité</a>. Je comprends que cette application est un outil informatif et que toutes les décisions de dosage sont de ma responsabilité.',
     consent_btn:'Continuer',
     terms_title:'Conditions d\'utilisation',
-    terms_date:'Dernière mise à jour : 25 mars 2026 &middot; Version 1.3',
+    terms_date:'Dernière mise à jour : 25 mars 2026 &middot; Version 1.4',
     terms_intro:'Les présentes Conditions d\'utilisation ("Conditions") régissent votre accès et votre utilisation de l\'application web Calculateur de dose d\'insuline ("Application"). En accédant ou en utilisant l\'Application, vous reconnaissez avoir lu, compris et accepté d\'être lié par ces Conditions. Si vous n\'acceptez pas, n\'utilisez pas l\'Application.',
     terms_s01_label:'Nature et objet de l\'application',
     terms_s01_plain:'Cette Application est un <strong>outil de calcul mathématique à des fins informatives uniquement</strong>. Elle applique les valeurs que vous saisissez à une formule de bolus standard. Le résultat <strong>n\'est pas une recommandation de dosage, pas un conseil médical et ne remplace pas le jugement clinique</strong>.<br><br>L\'Application ne tient <strong>pas</strong> compte de : l\'insuline active (IOB), l\'indice glycémique, l\'activité physique, la maladie, le stress ou d\'autres facteurs physiologiques. Les résultats doivent être vérifiés avec votre médecin.',
@@ -713,7 +713,7 @@ const LANGS = {
     consent_checkbox:'Я прачытаў(ла) і прымаю <a href="./terms.html" target="_blank">Умовы выкарыстання</a> і <a href="./privacy.html" target="_blank">Палітыку канфідэнцыяльнасці</a>. Я разумею, што прыкладанне з\'яўляецца інфармацыйным інструментам, а ўсе рашэнні аб дазаванні — мая адказнасць.',
     consent_btn:'Працягнуць',
     terms_title:'Умовы выкарыстання',
-    terms_date:'Апошняе абнаўленне: 25 сакавіка 2026 &middot; Версія 1.3',
+    terms_date:'Апошняе абнаўленне: 25 сакавіка 2026 &middot; Версія 1.4',
     terms_intro:'Гэтыя Умовы выкарыстання («Умовы») рэгулюць доступ да вэб-прыкладання «Калькулятар дозы інсуліну» («Прыкладанне») і яго выкарыстанне. Выкарыстоўваючы Прыкладанне любым чынам, вы пацвярджаеце, што азнаёміліся з гэтымі Умовамі, зразумелі іх і згодны прытрымлівацца іх у поўным аб\'ёме. Калі вы не згодны, не выкарыстоўвайце Прыкладанне.',
     terms_s01_label:'Характар і прызначэнне прыкладання',
     terms_s01_plain:'Прыкладанне з\'яўляецца <strong>інструментам для матэматычных вылічэнняў выключна ў інфармацыйных мэтах</strong>. Яно прымяняе ўведзеныя вамі значэнні да стандартнай формулы болюсу. Вынік <strong>не з\'яўляецца рэкамендацыяй па дазаванні і не замяняе клінічнае меркаванне</strong>.<br><br>Прыкладанне <strong>не</strong> ўлічвае: актыўны інсулін (IOB), глікемічны індэкс, фізічную актыўнасць, хваробу, стрэс і іншыя фізіялагічныя фактары. Вынікі неабходна правяраць з урачом.',
@@ -835,7 +835,7 @@ const LANGS = {
     consent_checkbox:'我已阅读并接受<a href="./terms.html" target="_blank">使用条款</a>和<a href="./privacy.html" target="_blank">隐私政策</a>。我理解本应用程序仅为参考工具，所有剂量决策均由我负责。',
     consent_btn:'继续',
     terms_title:'使用条款',
-    terms_date:'最后更新：2026年3月25日 &middot; 版本 1.3',
+    terms_date:'最后更新：2026年3月25日 &middot; 版本 1.4',
     terms_intro:'本使用条款（"条款"）规范您对胰岛素剂量计算器网络应用程序（"应用程序"）的访问和使用。通过以任何方式访问或使用本应用程序，您确认已阅读、理解并同意完全受本条款约束。如您不同意，请勿使用本应用程序。',
     terms_s01_label:'应用程序的性质和目的',
     terms_s01_plain:'本应用程序是一款<strong>仅用于参考的数学计算工具</strong>。它将您输入的数值（血糖、碳水化合物、ICR、ISF、目标血糖）应用于标准大剂量公式，并返回数字结果。该结果<strong>不是剂量建议，不是医疗建议，也不能替代临床判断</strong>。<br><br>本应用程序<strong>不</strong>考虑：活性胰岛素（IOB）、食物升糖指数、体育活动、疾病、压力或其他生理因素。结果须在采取任何行动前与医疗专业人员核实。',
@@ -878,8 +878,8 @@ const LANGS = {
 };
 
 // ── State ─────────────────────────────────────────────────────
-let currentLang  = localStorage.getItem('lang')  || 'ru';
-let currentTheme = localStorage.getItem('theme') || 'dark';
+let currentLang  = safeStorage.get('lang')  || 'ru';
+let currentTheme = safeStorage.get('theme') || 'dark';
 
 function t(key) {
   return (LANGS[currentLang] && LANGS[currentLang][key] !== undefined)
@@ -889,7 +889,7 @@ function t(key) {
 
 function applyLang(lang) {
   currentLang = lang;
-  localStorage.setItem('lang', lang);
+  safeStorage.set('lang', lang);
   document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang;
 
   document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -912,44 +912,57 @@ function applyLang(lang) {
 function applyTheme(theme) {
   currentTheme = theme;
   document.documentElement.setAttribute('data-theme', theme);
-  localStorage.setItem('theme', theme);
+  safeStorage.set('theme', theme);
   const btn = document.getElementById('theme-toggle');
   if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
 }
 function toggleTheme() { applyTheme(currentTheme === 'dark' ? 'light' : 'dark'); }
 
 // ── Cookie + GDPR version-bump re-consent ─────────────────────
-const PRIVACY_VERSION = '2'; // Increment on every Privacy Policy update
-const TERMS_VERSION   = '1.3'; // Increment on every Terms of Use update
+const PRIVACY_VERSION = '4'; // Increment on every Privacy Policy update
+const TERMS_VERSION   = '1.4'; // Increment on every Terms of Use update
+
+// ── Safe localStorage (crashes in Safari Private Mode otherwise) ──
+const safeStorage = {
+  get(key) {
+    try { return safeStorage.get(key); } catch { return null; }
+  },
+  set(key, value) {
+    try { safeStorage.set(key, value); return true; } catch { return false; }
+  },
+  remove(key) {
+    try { safeStorage.remove(key); return true; } catch { return false; }
+  },
+};
 
 function checkCookieConsent() {
-  const consent = localStorage.getItem('cookieConsent');
-  const savedVersion = localStorage.getItem('privacyVersion');
+  const consent = safeStorage.get('cookieConsent');
+  const savedVersion = safeStorage.get('privacyVersion');
 
   // No consent yet, or policy version changed since last consent → re-trigger banner
   if (!consent || savedVersion !== PRIVACY_VERSION) {
     // Clear stale consent so the new choice is recorded fresh
     if (savedVersion !== PRIVACY_VERSION) {
-      localStorage.removeItem('cookieConsent');
+      safeStorage.remove('cookieConsent');
     }
     setTimeout(() => { const b = document.getElementById('cookie-banner'); if (b) b.classList.add('show'); }, 1800);
   }
 }
 function acceptCookies()  {
-  localStorage.setItem('cookieConsent', 'accepted');
-  localStorage.setItem('privacyVersion', PRIVACY_VERSION);
+  safeStorage.set('cookieConsent', 'accepted');
+  safeStorage.set('privacyVersion', PRIVACY_VERSION);
   const b = document.getElementById('cookie-banner'); if (b) b.classList.remove('show');
 }
 function declineCookies() {
-  localStorage.setItem('cookieConsent', 'declined');
-  localStorage.setItem('privacyVersion', PRIVACY_VERSION);
+  safeStorage.set('cookieConsent', 'declined');
+  safeStorage.set('privacyVersion', PRIVACY_VERSION);
   const b = document.getElementById('cookie-banner'); if (b) b.classList.remove('show');
 }
 
 // ── Terms clickwrap ───────────────────────────────────────────
 function checkTermsConsent() {
-  const accepted = localStorage.getItem('terms_accepted');
-  const savedVer = localStorage.getItem('terms_version');
+  const accepted = safeStorage.get('terms_accepted');
+  const savedVer = safeStorage.get('terms_version');
   if (accepted === 'true' && savedVer === TERMS_VERSION) return; // already accepted
   const modal = document.getElementById('terms-consent-modal');
   if (modal) modal.classList.add('show');
@@ -957,9 +970,9 @@ function checkTermsConsent() {
 }
 
 function acceptTerms() {
-  localStorage.setItem('terms_accepted', 'true');
-  localStorage.setItem('terms_version', TERMS_VERSION);
-  localStorage.setItem('accepted_at', new Date().toISOString());
+  safeStorage.set('terms_accepted', 'true');
+  safeStorage.set('terms_version', TERMS_VERSION);
+  safeStorage.set('accepted_at', new Date().toISOString());
   const modal = document.getElementById('terms-consent-modal');
   if (modal) modal.classList.remove('show');
   // Now trigger cookie banner
@@ -975,14 +988,14 @@ function onConsentCheckbox(cb) {
 let deferredInstall = null;
 window.addEventListener('beforeinstallprompt', e => {
   e.preventDefault(); deferredInstall = e;
-  if (!localStorage.getItem('installDismissed')) { const b=document.getElementById('install-banner'); if(b) b.classList.add('show'); }
+  if (!safeStorage.get('installDismissed')) { const b=document.getElementById('install-banner'); if(b) b.classList.add('show'); }
 });
 function installApp() {
   if (!deferredInstall) return;
   deferredInstall.prompt();
   deferredInstall.userChoice.then(() => { const b=document.getElementById('install-banner'); if(b) b.classList.remove('show'); deferredInstall=null; });
 }
-function closeInstall() { const b=document.getElementById('install-banner'); if(b) b.classList.remove('show'); localStorage.setItem('installDismissed','1'); }
+function closeInstall() { const b=document.getElementById('install-banner'); if(b) b.classList.remove('show'); safeStorage.set('installDismissed','1'); }
 
 // ── Offline ───────────────────────────────────────────────────
 function updateOnline() { const b=document.getElementById('offline-banner'); if(b) b.classList.toggle('show',!navigator.onLine); }
@@ -1056,8 +1069,8 @@ document.addEventListener('DOMContentLoaded', () => {
   applyLang(currentLang);
   checkTermsConsent(); // Shows modal if needed; cookie banner fires inside acceptTerms()
   // checkCookieConsent() is called inside acceptTerms() to prevent two overlapping banners
-  if (localStorage.getItem('terms_accepted') === 'true' &&
-      localStorage.getItem('terms_version') === TERMS_VERSION) {
+  if (safeStorage.get('terms_accepted') === 'true' &&
+      safeStorage.get('terms_version') === TERMS_VERSION) {
     checkCookieConsent(); // Already accepted — show cookie banner normally
   }
   updateOnline();
