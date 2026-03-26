@@ -36,6 +36,10 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 /* ── Prose ── */
 .prose h1{font-size:22px;font-weight:600;letter-spacing:-.4px;margin-bottom:4px}
 .prose h2{font-size:15px;font-weight:600;color:var(--accent2);margin:20px 0 8px}
+.prose h3{font-size:13px;font-weight:600;color:var(--accent);margin:14px 0 6px}
+.prose hr{border:none;border-top:1px solid var(--border);margin:20px 0}
+.prose ol{padding-left:18px;margin-bottom:10px}
+.prose ol li{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:4px}
 .prose p{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:10px}
 .prose p strong{color:var(--text);font-weight:600}
 .prose ul{padding-left:18px;margin-bottom:10px}
