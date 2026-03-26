@@ -72,6 +72,57 @@
   font-size:14px;font-weight:600;cursor:pointer;transition:opacity .2s}
 .consent-continue:disabled{opacity:.35;cursor:not-allowed}
 .consent-continue:not(:disabled):hover{opacity:.88}
+
+/* ── Ko-fi footer button ─────────────────────────────────────── */
+.kofi-link {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 10px; margin-bottom: 10px;
+  border: 1px solid rgba(232,168,76,.28); border-radius: 10px;
+  color: #E8A84C; background: rgba(232,168,76,.07);
+  font-family: var(--mono); font-size: 13px; text-decoration: none;
+  transition: background .15s, border-color .15s;
+}
+.kofi-link:hover { background: rgba(232,168,76,.13); border-color: rgba(232,168,76,.45); }
+
+/* ── Ko-fi toast ─────────────────────────────────────────────── */
+.kofi-toast-wrap {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 9998;
+  padding: 0 12px 12px;
+  animation: kofiSlideUp .3s cubic-bezier(.2,0,.2,1);
+}
+@keyframes kofiSlideUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+.kofi-toast-inner {
+  max-width: var(--max); margin: 0 auto;
+  background: rgba(16,21,30,.97);
+  border: 1px solid rgba(232,168,76,.25); border-radius: 14px;
+  padding: 12px 14px;
+  display: flex; align-items: center; gap: 10px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 -4px 24px rgba(0,0,0,.4);
+}
+.kofi-toast-icon { font-size: 24px; flex-shrink: 0; }
+.kofi-toast-text { flex: 1; min-width: 0; }
+.kofi-toast-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.kofi-toast-sub   { font-size: 12px; color: var(--muted); }
+.kofi-toast-actions { display: flex; flex-direction: column; align-items: stretch; gap: 4px; flex-shrink: 0; }
+.kofi-toast-btn {
+  display: block; text-align: center;
+  background: #E8A84C; color: #1a1200;
+  border: none; border-radius: 8px;
+  padding: 7px 14px;
+  font-family: var(--mono); font-size: 12px; font-weight: 600;
+  cursor: pointer; text-decoration: none; white-space: nowrap;
+}
+.kofi-toast-dismiss {
+  background: none; border: none; cursor: pointer;
+  font-family: var(--mono); font-size: 10px;
+  color: var(--muted); text-align: center; padding: 2px 0;
+}
+.kofi-toast-dismiss:hover { color: var(--text); }
+@media (prefers-reduced-motion: reduce) { .kofi-toast-wrap { animation: none; } }
 </style>
 </head>
 <body>
@@ -228,6 +279,11 @@
 
 <footer class="footer">
   <div class="footer-inner">
+    <a href="https://ko-fi.com/sugar_under_control"
+       class="kofi-link"
+       target="_blank"
+       rel="noopener"
+       data-i18n="kofi_btn">☕ Поддержать на Ko-fi</a>
     <a href="./about.html"   class="footer-link" data-i18n="nav_about">О расчёте</a>
     <span class="footer-sep">·</span>
     <a href="./faq.html"     class="footer-link" data-i18n="nav_faq">FAQ</a>
@@ -480,6 +536,7 @@ function saveHistory(glucose, carbs, dose, time) {
   if (h.length > HISTORY_MAX) h.length = HISTORY_MAX;
   safeStorage.set('insulin_history', JSON.stringify(h));
   renderHistory(); updateHistoryLabel();
+  showKofiToastIfNeeded();
 }
 
 function renderHistory() {
@@ -617,6 +674,24 @@ document.getElementById('preset-modal').addEventListener('click', e => {
   if (e.target === e.currentTarget) closePresetModal();
 });
 
+// ── Ko-fi toast ───────────────────────────────────────────────
+function showKofiToastIfNeeded() {
+  if (safeStorage.get('kofi_toast_shown')) return;
+  const toast = document.getElementById('kofi-toast');
+  if (toast) toast.style.display = 'block';
+}
+function dismissKofiToast() {
+  safeStorage.set('kofi_toast_shown', '1');
+  const toast = document.getElementById('kofi-toast');
+  if (toast) {
+    toast.style.animation = 'none';
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(20px)';
+    toast.style.transition = 'opacity .2s, transform .2s';
+    setTimeout(() => { toast.style.display = 'none'; }, 200);
+  }
+}
+
 // ── Lang change ───────────────────────────────────────────────
 document.addEventListener('langchange', () => {
   updateHistoryLabel();
@@ -645,6 +720,26 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="modal-btns">
       <button class="modal-cancel" id="confirm-cancel-btn" data-i18n="preset_cancel">Отмена</button>
       <button class="modal-delete" id="confirm-ok-btn" data-i18n="history_clear">Очистить</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Ko-fi toast (shown once after first calculation) ── -->
+<div id="kofi-toast" class="kofi-toast-wrap" style="display:none" role="complementary" aria-label="Support">
+  <div class="kofi-toast-inner">
+    <span class="kofi-toast-icon">☕</span>
+    <div class="kofi-toast-text">
+      <div class="kofi-toast-title" data-i18n="kofi_toast_title">Приложение помогает?</div>
+      <div class="kofi-toast-sub" data-i18n="kofi_toast_sub">Поддержите разработку на Ko-fi</div>
+    </div>
+    <div class="kofi-toast-actions">
+      <a href="https://ko-fi.com/sugar_under_control"
+         class="kofi-toast-btn"
+         target="_blank"
+         rel="noopener"
+         data-i18n="kofi_btn_short"
+         onclick="dismissKofiToast()">Поддержать</a>
+      <button class="kofi-toast-dismiss" onclick="dismissKofiToast()" data-i18n="kofi_dismiss">не сейчас</button>
     </div>
   </div>
 </div>
