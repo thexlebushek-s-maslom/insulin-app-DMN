@@ -360,6 +360,7 @@ const DEF = {
   mgdl: { icr:'12', isf:'45',  target:'99'  },
 };
 let unit = 'mmol';
+let lastCalcParams = null; // stores last calculation for re-render on lang change
 
 // ── Unit switching ────────────────────────────────────────────
 function setUnit(u) {
@@ -515,6 +516,7 @@ function calculate() {
     content.appendChild(noDoseDiv);
     content.appendChild(bdZero);
     saveHistory(glucoseRaw, carbsG, 0, now);
+    lastCalcParams = { glucoseRaw, carbsG, icr, isfRaw: parseDecimal(document.getElementById('isf').value), targetRaw, carbDose, corrDose, total: corrDose + carbDose, rounded: 0, now, unit, zeroDose: true };
   } else {
     const rounded = Math.round(total / DOSE_STEP) * DOSE_STEP;
     // TECH-01: safe DOM — no user data in innerHTML
@@ -539,6 +541,7 @@ function calculate() {
     bd.appendChild(mkRow(t('breakdown_round'), rounded.toFixed(1) + ' ' + t('unit_dose_short'), 'breakdown-val-accent'));
     content.appendChild(rm); content.appendChild(bd);
     saveHistory(glucoseRaw, carbsG, rounded, now);
+    lastCalcParams = { glucoseRaw, carbsG, icr, isfRaw: parseDecimal(document.getElementById('isf').value), targetRaw, carbDose, corrDose, total, rounded, now, unit, zeroDose: false };
   }
 
   document.getElementById('result-card').classList.add('visible');
@@ -724,6 +727,60 @@ function _trapConsentFocus(e) {
 }
 document.addEventListener('keydown', _trapConsentFocus);
 
+// ── Re-render result on lang change ──────────────────────────
+function rerenderResult() {
+  const card = document.getElementById('result-card');
+  if (!card || !card.classList.contains('visible') || !lastCalcParams) return;
+  const p = lastCalcParams;
+  const content = document.getElementById('result-content');
+  const dUnit = t(p.unit === 'mmol' ? 'unit_mmol' : 'unit_mgdl');
+  const fmtG  = v => v.toFixed(p.unit === 'mmol' ? 1 : 0);
+  const toM   = v => p.unit === 'mgdl' ? v / MMOL_TO_MGDL : v;
+
+  if (p.zeroDose) {
+    content.innerHTML = '';
+    const noDoseDiv = document.createElement('div');
+    noDoseDiv.className = 'no-dose';
+    noDoseDiv.textContent = toM(p.glucoseRaw) < GLUCOSE_LOW ? t('no_dose_hypo') : t('no_dose_zero');
+    const bdZero = document.createElement('div'); bdZero.className = 'result-breakdown';
+    bdZero.innerHTML = '<div class="breakdown-row"></div><div class="breakdown-row"></div>';
+    const [r1z, r2z] = bdZero.children;
+    const n1z = document.createElement('span'); n1z.className = 'breakdown-name';
+    n1z.textContent = t('breakdown_carbs') + ' (' + p.carbsG + t('unit_carbs_short') + ' ÷ ' + p.icr + ')';
+    const v1z = document.createElement('span'); v1z.className = 'breakdown-val';
+    v1z.textContent = p.carbDose.toFixed(2) + ' ' + t('unit_dose_short');
+    r1z.appendChild(n1z); r1z.appendChild(v1z);
+    const n2z = document.createElement('span'); n2z.className = 'breakdown-name';
+    n2z.textContent = t('breakdown_corr') + ' (' + fmtG(p.glucoseRaw) + ' → ' + fmtG(p.targetRaw) + ' ' + dUnit + ')';
+    const v2z = document.createElement('span'); v2z.className = 'breakdown-val negative';
+    v2z.textContent = p.corrDose.toFixed(2) + ' ' + t('unit_dose_short');
+    r2z.appendChild(n2z); r2z.appendChild(v2z);
+    content.appendChild(noDoseDiv); content.appendChild(bdZero);
+  } else {
+    const rm = content.querySelector('.result-main');
+    if (rm) {
+      rm.querySelector('.result-label').textContent = t('result_label');
+      rm.querySelector('.result-unit').textContent  = t('result_unit');
+    }
+    const rows = content.querySelectorAll('.breakdown-row');
+    if (rows.length >= 4) {
+      const mkName = (row) => row.querySelector('.breakdown-name');
+      mkName(rows[0]).textContent = t('breakdown_carbs') + ' (' + p.carbsG + t('unit_carbs_short') + ' ÷ ' + p.icr + ')';
+      mkName(rows[1]).textContent = t('breakdown_corr') + ' (' + fmtG(p.glucoseRaw) + ' → ' + fmtG(p.targetRaw) + ' ' + dUnit + ')';
+      mkName(rows[2]).textContent = t('breakdown_exact');
+      mkName(rows[3]).textContent = t('breakdown_round');
+      // Update unit labels
+      content.querySelectorAll('.breakdown-val').forEach(v => {
+        if (v.textContent.includes(' u.') || v.textContent.includes(' ед.') ||
+            v.textContent.includes(' Einh.') || v.textContent.includes(' 单位') ||
+            v.textContent.includes(' ад.')) {
+          v.textContent = v.textContent.replace(/[\d.]+\s+\S+$/, (m) => m.replace(/\s+\S+$/, ' ' + t('unit_dose_short')));
+        }
+      });
+    }
+  }
+}
+
 // ── Ko-fi toast ───────────────────────────────────────────────
 function showKofiToastIfNeeded() {
   if (safeStorage.get('kofi_toast_shown')) return;
@@ -750,6 +807,7 @@ document.addEventListener('langchange', () => {
   document.getElementById('target-unit-label').textContent  = t(unit === 'mmol' ? 'unit_mmol' : 'unit_mgdl');
   const cu = document.getElementById('carbs-unit-label');
   if (cu) cu.textContent = t('unit_carbs_short');
+  rerenderResult(); // re-translate result screen on lang switch
   renderPresets();
 });
 

@@ -83,93 +83,92 @@
   </div>
 </nav>
 
-<main class="page about-page">
+<main class="page">
 
-  <div class="about-header">
-    <div class="about-tag" data-i18n="about_date">Informational Guide · 2026</div>
+  <div class="ad-slot" id="ad-top"></div>
+
+  <div class="card prose">
     <h1 data-i18n="about_title">How to Calculate Insulin Dose — ICR &amp; ISF Guide</h1>
-  </div>
-
-  <div class="about-body">
+    <p class="date" data-i18n="about_date">Informational Guide · 2026</p>
 
     <h2 data-i18n="about_h_formula">The Bolus Calculation Formula</h2>
-    <p data-i18n="about_p_formula">Calculating an insulin bolus dose involves two separate components that are added together:</p>
+    <p data-i18n="about_p_formula">Calculating an insulin bolus dose involves two separate components:</p>
     <ul>
       <li data-i18n="about_li_meal"><strong>Meal dose</strong> = Carbohydrates (g) ÷ ICR</li>
       <li data-i18n="about_li_corr"><strong>Correction dose</strong> = (Current glucose − Target glucose) ÷ ISF</li>
       <li data-i18n="about_li_total"><strong>Total dose</strong> = Meal dose + Correction dose</li>
     </ul>
-
-    <p>This is the standard bolus formula used by endocrinologists worldwide for people with Type 1 diabetes (T1D) and insulin-dependent Type 2 diabetes. Our free <strong>bolus insulin calculator</strong> automates this math so you can focus on your health.</p>
+    <p>This is the standard bolus formula used by endocrinologists worldwide for people with Type 1 diabetes and insulin-dependent Type 2 diabetes. Our free <strong>bolus insulin calculator</strong> automates this math so you can focus on your health.</p>
 
     <h2 data-i18n="about_h_icr">What is ICR — Insulin-to-Carb Ratio</h2>
     <p data-i18n="about_p_icr1">The <strong>ICR (Insulin-to-Carb Ratio)</strong>, also called the <strong>insulin to carb ratio</strong> or carb factor, tells you how many grams of carbohydrates are covered by one unit of insulin. For example, an ICR of 12 means 1 unit of insulin covers 12 grams of carbs.</p>
-    <p data-i18n="about_p_icr2">Your ICR is set individually by your endocrinologist and may vary by time of day — many people with T1D have a lower ICR in the morning (meaning more insulin needed per carb) than in the evening.</p>
-    <p>Typical ICR values range from 6 to 25 grams of carbs per unit of insulin. Never change your ICR without consulting your diabetes care team. Our <strong>ICR calculator</strong> uses your personal ratio to compute the meal portion of your bolus dose.</p>
+    <p data-i18n="about_p_icr2">Your ICR is set individually by your endocrinologist and may vary by time of day. Typical ICR values range from 6 to 25 grams per unit. Our <strong>ICR calculator</strong> uses your personal ratio to compute the meal portion of your bolus dose.</p>
 
     <h2 data-i18n="about_h_isf">What is ISF — Insulin Sensitivity Factor</h2>
-    <p data-i18n="about_p_isf">The <strong>ISF (Insulin Sensitivity Factor)</strong>, also known as the <strong>correction factor</strong>, shows how much your blood glucose drops per one unit of insulin. An ISF of 2.5 mmol/L means one unit lowers your glucose by 2.5 mmol/L (or about 45 mg/dL).</p>
-    <p>The <strong>correction factor calculator</strong> uses ISF to determine how much insulin is needed to bring your blood sugar from its current level back to your target. If your glucose is already at or below target, the correction dose will be zero or negative — meaning no correction insulin is needed.</p>
-    <p>ISF changes with exercise, illness, stress, hormonal cycles, and other factors. Always verify your correction dose with your healthcare provider before administering insulin.</p>
+    <p data-i18n="about_p_isf">The <strong>ISF (Insulin Sensitivity Factor)</strong>, also known as the <strong>correction factor</strong>, shows how much your blood glucose drops per one unit of insulin. An ISF of 2.5 mmol/L means one unit lowers your glucose by 2.5 mmol/L (about 45 mg/dL). The <strong>correction factor calculator</strong> uses ISF to determine how much correction insulin is needed.</p>
 
     <h2 data-i18n="about_h_target">Target Blood Glucose Level</h2>
-    <p data-i18n="about_p_target">For most adults with T1D, the recommended target is <strong>5.0–7.0 mmol/L (90–126 mg/dL)</strong>. Your personal target is set by your endocrinologist based on your individual health profile, history of hypoglycemia, and treatment goals.</p>
-    <p>The calculator supports both <strong>mmol/L</strong> (used in Europe, Canada, Australia) and <strong>mg/dL</strong> (used in the USA) — switch units at the top of the calculator screen.</p>
+    <p data-i18n="about_p_target">For most adults with T1D, the recommended target is <strong>5.0–7.0 mmol/L (90–126 mg/dL)</strong>. The calculator supports both mmol/L (Europe, Canada) and mg/dL (USA) — switch with the toggle at the top of the screen.</p>
 
     <h2>How to Use This Insulin Dose Calculator</h2>
     <ol>
-      <li><strong>Enter your current blood glucose</strong> — measured just before the meal.</li>
-      <li><strong>Enter carbohydrates</strong> — total grams of carbs in your meal.</li>
-      <li><strong>Enter your target glucose</strong> — the level you want to reach after the meal.</li>
-      <li><strong>Enter your ICR</strong> — your insulin-to-carb ratio (set by your doctor).</li>
-      <li><strong>Enter your ISF</strong> — your correction factor (set by your doctor).</li>
-      <li>Tap <strong>Calculate dose</strong> — the app shows the meal dose, correction dose, and total bolus rounded to 0.5 units.</li>
+      <li>Enter your <strong>current blood glucose</strong> — measured before the meal.</li>
+      <li>Enter <strong>carbohydrates</strong> — total grams in your meal.</li>
+      <li>Enter your <strong>target glucose</strong> — set by your doctor.</li>
+      <li>Enter your <strong>ICR</strong> — insulin-to-carb ratio.</li>
+      <li>Enter your <strong>ISF</strong> — correction factor.</li>
+      <li>Tap <strong>Calculate dose</strong> — result is rounded to 0.5 units.</li>
     </ol>
-    <p>The result is a <em>calculated estimate</em>, not a medical recommendation. Always verify with your diabetes care team.</p>
 
     <h2 data-i18n="about_h_norms">Blood Glucose Reference Ranges</h2>
     <ul>
-      <li data-i18n="about_li_low"><strong>Below 3.9 mmol/L (70 mg/dL)</strong> — Hypoglycemia. Do not administer insulin. Take fast-acting carbohydrates immediately.</li>
+      <li data-i18n="about_li_low"><strong>Below 3.9 mmol/L (70 mg/dL)</strong> — Hypoglycemia. Do not administer insulin.</li>
       <li data-i18n="about_li_ok"><strong>3.9–7.8 mmol/L (70–140 mg/dL)</strong> — Normal range</li>
       <li data-i18n="about_li_high"><strong>7.8–11.0 mmol/L (140–198 mg/dL)</strong> — Elevated</li>
       <li data-i18n="about_li_vhigh"><strong>Above 11.0 mmol/L (198 mg/dL)</strong> — Hyperglycemia</li>
     </ul>
 
     <h2>Why This Calculator Is Different</h2>
-    <p>Most insulin calculators require an account, internet connection, or are buried inside expensive CGM apps. This <strong>free insulin calculator</strong> is:</p>
+    <p>Most insulin calculators require an account or internet connection. This free <strong>type 1 diabetes calculator</strong> is:</p>
     <ul>
-      <li><strong>Offline-first</strong> — works without internet after the first visit</li>
-      <li><strong>No registration</strong> — open the app and calculate immediately</li>
-      <li><strong>No ads on the calculator page</strong> — nothing distracts you during dosing</li>
-      <li><strong>Available in 7 languages</strong> — English, Russian, German, French, Spanish, Belarusian, Chinese</li>
+      <li><strong>Offline-first</strong> — works without internet after first visit</li>
+      <li><strong>No registration</strong> — open and calculate immediately</li>
+      <li><strong>No ads on the calculator page</strong></li>
+      <li><strong>7 languages</strong> — EN, RU, DE, FR, ES, BE, ZH</li>
       <li><strong>Free forever</strong> — supported by voluntary donations</li>
     </ul>
 
-    <hr style="border:none;border-top:1px solid var(--border);margin:32px 0;">
+    <hr style="border:none;border-top:1px solid var(--border);margin:20px 0;">
 
-    <h2 id="de" lang="de">Insulinrechner — Bolus-Dosis berechnen</h2>
+    <h2 lang="de">Insulinrechner — Bolus-Dosis berechnen</h2>
     <p lang="de">Dieser kostenlose <strong>Insulinrechner</strong> berechnet Ihre Bolus-Insulindosis anhand von Blutzucker, Kohlenhydraten, ICR und ISF. Die App funktioniert offline auf jedem Gerät — ohne Registrierung und ohne Werbung auf der Rechnerseite.</p>
 
-    <h3 lang="de">Was ist der ICR (Insulin-Kohlenhydrat-Verhältnis)?</h3>
-    <p lang="de">Der <strong>ICR (Insulin-to-Carb Ratio)</strong>, auf Deutsch auch <strong>Kohlenhydratfaktor</strong> genannt, gibt an, wie viele Gramm Kohlenhydrate eine Einheit Insulin abdeckt. Beispiel: ICR 12 bedeutet, dass 1 Einheit Insulin für 12 g Kohlenhydrate benötigt wird. Der ICR wird individuell von Ihrem Endokrinologen festgelegt.</p>
+    <h3 lang="de">Was ist der ICR (Kohlenhydratfaktor)?</h3>
+    <p lang="de">Der <strong>ICR (Insulin-to-Carb Ratio)</strong>, auch <strong>Kohlenhydratfaktor</strong> genannt, gibt an, wie viele Gramm Kohlenhydrate eine Einheit Insulin abdeckt. Beispiel: ICR 12 = 1 Einheit Insulin für 12 g Kohlenhydrate. Der ICR wird individuell von Ihrem Endokrinologen festgelegt.</p>
 
     <h3 lang="de">Was ist der ISF (Korrekturfaktor)?</h3>
-    <p lang="de">Der <strong>ISF (Insulin Sensitivity Factor)</strong>, auch <strong>Korrekturfaktor</strong> genannt, zeigt, um wie viel mmol/L der Blutzucker durch eine Einheit Insulin sinkt. Beispiel: ISF 2,5 bedeutet, dass 1 Einheit Insulin den Blutzucker um 2,5 mmol/L senkt. Dieser Wert variiert je nach Tageszeit, körperlicher Aktivität und Gesundheitszustand.</p>
+    <p lang="de">Der <strong>ISF (Insulin Sensitivity Factor)</strong>, auch <strong>Korrekturfaktor</strong> genannt, zeigt, um wie viel mmol/L der Blutzucker durch eine Einheit Insulin sinkt. Beispiel: ISF 2,5 = 1 Einheit senkt BZ um 2,5 mmol/L.</p>
 
     <h3 lang="de">Bolus-Formel</h3>
-    <p lang="de"><strong>Mahlzeitendosis</strong> = Kohlenhydrate (g) ÷ ICR<br>
-    <strong>Korrekturdosis</strong> = (Aktueller BZ − Ziel-BZ) ÷ ISF<br>
-    <strong>Gesamtdosis</strong> = Mahlzeitendosis + Korrekturdosis, gerundet auf 0,5 Einheiten</p>
+    <p lang="de"><strong>Mahlzeitendosis</strong> = Kohlenhydrate (g) ÷ ICR &nbsp;·&nbsp; <strong>Korrekturdosis</strong> = (BZ − Ziel) ÷ ISF &nbsp;·&nbsp; <strong>Gesamtdosis</strong> = Summe, gerundet auf 0,5 Einheiten</p>
+    <p lang="de">⚠️ Dieser Rechner ist ein mathematisches Hilfsmittel und ersetzt keine ärztliche Beratung.</p>
 
-    <p lang="de">⚠️ Dieser Rechner ist ein mathematisches Hilfsmittel und ersetzt keine ärztliche Beratung. Alle Dosierungsentscheidungen treffen Sie gemeinsam mit Ihrem Arzt.</p>
+    <hr style="border:none;border-top:1px solid var(--border);margin:20px 0;">
 
-    <div class="about-disclaimer">
-      <strong>⚠️ Important:</strong> This calculator performs mathematical computation only. It does not account for active insulin on board (IOB), glycemic index, physical activity, illness, stress, or hormonal changes. All dosing decisions must be made by you and your healthcare provider. This is not a certified medical device.
-    </div>
-
-    <a href="./index.html" class="about-btn" data-i18n="about_btn">Go to Calculator →</a>
+    <p style="font-size:12px;padding:10px;background:rgba(224,92,92,.07);border-radius:8px;border-left:3px solid var(--danger);">
+      <strong>⚠️ Important:</strong> This calculator performs mathematical computation only. It does not account for active insulin on board (IOB), glycemic index, physical activity, illness, or stress. All dosing decisions must be made with your healthcare provider. This is not a certified medical device.
+    </p>
 
   </div>
+
+  <div class="ad-slot" id="ad-middle"></div>
+
+  <div style="text-align:center;padding:4px 0;">
+    <a href="./index.html" class="calc-btn"
+       style="display:inline-block;text-decoration:none;padding:14px 32px;border-radius:12px;width:auto;"
+       data-i18n="about_btn">Go to Calculator →</a>
+  </div>
+
 </main>
 
 <footer class="footer">
