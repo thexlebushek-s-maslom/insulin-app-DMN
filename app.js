@@ -878,6 +878,16 @@ const LANGS = {
 };
 
 // ── State ─────────────────────────────────────────────────────
+const PRIVACY_VERSION = '4'; // Increment on every Privacy Policy update
+const TERMS_VERSION   = '1.4'; // Increment on every Terms of Use update
+
+// ── Safe localStorage (crashes in Safari Private Mode otherwise) ──
+const safeStorage = {
+  get(key)        { try { return localStorage.getItem(key);        } catch { return null;  } },
+  set(key, value) { try { localStorage.setItem(key, value); return true; } catch { return false; } },
+  remove(key)     { try { localStorage.removeItem(key); return true; }   catch { return false; } },
+};
+
 let currentLang  = safeStorage.get('lang')  || 'ru';
 let currentTheme = safeStorage.get('theme') || 'dark';
 
@@ -919,21 +929,7 @@ function applyTheme(theme) {
 function toggleTheme() { applyTheme(currentTheme === 'dark' ? 'light' : 'dark'); }
 
 // ── Cookie + GDPR version-bump re-consent ─────────────────────
-const PRIVACY_VERSION = '4'; // Increment on every Privacy Policy update
-const TERMS_VERSION   = '1.4'; // Increment on every Terms of Use update
 
-// ── Safe localStorage (crashes in Safari Private Mode otherwise) ──
-const safeStorage = {
-  get(key) {
-    try { return safeStorage.get(key); } catch { return null; }
-  },
-  set(key, value) {
-    try { safeStorage.set(key, value); return true; } catch { return false; }
-  },
-  remove(key) {
-    try { safeStorage.remove(key); return true; } catch { return false; }
-  },
-};
 
 function checkCookieConsent() {
   const consent = safeStorage.get('cookieConsent');
