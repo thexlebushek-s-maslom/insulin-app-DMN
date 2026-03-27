@@ -516,7 +516,7 @@ function calculate() {
     r1z.appendChild(n1z); r1z.appendChild(v1z);
     const n2z = document.createElement('span'); n2z.className = 'breakdown-name';
     n2z.textContent = t('breakdown_corr') + ' (' + fmtG(glucoseRaw) + ' → ' + fmtG(targetRaw) + ' ' + dUnit + ')';
-    const v2z = document.createElement('span'); v2z.className = 'breakdown-val negative';
+    const v2z = document.createElement('span'); v2z.className = 'breakdown-val ' + (corrDose < 0 ? 'negative' : corrDose === 0 ? 'neutral' : 'positive');
     v2z.textContent = corrDose.toFixed(2) + ' ' + t('unit_dose_short');
     r2z.appendChild(n2z); r2z.appendChild(v2z);
     content.appendChild(noDoseDiv);
@@ -528,7 +528,7 @@ function calculate() {
     // TECH-01: safe DOM — no user data in innerHTML
     content.innerHTML = '';
     const rm = document.createElement('div'); rm.className = 'result-main';
-    rm.innerHTML = '<div class="result-label"></div><div class="result-value"></div><div class="result-unit"></div><div class="result-time"></div>';
+    rm.innerHTML = '<h2 class="result-label"></h2><div class="result-value"></div><div class="result-unit"></div><div class="result-time"></div>';
     rm.querySelector('.result-label').textContent = t('result_label');
     rm.querySelector('.result-value').textContent = rounded.toFixed(1);
     rm.querySelector('.result-unit').textContent  = t('result_unit');
@@ -541,7 +541,7 @@ function calculate() {
       row.appendChild(n); row.appendChild(v); return row;
     };
     bd.appendChild(mkRow(t('breakdown_carbs') + ' (' + carbsG + t('unit_carbs_short') + ' ÷ ' + icr + ')', carbDose.toFixed(2) + ' ' + t('unit_dose_short')));
-    bd.appendChild(mkRow(t('breakdown_corr') + ' (' + fmtG(glucoseRaw) + ' → ' + fmtG(targetRaw) + ' ' + dUnit + ')', (corrDose >= 0 ? '+' : '') + corrDose.toFixed(2) + ' ' + t('unit_dose_short'), corrDose >= 0 ? 'positive' : 'negative'));
+    bd.appendChild(mkRow(t('breakdown_corr') + ' (' + fmtG(glucoseRaw) + ' → ' + fmtG(targetRaw) + ' ' + dUnit + ')', (corrDose >= 0 ? '+' : '') + corrDose.toFixed(2) + ' ' + t('unit_dose_short'), corrDose > 0 ? 'positive' : corrDose === 0 ? 'neutral' : 'negative'));
     const divEl = document.createElement('div'); divEl.className = 'breakdown-divider'; bd.appendChild(divEl);
     bd.appendChild(mkRow(t('breakdown_exact'), total.toFixed(2) + ' ' + t('unit_dose_short')));
     bd.appendChild(mkRow(t('breakdown_round'), rounded.toFixed(1) + ' ' + t('unit_dose_short'), 'breakdown-val-accent'));
@@ -758,7 +758,7 @@ function rerenderResult() {
     r1z.appendChild(n1z); r1z.appendChild(v1z);
     const n2z = document.createElement('span'); n2z.className = 'breakdown-name';
     n2z.textContent = t('breakdown_corr') + ' (' + fmtG(p.glucoseRaw) + ' → ' + fmtG(p.targetRaw) + ' ' + dUnit + ')';
-    const v2z = document.createElement('span'); v2z.className = 'breakdown-val negative';
+    const v2z = document.createElement('span'); v2z.className = 'breakdown-val ' + (corrDose < 0 ? 'negative' : corrDose === 0 ? 'neutral' : 'positive');
     v2z.textContent = p.corrDose.toFixed(2) + ' ' + t('unit_dose_short');
     r2z.appendChild(n2z); r2z.appendChild(v2z);
     content.appendChild(noDoseDiv); content.appendChild(bdZero);
@@ -866,6 +866,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <div id="terms-consent-modal" role="dialog" aria-modal="true" aria-labelledby="consent-modal-title">
   <div class="consent-box">
     <p class="consent-title" id="consent-modal-title" data-i18n="consent_title">Before you continue</p>
+    <p class="consent-sub" data-i18n="consent_sub">This is a calculation tool, not medical advice. Read the terms before continuing.</p>
     <div class="consent-check-row">
       <input type="checkbox" id="consent-checkbox" onchange="onConsentCheckbox(this)">
       <label class="consent-check-label" for="consent-checkbox" data-i18n="consent_checkbox">I have read and accept the <a href="./terms.html" target="_blank">Terms of Use</a> and <a href="./privacy.html" target="_blank">Privacy Policy</a>. I understand that this app is an informational tool only and that all dosing decisions are my responsibility.</label>
