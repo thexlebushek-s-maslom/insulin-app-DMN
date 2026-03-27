@@ -1092,7 +1092,20 @@ const safeStorage = {
   remove(key)     { try { localStorage.removeItem(key); return true; }   catch { return false; } },
 };
 
-let currentLang  = safeStorage.get('lang')  || 'ru';
+// Auto-detect browser language, fallback to 'en'
+function detectLang() {
+  const saved = safeStorage.get('lang');
+  if (saved && LANGS[saved]) return saved;
+  const nav = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+  if (nav.startsWith('ru')) return 'ru';
+  if (nav.startsWith('be')) return 'be';
+  if (nav.startsWith('de')) return 'de';
+  if (nav.startsWith('fr')) return 'fr';
+  if (nav.startsWith('es')) return 'es';
+  if (nav.startsWith('zh')) return 'zh';
+  return 'en';
+}
+let currentLang  = detectLang();
 let currentTheme = safeStorage.get('theme') || 'dark';
 
 function t(key) {
