@@ -277,7 +277,11 @@
   <div class="history-panel" id="history-panel">
     <div class="history-header">
       <span class="history-title" data-i18n="history_title">История</span>
-      <button class="history-clear" onclick="clearHistory()" data-i18n="history_clear">Очистить</button>
+      <div class="history-actions">
+        <button class="history-action-btn" onclick="copyHistory()" id="history-copy-btn" data-i18n="history_copy">Copy</button>
+        <button class="history-action-btn history-action-share" onclick="shareHistory()" data-i18n="history_share">Share</button>
+        <button class="history-clear" onclick="clearHistory()" data-i18n="history_clear">Очистить</button>
+      </div>
     </div>
     <div class="history-list" id="history-list"></div>
     <div class="history-footer" data-i18n="history_max">Хранится не более 20 записей</div>
@@ -553,26 +557,6 @@ function calculate() {
   }
 
 
-  // Share / Copy row
-  const shareRow = document.createElement('div');
-  shareRow.className = 'share-row';
-  const shareBtn = document.createElement('button');
-  shareBtn.className = 'share-btn';
-  shareBtn.setAttribute('aria-label', 'Share result');
-  shareBtn.onclick = () => {
-    const text = `Insulo.app — ${t('result_label')}: ${rounded.toFixed(1)} ${t('unit_dose_short')}\n${t('breakdown_carbs')}: ${carbsG}g ÷ ICR ${icr} = ${carbDose.toFixed(2)} ${t('unit_dose_short')}\n${t('breakdown_corr')}: ${fmtG(glucoseRaw)}→${fmtG(targetRaw)} ${dUnit} = ${(corrDose>=0?'+':'')+corrDose.toFixed(2)} ${t('unit_dose_short')}\nhttps://insulo.app`;
-    if (navigator.share) {
-      navigator.share({ title: 'Insulo.app', text }).catch(()=>{});
-    } else {
-      navigator.clipboard.writeText(text).then(() => {
-        shareBtn.textContent = '✓ Copied';
-        setTimeout(() => { shareBtn.innerHTML = '⎋ ' + t('share_btn'); }, 2000);
-      }).catch(()=>{});
-    }
-  };
-  shareBtn.innerHTML = '⎋ ' + t('share_btn');
-  shareRow.appendChild(shareBtn);
-  content.appendChild(shareRow);
 
   document.getElementById('result-card').classList.add('visible');
   setTimeout(() => document.getElementById('result-card').scrollIntoView({ behavior:'smooth', block:'nearest' }), 60);
@@ -616,6 +600,58 @@ function renderHistory() {
       </div>
       <div class="history-item-dose">${e.dose>0?e.dose.toFixed(1)+' u.':'—'}</div>
     </div>`).join('');
+}
+
+function formatHistoryText() {
+  const h = loadHistory();
+  if (!h.length) return '';
+  // Group by date
+  const byDate = {};
+  h.forEach(e => { (byDate[e.date] = byDate[e.date] || []).push(e); });
+  const unit = loadHistory()[0]?.unit === 'mgdl' ? 'mg/dL' : 'mmol/L';
+  let text = 'Insulo.app — ' + t('history_title') + '\n\n';
+  Object.entries(byDate).forEach(([date, entries]) => {
+    text += date + '\n';
+    entries.forEach(e => {
+      const uLabel = e.unit === 'mgdl' ? 'mg/dL' : 'mmol/L';
+      const dose = e.dose > 0 ? e.dose.toFixed(1) + ' u.' : '—';
+      text += `  ${e.time}  BG ${e.glucose} ${uLabel}  Carbs ${e.carbs}g  →  ${dose}\n`;
+    });
+    text += '\n';
+  });
+  text += 'insulo.app';
+  return text;
+}
+
+function copyHistory() {
+  const text = formatHistoryText();
+  if (!text) return;
+  const btn = document.getElementById('history-copy-btn');
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = '✓ ' + t('history_copied');
+    btn.style.background = 'rgba(63,182,142,.12)';
+    setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 2000);
+  }).catch(() => {
+    // Fallback: select text from textarea
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
+    const orig = btn.textContent;
+    btn.textContent = '✓ ' + t('history_copied');
+    setTimeout(() => { btn.textContent = orig; }, 2000);
+  });
+}
+
+function shareHistory() {
+  const text = formatHistoryText();
+  if (!text) return;
+  if (navigator.share) {
+    navigator.share({ title: 'Insulo.app', text }).catch(() => {});
+  } else {
+    copyHistory();
+  }
 }
 
 function clearHistory() {
