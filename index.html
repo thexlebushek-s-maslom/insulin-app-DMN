@@ -156,6 +156,7 @@
         <option value="be">BE</option>
         <option value="zh">中文</option>
       </select>
+      <button id="theme-toggle" class="theme-nav-btn" title="Toggle theme" aria-label="Toggle theme">☀️</button>
     </div>
   </div>
 </nav>
@@ -183,22 +184,22 @@
 
   <!-- ── Inputs card ── -->
   <div class="card">
-    <div class="card-label-row">
-      <div class="card-label" data-i18n="inputs_label">Данные для расчёта</div>
-      <div class="unit-toggle" style="flex-shrink:0;" data-active="mmol">
-        <span class="toggle-pill" aria-hidden="true"></span>
-        <button class="unit-btn active" id="btn-mmol" onclick="setUnit('mmol')" data-i18n="unit_mmol">ммоль/л</button>
-        <button class="unit-btn"        id="btn-mgdl" onclick="setUnit('mgdl')" data-i18n="unit_mgdl">мг/дл</button>
-      </div>
-    </div>
+    <div class="card-label" data-i18n="inputs_label">Данные для расчёта</div>
 
     <!-- Glucose -->
     <div class="input-row">
       <div class="input-icon icon-glucose">🩸</div>
       <div class="input-group" id="grp-glucose">
-        <label for="glucose">
-          <span data-i18n="label_glucose">Глюкоза сейчас</span>
-          <span id="glucose-badge"></span>
+        <label for="glucose" class="glucose-label-row">
+          <span>
+            <span data-i18n="label_glucose">Глюкоза сейчас</span>
+            <span id="glucose-badge"></span>
+          </span>
+          <div class="unit-toggle" style="flex-shrink:0;" data-active="mmol">
+            <span class="toggle-pill" aria-hidden="true"></span>
+            <button class="unit-btn active" id="btn-mmol" onclick="setUnit('mmol')" data-i18n="unit_mmol">ммоль/л</button>
+            <button class="unit-btn"        id="btn-mgdl" onclick="setUnit('mgdl')" data-i18n="unit_mgdl">мг/дл</button>
+          </div>
         </label>
         <div class="input-wrap">
           <input type="text" inputmode="decimal" id="glucose"
@@ -320,7 +321,6 @@
   </div>
 </div>
 
-<button id="theme-toggle" title="Toggle theme">☀️</button>
 
 
 <!-- ── Preset modal ── -->
@@ -375,6 +375,11 @@ function setUnit(u) {
   unit = u;
 
   document.getElementById('btn-mmol').classList.toggle('active', u === 'mmol');
+// Enter key on any calc input → calculate
+  document.querySelectorAll('#grp-glucose input,#grp-carbs input,#grp-target input,#grp-icr input,#grp-isf input').forEach(inp => {
+    inp.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); calculate(); } });
+  });
+
   document.getElementById('btn-mgdl').classList.toggle('active', u === 'mgdl');
   document.getElementById('glucose-unit-label').textContent = t(u === 'mmol' ? 'unit_mmol' : 'unit_mgdl');
   document.getElementById('target-unit-label').textContent  = t(u === 'mmol' ? 'unit_mmol' : 'unit_mgdl');
@@ -405,7 +410,7 @@ function setUnit(u) {
 function updatePlaceholders(u) {
   const isU = u || unit;
   document.getElementById('glucose').placeholder = t(isU === 'mmol' ? 'ph_glucose_mmol' : 'ph_glucose_mgdl');
-  document.getElementById('target').placeholder  = t(isU === 'mmol' ? 'ph_target_mmol'  : 'ph_target_mgdl');
+  document.getElementById('target').placeholder  = t(isU === 'mmol' ? 'ph_target_mmol' : 'ph_target_mgdl');
   document.getElementById('isf').placeholder     = t(isU === 'mmol' ? 'ph_isf_mmol'     : 'ph_isf_mgdl');
   document.getElementById('carbs').placeholder   = t('ph_carbs');
   document.getElementById('icr').placeholder     = t('ph_icr');
@@ -492,7 +497,8 @@ function calculate() {
 
   const dUnit = t(unit === 'mmol' ? 'unit_mmol' : 'unit_mgdl');
   const fmtG  = v => v.toFixed(unit === 'mmol' ? 1 : 0);
-  const now   = new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
+  const _d    = new Date();
+  const now   = _d.toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' }) + ' · ' + _d.toLocaleDateString([], { day:'numeric', month:'short' });
   const content = document.getElementById('result-content');
 
   if (total <= 0) {
@@ -545,6 +551,28 @@ function calculate() {
     saveHistory(glucoseRaw, carbsG, rounded, now);
     lastCalcParams = { glucoseRaw, carbsG, icr, isfRaw: parseDecimal(document.getElementById('isf').value), targetRaw, carbDose, corrDose, total, rounded, now, unit, zeroDose: false };
   }
+
+
+  // Share / Copy row
+  const shareRow = document.createElement('div');
+  shareRow.className = 'share-row';
+  const shareBtn = document.createElement('button');
+  shareBtn.className = 'share-btn';
+  shareBtn.setAttribute('aria-label', 'Share result');
+  shareBtn.onclick = () => {
+    const text = `Insulo.app — ${t('result_label')}: ${rounded.toFixed(1)} ${t('unit_dose_short')}\n${t('breakdown_carbs')}: ${carbsG}g ÷ ICR ${icr} = ${carbDose.toFixed(2)} ${t('unit_dose_short')}\n${t('breakdown_corr')}: ${fmtG(glucoseRaw)}→${fmtG(targetRaw)} ${dUnit} = ${(corrDose>=0?'+':'')+corrDose.toFixed(2)} ${t('unit_dose_short')}\nhttps://insulo.app`;
+    if (navigator.share) {
+      navigator.share({ title: 'Insulo.app', text }).catch(()=>{});
+    } else {
+      navigator.clipboard.writeText(text).then(() => {
+        shareBtn.textContent = '✓ Copied';
+        setTimeout(() => { shareBtn.innerHTML = '⎋ ' + t('share_btn'); }, 2000);
+      }).catch(()=>{});
+    }
+  };
+  shareBtn.innerHTML = '⎋ ' + t('share_btn');
+  shareRow.appendChild(shareBtn);
+  content.appendChild(shareRow);
 
   document.getElementById('result-card').classList.add('visible');
   setTimeout(() => document.getElementById('result-card').scrollIntoView({ behavior:'smooth', block:'nearest' }), 60);
