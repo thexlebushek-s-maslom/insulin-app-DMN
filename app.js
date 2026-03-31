@@ -5,7 +5,7 @@
 const LANGS = {
   ru: {
     nav_calc:'Калькулятор', nav_about:'О расчёте', nav_faq:'FAQ',
-    calc_title:'Расчёт дозы',
+    calc_title:'Болюсный калькулятор инсулина',
     label_glucose:'Глюкоза сейчас', label_carbs:'Углеводы в еде',
     label_target:'Целевая глюкоза', label_icr:'ICR', label_isf:'ISF',
     hint_icr:'г углеводов / 1 ед.',
@@ -171,7 +171,7 @@ const LANGS = {
 
   en: {
     nav_calc:'Calculator', nav_about:'How it works', nav_faq:'FAQ',
-    calc_title:'Dose Calculator',
+    calc_title:'Bolus Insulin Calculator',
     label_glucose:'Current glucose', label_carbs:'Carbohydrates in meal',
     label_target:'Target glucose', label_icr:'ICR', label_isf:'ISF',
     hint_icr:'g carbs / 1 unit',
@@ -334,7 +334,7 @@ const LANGS = {
 
   es: {
     nav_calc:'Calculadora', nav_about:'Cómo funciona', nav_faq:'FAQ',
-    calc_title:'Cálculo de dosis',
+    calc_title:'Calculadora de insulina bolo',
     label_glucose:'Glucosa actual', label_carbs:'Carbohidratos en la comida',
     label_target:'Glucosa objetivo', label_icr:'ICR', label_isf:'ISF',
     hint_icr:'g carbohidratos / 1 u.',
@@ -489,7 +489,7 @@ const LANGS = {
 
   de: {
     nav_calc:'Rechner', nav_about:'Funktionsweise', nav_faq:'FAQ',
-    calc_title:'Dosisrechner',
+    calc_title:'Bolus-Insulinrechner',
     label_glucose:'Aktueller Blutzucker', label_carbs:'Kohlenhydrate in der Mahlzeit',
     label_target:'Ziel-Blutzucker', label_icr:'ICR', label_isf:'ISF',
     hint_icr:'g KH / 1 IE',
@@ -644,7 +644,7 @@ const LANGS = {
 
   fr: {
     nav_calc:'Calculateur', nav_about:'Comment ça marche', nav_faq:'FAQ',
-    calc_title:'Calcul de dose',
+    calc_title:'Calculateur de bolus insuline',
     label_glucose:'Glycémie actuelle', label_carbs:'Glucides dans le repas',
     label_target:'Glycémie cible', label_icr:'ICR', label_isf:'ISF',
     hint_icr:'g glucides / 1 unité',
@@ -799,7 +799,7 @@ const LANGS = {
 
   be: {
     nav_calc:'Калькулятар', nav_about:'Пра разлік', nav_faq:'FAQ',
-    calc_title:'Разлік дозы',
+    calc_title:'Балюсны калькулятар інсуліну',
     label_glucose:'Глюкоза зараз', label_carbs:'Вугляводы ў ежы',
     label_target:'Мэтавая глюкоза', label_icr:'ICR', label_isf:'ISF',
     hint_icr:'г вугляводаў / 1 ад.',
@@ -954,7 +954,7 @@ const LANGS = {
 
   zh: {
     nav_calc:'计算器', nav_about:'使用说明', nav_faq:'常见问题',
-    calc_title:'胰岛素剂量计算',
+    calc_title:'大剂量胰岛素计算器',
     label_glucose:'当前血糖', label_carbs:'餐中碳水化合物',
     label_target:'目标血糖', label_icr:'ICR', label_isf:'ISF',
     hint_icr:'g 碳水 / 1单位',
