@@ -48,7 +48,7 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./style.css">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"Insulin Dose Calculator","description":"Free bolus insulin dose calculator by blood glucose and carbohydrates","url":"https://insulo.app/","applicationCategory":"Utilities","operatingSystem":"Android, iOS, Web","inLanguage":["en","ru","de","fr","es","zh"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":"Offline support, 7 languages, Unit conversion, Bolus calculation"}
+{"@context":"https://schema.org","@type":"WebApplication","name":"Insulo.app — Bolus Insulin Calculator","description":"Free bolus insulin dose calculator by blood glucose and carbohydrates","url":"https://insulo.app/","applicationCategory":"Utilities","operatingSystem":"Android, iOS, Web","inLanguage":["en","ru","de","fr","es","zh"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":"Offline support, 7 languages, Unit conversion, Bolus calculation"}
 </script>
 <!-- AdSense: раскомментируйте после одобрения
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
@@ -660,7 +660,7 @@ function renderPresets() {
   presets.forEach(p => {
     const chip = document.createElement('button');
     chip.className = 'preset-chip';
-    chip.innerHTML = `${p.name} <span class="preset-chip-val">${p.carbs}г</span>`;
+    chip.innerHTML = `${p.name} <span class="preset-chip-val">${p.carbs}${t('unit_carbs_short')}</span>`;
     chip.addEventListener('click', () => applyPreset(p));
     chip.addEventListener('pointerdown', startLongPress(p));
     chip.addEventListener('pointerup',   cancelLongPress);
