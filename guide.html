@@ -3,29 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How to Calculate Insulin Dose — ICR & ISF Guide | Insulindosis berechnen</title>
-<meta name="description" content="Learn how to calculate insulin bolus dose using ICR and ISF. Insulin-to-carb ratio, insulin sensitivity factor explained. Free guide for T1D patients.">
-<meta name="keywords" content="insulin to carb ratio explained, insulin sensitivity factor ISF, bolus insulin calculation, how to calculate insulin dose for carbs, correction factor insulin formula, ICR ISF guide, type 1 diabetes bolus, how much insulin per carb, carb counting insulin dose, Kohlenhydratfaktor, facteur de sensibilité insuline">
+<title>How It Works &amp; FAQ — Insulo.app | Bolus Insulin Calculator Guide</title>
+<meta name="description" content="How to calculate insulin bolus dose using ICR and ISF. Complete guide and FAQ for Insulo.app — free offline bolus calculator for Type 1 diabetes.">
+<meta name="keywords" content="bolus insulin calculator guide, ICR ISF explained, insulin to carb ratio, correction factor, type 1 diabetes calculator FAQ, how to calculate insulin dose">
 <meta name="robots" content="index, follow">
-<link rel="alternate" hreflang="en"    href="https://insulo.app/about.html?lang=en">
-<link rel="alternate" hreflang="ru"    href="https://insulo.app/about.html?lang=ru">
-<link rel="alternate" hreflang="de"    href="https://insulo.app/about.html?lang=de">
-<link rel="alternate" hreflang="fr"    href="https://insulo.app/about.html?lang=fr">
-<link rel="alternate" hreflang="es"    href="https://insulo.app/about.html?lang=es">
-<link rel="alternate" hreflang="zh-CN" href="https://insulo.app/about.html?lang=zh">
-<link rel="alternate" hreflang="x-default" href="https://insulo.app/about.html">
+<link rel="alternate" hreflang="en"    href="https://insulo.app/guide.html?lang=en">
+<link rel="alternate" hreflang="ru"    href="https://insulo.app/guide.html?lang=ru">
+<link rel="alternate" hreflang="de"    href="https://insulo.app/guide.html?lang=de">
+<link rel="alternate" hreflang="fr"    href="https://insulo.app/guide.html?lang=fr">
+<link rel="alternate" hreflang="es"    href="https://insulo.app/guide.html?lang=es">
+<link rel="alternate" hreflang="zh-CN" href="https://insulo.app/guide.html?lang=zh">
+<link rel="alternate" hreflang="x-default" href="https://insulo.app/guide.html">
 <meta name="twitter:card"        content="summary">
-<meta name="twitter:title"       content="How to Calculate Insulin Dose — ICR & ISF Guide | Insulindosis berechn">
-<meta name="twitter:description" content="Learn how to calculate insulin bolus dose using ICR and ISF. Insulin-to-carb ratio, insulin sensitivity factor explained. Free guide for T1D">
+<meta name="twitter:title"       content="How It Works &amp; FAQ — Insulo.app">
+<meta name="twitter:description" content="Complete guide to bolus insulin calculation using ICR and ISF. FAQ for Insulo.app.">
 <meta name="twitter:image"       content="https://insulo.app/icons/icon-512.png">
 <meta property="og:type"        content="article">
-<meta property="og:title"       content="About — Insulo.app">
-<meta property="og:description" content="Free bolus insulin dose calculator. Works offline on any device.">
-<meta property="og:url"         content="https://insulo.app/about.html">
+<meta property="og:title"       content="How It Works &amp; FAQ — Insulo.app">
+<meta property="og:description" content="How to calculate insulin bolus dose using ICR and ISF. Complete guide and FAQ.">
+<meta property="og:url"         content="https://insulo.app/guide.html">
 <meta property="og:image"       content="https://insulo.app/icons/icon-512.png">
 <meta property="og:image:width" content="512">
 <meta property="og:image:height"content="512">
-<link rel="canonical" href="https://insulo.app/about.html">
+<link rel="canonical" href="https://insulo.app/guide.html">
 <meta name="theme-color" content="#3fb68e">
 <link rel="manifest" href="./manifest.json">
 <link rel="icon" type="image/png" href="./icons/icon-192.png">
@@ -59,10 +59,17 @@
   ]
 }
 </script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+  {"@type":"Question","name":"What is ICR?","acceptedAnswer":{"@type":"Answer","text":"ICR (Insulin-to-Carb Ratio) shows how many grams of carbohydrates 1 unit of insulin covers."}},
+  {"@type":"Question","name":"What is ISF?","acceptedAnswer":{"@type":"Answer","text":"ISF (Insulin Sensitivity Factor) shows how much blood glucose drops per 1 unit of insulin."}},
+  {"@type":"Question","name":"Does the app work offline?","acceptedAnswer":{"@type":"Answer","text":"Yes. The app is cached on first load and works fully offline."}}
+]}
+</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script async src="https://plausible.io/js/pa-XfDbZ87M0THBbcQYJgI4d.js"></script>
 <script>
-  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i|{}};
   plausible.init()
 </script>
 </head>
@@ -72,8 +79,7 @@
   <div class="nav-inner">
     <a href="./index.html" class="nav-logo">💉 Insulo<span>.app</span></a>
     <div class="nav-links">
-      <a href="./about.html"  class="nav-link active" data-i18n="nav_about">О расчёте</a>
-      <a href="./faq.html"    class="nav-link" data-i18n="nav_faq">FAQ</a>
+      <a href="./guide.html" class="nav-link active" data-i18n="nav_about">О расчёте</a>
       <select id="lang-select" class="lang-select" title="Language">
         <option value="ru">RU</option>
         <option value="en">EN</option>
@@ -83,6 +89,7 @@
         <option value="be">BE</option>
         <option value="zh">中文</option>
       </select>
+      <button class="theme-btn" onclick="toggleTheme()" id="theme-btn" aria-label="Toggle theme">☀️</button>
     </div>
   </div>
 </nav>
@@ -91,8 +98,9 @@
 
   <div class="ad-slot" id="ad-top"></div>
 
+  <!-- ── HOW IT WORKS ─────────────────────────────── -->
   <div class="card prose">
-    <h1 data-i18n="about_title">How to Calculate Insulin Dose — ICR &amp; ISF Guide</h1>
+    <h1 data-i18n="about_title">How insulin dose is calculated</h1>
     <p class="date" data-i18n="about_date">Informational Guide · 2026</p>
 
     <h2 data-i18n="about_h_formula">The Bolus Calculation Formula</h2>
@@ -142,15 +150,91 @@
       <li data-i18n="about_why_li5"><strong>Free forever</strong> — supported by voluntary donations</li>
     </ul>
 
-
-
     <p style="font-size:12px;padding:10px;background:rgba(224,92,92,.07);border-radius:8px;border-left:3px solid var(--danger);" data-i18n="about_disclaimer_text">
       <strong>⚠️ Important:</strong> This calculator performs mathematical computation only. It does not account for active insulin on board (IOB), glycemic index, physical activity, illness, or stress. All dosing decisions must be made with your healthcare provider. This is not a certified medical device.
     </p>
-
   </div>
 
   <div class="ad-slot" id="ad-middle"></div>
+
+  <!-- ── FAQ ──────────────────────────────────────── -->
+  <div class="card prose">
+    <h2 data-i18n="faq_title" style="margin-top:0">FAQ</h2>
+    <p class="date" data-i18n="faq_date">Frequently asked questions · 2026</p>
+  </div>
+
+  <div class="card prose warn-card">
+    <p class="faq-warn-title" data-i18n="faq_warn_title">⚠️ Important warnings</p>
+    <p data-i18n="faq_warn_body">Insulin dosing is a complex medical process. This calculator is <strong>for informational purposes only</strong>.</p>
+    <ul>
+      <li data-i18n="faq_w1">Always verify the calculated dose before injecting</li>
+      <li data-i18n="faq_w2">Account for active insulin on board (IOB)</li>
+      <li data-i18n="faq_w3">Physical activity affects insulin sensitivity</li>
+      <li data-i18n="faq_w4">Illness or stress may change your ratios</li>
+      <li data-i18n="faq_w5">In case of hypoglycemia — take fast-acting carbs immediately</li>
+      <li data-i18n="faq_w6">Never inject without measuring glucose first</li>
+    </ul>
+    <p style="font-size:13px;color:var(--danger);line-height:1.6;margin:0;" data-i18n="faq_regulatory"></p>
+  </div>
+
+  <div class="card" style="padding:8px 16px;">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span data-i18n="faq_q6">Почему расчёт показывает 0 или отрицательное?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a" data-i18n="faq_a6"></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span data-i18n="faq_q7">Как часто пересматривать ICR и ISF?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a" data-i18n="faq_a7"></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span data-i18n="faq_q8">Работает ли приложение без интернета?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a" data-i18n="faq_a8"></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span data-i18n="faq_q9">Безопасно ли использовать этот калькулятор?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a" data-i18n="faq_a9"></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span data-i18n="faq_q10">How accurate is a bolus insulin calculator?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a" data-i18n="faq_a10">A bolus calculator applies your personal ICR and ISF values to a standard formula. The result is only as accurate as the values you enter. The formula does not account for: active insulin on board (IOB), glycemic index, physical activity, illness or infection, stress hormones, or alcohol. Always treat the result as a starting point for discussion with your diabetes care team.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span data-i18n="faq_q11">What is the difference between mmol/L and mg/dL?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a" data-i18n="faq_a11">Both measure blood glucose concentration. <strong>mmol/L</strong> is used in Europe, Canada, Australia and Asia. <strong>mg/dL</strong> is used in the United States. To convert: multiply mmol/L × 18.016 = mg/dL. Example: 5.5 mmol/L = 99 mg/dL. Use the toggle at the top of the calculator screen to switch units.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span data-i18n="faq_q12">Can I use this calculator for Type 2 diabetes?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a" data-i18n="faq_a12">This calculator uses the standard ICR/ISF bolus formula designed for basal-bolus insulin regimens — most commonly Type 1 diabetes and insulin-dependent Type 2 diabetes. If your doctor has provided ICR and ISF values, it may be useful. Always consult your diabetes care team first.
+      </div>
+    </div>
+  </div>
 
   <div style="text-align:center;padding:4px 0;">
     <a href="./index.html" class="calc-btn"
@@ -162,12 +246,12 @@
 
 <footer class="footer">
   <div class="footer-inner">
-    <a href="./about.html"   class="footer-link" data-i18n="nav_about">О расчёте</a>
-    <span class="footer-sep">·</span>
-    <a href="./faq.html"     class="footer-link" data-i18n="nav_faq">FAQ</a>
+    <a href="./guide.html"   class="footer-link" data-i18n="nav_about">Guide</a>
     <span class="footer-sep">·</span>
     <a href="./privacy.html" class="footer-link">Privacy</a>
-    <div class="footer-copy" data-i18n="footer_copy">© 2026 insulin-calc.</div>
+    <span class="footer-sep">·</span>
+    <a href="./terms.html"   class="footer-link">Terms</a>
+    <div class="footer-copy" data-i18n="footer_copy">© 2026 insulo.app.</div>
   </div>
 </footer>
 
@@ -175,20 +259,16 @@
   <div class="cookie-inner">
     <p class="cookie-text"><span data-i18n="cookie_text"></span> <a href="./privacy.html">Privacy</a></p>
     <div class="cookie-btns">
-      <button class="cookie-accept"  onclick="acceptCookies()"  data-i18n="cookie_accept">Принять</button>
-      <button class="cookie-decline" onclick="declineCookies()" data-i18n="cookie_decline">Только необходимые</button>
+      <button class="cookie-accept"  onclick="acceptCookies()"  data-i18n="cookie_accept">Accept</button>
+      <button class="cookie-decline" onclick="declineCookies()" data-i18n="cookie_decline">Essential only</button>
     </div>
   </div>
 </div>
 
-<button id="theme-toggle" title="Toggle theme">☀️</button>
+<div id="offline-banner" class="offline-banner">
+  <span data-i18n="offline_msg">📡 Offline — app works without internet</span>
+</div>
 
-<script src="./app.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const urlLang = new URLSearchParams(location.search).get('lang');
-  if (urlLang && LANGS[urlLang]) applyLang(urlLang);
-});
-</script>
+<script src="./app.js" defer></script>
 </body>
 </html>

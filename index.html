@@ -146,10 +146,7 @@
   <div class="nav-inner">
     <a href="./index.html" class="nav-logo">💉 Insulo<span>.app</span></a>
     <div class="nav-links">
-      <a href="./index.html"   class="nav-link active" data-i18n="nav_calc">Калькулятор</a>
-      <a href="./about.html"   class="nav-link" data-i18n="nav_about">О расчёте</a>
-      <a href="./faq.html"     class="nav-link" data-i18n="nav_faq">FAQ</a>
-      <a href="./terms.html"  class="nav-link">Terms</a>
+      <a href="./guide.html" class="nav-link" data-i18n="nav_about">Guide</a>
       <select id="lang-select" class="lang-select" title="Language">
         <option value="ru">RU</option>
         <option value="en">EN</option>
@@ -167,17 +164,9 @@
 
   <div class="ad-slot" id="ad-top"></div>
 
-  <!-- Header + unit toggle -->
+  <!-- Header -->
   <div class="calc-header">
-    <div>
-      <h1 class="calc-title" data-i18n="calc_title">Расчёт дозы</h1>
-
-    </div>
-    <div class="unit-toggle" style="flex-shrink:0;" data-active="mmol">
-      <span class="toggle-pill" aria-hidden="true"></span>
-      <button class="unit-btn active" id="btn-mmol" onclick="setUnit('mmol')" data-i18n="unit_mmol">ммоль/л</button>
-      <button class="unit-btn"        id="btn-mgdl" onclick="setUnit('mgdl')" data-i18n="unit_mgdl">мг/дл</button>
-    </div>
+    <h1 class="calc-title" data-i18n="calc_title">Расчёт дозы</h1>
   </div>
 
 
@@ -194,7 +183,14 @@
 
   <!-- ── Inputs card ── -->
   <div class="card">
-    <div class="card-label" data-i18n="inputs_label">Данные для расчёта</div>
+    <div class="card-label-row">
+      <div class="card-label" data-i18n="inputs_label">Данные для расчёта</div>
+      <div class="unit-toggle" style="flex-shrink:0;" data-active="mmol">
+        <span class="toggle-pill" aria-hidden="true"></span>
+        <button class="unit-btn active" id="btn-mmol" onclick="setUnit('mmol')" data-i18n="unit_mmol">ммоль/л</button>
+        <button class="unit-btn"        id="btn-mgdl" onclick="setUnit('mgdl')" data-i18n="unit_mgdl">мг/дл</button>
+      </div>
+    </div>
 
     <!-- Glucose -->
     <div class="input-row">
@@ -300,9 +296,9 @@
 
 <footer class="footer">
   <div class="footer-inner">
-    <a href="./about.html"   class="footer-link" data-i18n="nav_about">О расчёте</a>
+    <a href="./guide.html"   class="footer-link" data-i18n="nav_about">Guide</a>
     <span class="footer-sep">·</span>
-    <a href="./faq.html"     class="footer-link" data-i18n="nav_faq">FAQ</a>
+    <a href="./faq.html" style="display:none"     class="footer-link" data-i18n="nav_faq">FAQ</a>
     <span class="footer-sep">·</span>
     <a href="./terms.html"   class="footer-link">Terms</a>
     <span class="footer-sep">&middot;</span>
