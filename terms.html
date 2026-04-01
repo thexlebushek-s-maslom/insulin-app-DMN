@@ -35,6 +35,13 @@
   window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
   plausible.init()
 </script>
+<style>
+/* Terms page: show only Privacy · Terms in footer */
+a.footer-link[href="./guide.html"],
+a.footer-link[href="./guide.html"] + .footer-sep,
+a.footer-link[href="./about.html"],
+a.footer-link[href="./about.html"] + .footer-sep { display:none }
+</style>
 </head>
 <body>
 
@@ -53,7 +60,7 @@
         <option value="be">BE</option>
         <option value="zh">中文</option>
       </select>
-      <button id="theme-toggle" class="theme-nav-btn" title="Toggle theme" aria-label="Toggle theme">☀️</button>
+      <button onclick="toggleTheme()" id="theme-toggle" class="theme-nav-btn" title="Toggle theme" aria-label="Toggle theme">☀️</button>
     </div>
   </div>
 </nav>
