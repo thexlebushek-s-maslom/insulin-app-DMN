@@ -28,7 +28,8 @@
   <div class="nav-inner">
     <a href="./index.html" class="nav-logo">💉 Insulo<span>.app</span></a>
     <div class="nav-links">
-      <a href="./guide.html" class="nav-link" data-i18n="nav_about">Guide</a>
+      <a href="./guide.html" class="nav-link" data-i18n="nav_about">How it works</a>
+      <a href="./about.html" class="nav-link" data-i18n="nav_about_page">About</a>
       <select id="lang-select" class="lang-select" title="Language">
         <option value="ru">RU</option>
         <option value="en">EN</option>
@@ -45,86 +46,73 @@
 
 <main class="page">
   <div class="card prose">
-    <h1>Privacy Policy</h1>
-    <p class="date">Last updated: 26 March 2026 &middot; Policy Version 5</p>
+    <h1 data-i18n="priv_h1">Privacy Policy</h1>
+    <p class="date" data-i18n="priv_date">Last updated: 26 March 2026 · Policy Version 5</p>
 
-    <h2>1. Overview</h2>
-    <p>This Privacy Policy describes how the Insulin Dose Calculator web application (the "App") collects, uses and protects user information. By using the App, you agree to this policy.</p>
+    <h2 data-i18n="priv_s1_h">1. Overview</h2>
+    <p data-i18n="priv_s1_p">This Privacy Policy describes how the Insulo.app web application collects, uses and protects user information.</p>
 
-    <h2>2. Data we do NOT collect</h2>
-    <p>The App <strong>does not transmit to any server</strong>:</p>
+    <h2 data-i18n="priv_s2_h">2. Data we do NOT collect</h2>
+    <p data-i18n="priv_s2_p">The App <strong>does not transmit to any server</strong>:</p>
     <ul>
-      <li>Glucose levels or other medical data you enter</li>
-      <li>Calculation history (stored locally on your device only)</li>
-      <li>Name, email, phone or other personal data</li>
-      <li>Location data</li>
+      <span data-i18n="priv_s2_li"><li>Glucose levels or other medical data you enter</li><li>Calculation history</li><li>Name, email, phone</li><li>Location data</li></span>
     </ul>
 
-    <h2>3. Local storage</h2>
-    <p>The App uses your browser's <strong>localStorage</strong> to store: calculation history (up to 20 entries), your cookie consent, language preference, theme preference, and install banner state. This data never leaves your device. You can delete it anytime by clearing site data in your browser settings.</p>
+    <h2 data-i18n="priv_s3_h">3. Local storage</h2>
+    <p data-i18n="priv_s3_p">The App uses your browser's <strong>localStorage</strong> to store calculation history. This data never leaves your device.</p>
 
-    <h2>4. Cookies and advertising</h2>
-    <p>With your consent, the App may use:</p>
+    <h2 data-i18n="priv_s4_h">4. Cookies and advertising</h2>
+    <p data-i18n="priv_s4_p">With your consent, the App may use:</p>
     <ul>
-      <li><strong>Google AdSense</strong> — for advertising. Google may use cookies for ad personalisation. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>.</li>
+      <span data-i18n="priv_s4_li"><li><strong>Google AdSense</strong> — for advertising.</li></span>
     </ul>
-    <p>If you clicked "Essential only" in the cookie banner, no third-party services are loaded.</p>
+    <p data-i18n="priv_s4_p2">If you clicked "Essential only" in the cookie banner, no third-party services are loaded.</p>
 
-        <h2>5. Your rights (GDPR)</h2>
+        <h2 data-i18n="priv_s5_h">5. Your rights (GDPR)</h2>
     <div class="prose-plain">
-      <p>Under the EU General Data Protection Regulation (GDPR) Articles 15–21, you have the following rights:</p>
-      <ul>
-        <li><strong>Right of access (Art. 15)</strong> — You may request information about data held about you. Since all data is stored locally on your device and never transmitted to servers, you can inspect it directly in your browser's localStorage.</li>
-        <li><strong>Right to rectification (Art. 16)</strong> — You may correct inaccurate data. Calculation history can be edited or deleted directly within the Application.</li>
-        <li><strong>Right to erasure (Art. 17)</strong> — You may delete all locally stored data at any time using the "Clear History" function, or by clearing localStorage in your browser settings.</li>
-        <li><strong>Right to restriction of processing (Art. 18)</strong> — You may restrict processing by clearing your consent record (localStorage key: <code>terms_accepted_ver</code>) and not re-accepting the Terms.</li>
-        <li><strong>Right to data portability (Art. 20)</strong> — You may export your calculation history using the "Copy" or "Share" function within the Application.</li>
-        <li><strong>Right to withdraw consent (Art. 7(3))</strong> — You may withdraw consent at any time by clearing localStorage. Withdrawal does not affect the lawfulness of prior processing.</li>
-        <li><strong>Right to object (Art. 21)</strong> — You may object to analytics data collection (Plausible) by using browser-level ad/tracker blockers.</li>
-        <li><strong>Right to lodge a complaint</strong> — You have the right to lodge a complaint with the Polish supervisory authority: Urząd Ochrony Danych Osobowych (UODO), ul. Stawki 2, 00-193 Warsaw, Poland. <a href="https://uodo.gov.pl" target="_blank" rel="noopener">uodo.gov.pl</a></li>
-      </ul>
-      <p>To exercise any of these rights, contact: <a href="mailto:info@insulo.app">info@insulo.app</a>. We will respond within 30 calendar days as required by GDPR Article 12.</p>
+      <p data-i18n="priv_s5_intro">Under the EU General Data Protection Regulation (GDPR) Articles 15–21, you have the following rights:</p>
+      <ul data-i18n="priv_s5_li"></ul>
+      <p data-i18n="priv_s5_contact">To exercise any of these rights: <a href="mailto:info@insulo.app">info@insulo.app</a>.</p>
     </div>
 
-<h2>6. Data Retention and Local Storage</h2>
-    <p>Calculation history is stored <strong>locally on your device only</strong> (via browser localStorage). It is never transmitted to any server. A maximum of 20 entries are retained; older entries are automatically deleted. You may delete all history at any time using the "Clear History" function in the app.</p>
-    <p>Consent records (Terms acceptance timestamp and version) are also stored locally on your device. The developer does not maintain server-side records of individual user consent.</p>
-    <p>Language and theme preferences are stored locally and not transmitted.</p>
+<h2 data-i18n="priv_s6_h">6. Data Retention and Local Storage</h2>
+    <p data-i18n="priv_s6_p1">Calculation history is stored <strong>locally on your device only</strong>.</p>
+    <p data-i18n="priv_s6_p2">Consent records are also stored locally on your device.</p>
+    <p data-i18n="priv_s6_p3">Language and theme preferences are stored locally and not transmitted.</p>
 
-    <h2>6a. Medical Disclaimer &amp; Limitation of Liability</h2>
+    <h2 data-i18n="priv_s6a_h">6a. Medical Disclaimer &amp; Limitation of Liability</h2>
     <p>The App is intended <strong>for informational purposes only</strong>. It does not constitute medical advice. Always consult a qualified healthcare professional before making insulin dosing decisions.</p>
     <p><strong>The developer shall not be liable for any harm, injury, loss, or adverse outcome — direct or indirect — resulting from use of, or reliance on, calculations provided by this application.</strong> This includes but is not limited to incorrect dosing, hypoglycaemia, hyperglycaemia, or any other medical event.</p>
     <p>For complete legal terms including the full Limitation of Liability clause, No Warranties, Regulatory Status, and Governing Law, please read the <a href="./terms.html">Terms of Use</a>.</p>
 
-    <h2>6b. Third-Party Fonts (Google Fonts)</h2>
+    <h2 data-i18n="priv_s6b_h">6b. Third-Party Fonts (Google Fonts)</h2>
     <p>The App loads fonts from Google Fonts (fonts.googleapis.com / fonts.gstatic.com). When your browser requests these fonts, your IP address is transmitted to Google's servers. This constitutes processing of personal data under GDPR. Google's use of this data is governed by <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>. The fonts are cached by the app's Service Worker after the first load; subsequent use does not require a network request to Google.</p>
 
-    <h2>6c. Third-Party Donations (Ko-fi)</h2>
+    <h2 data-i18n="priv_s6c_h">6c. Third-Party Donations (Ko-fi)</h2>
     <p>The App contains a link to Ko-fi (<a href="https://ko-fi.com/insulo_app" target="_blank" rel="noopener">ko-fi.com/insulo_app</a>), a voluntary donation platform operated by Ko-fi Labs Limited (Ireland). If you click the Ko-fi link, you will be redirected to Ko-fi's website. The developer does not receive any personal data as a result of you visiting Ko-fi. Ko-fi's own privacy policy governs any data collected during the donation process: <a href="https://ko-fi.com/legal" target="_blank" rel="noopener">ko-fi.com/legal</a>. Clicking the Ko-fi link or making a donation is entirely voluntary and does not affect the functionality of the App.</p>
 
-    <h2>6d. Privacy-Friendly Analytics (Plausible)</h2>
+    <h2 data-i18n="priv_s6d_h">6d. Privacy-Friendly Analytics (Plausible)</h2>
     <p>The App uses <a href="https://plausible.io" target="_blank" rel="noopener">Plausible Analytics</a> to collect anonymous, aggregated usage statistics (pages visited, country, device type). Plausible does not use cookies, does not collect personal data, and is fully GDPR-compliant. No data is shared with advertisers. See <a href="https://plausible.io/privacy" target="_blank" rel="noopener">plausible.io/privacy</a>.</p>
 
-    <h2>6e. Third-Party Advertising (Google AdSense)</h2>
+    <h2 data-i18n="priv_s6e_h">6e. Third-Party Advertising (Google AdSense)</h2>
     <p>The App may display advertising served by Google AdSense. When enabled, Google and its partners may use cookies and device identifiers to serve personalised ads based on your prior visits to this and other websites. Google's use of advertising cookies is governed by <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>. You may opt out of personalised advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google Ads Settings</a>. The "Essential only" option in the consent banner will disable non-essential cookies including advertising cookies.</p>
 
-    <h3>6f. Hosting Infrastructure (GitHub Pages)</h3>
+    <h3 data-i18n="priv_s6f_h">6f. Hosting Infrastructure (GitHub Pages)</h3>
     <div class="prose-plain">
       <p>The Application is hosted on <strong>GitHub Pages</strong>, a static hosting service provided by GitHub, Inc. (a subsidiary of Microsoft Corporation). When you visit insulo.app, your browser connects to GitHub Pages servers, which may log your IP address and HTTP request metadata (page requested, timestamp, browser type) in standard server access logs. These logs are retained by GitHub according to their own privacy policy. GitHub Pages does not set cookies on behalf of this Application. GitHub's privacy statement is available at <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener">docs.github.com</a>.</p>
     </div>
 
-    <h2>7. Children</h2>
-    <p>The App is intended for use by persons aged 18 and over. It is not intended for use by persons under 18 without direct supervision of a parent or legal guardian. We do not knowingly collect data from minors.</p>
+    <h2 data-i18n="priv_s7_h">7. Children</h2>
+    <p data-i18n="priv_s7_p">The App is intended for use by persons aged 18 and over.</p>
 
-    <h2>8. Changes &amp; Re-consent</h2>
-    <p>We may update this Privacy Policy from time to time. The "Last updated" date at the top of this page reflects the most recent revision.</p>
-    <p>When we make material changes to this Policy, we will increment the policy version number stored in the application. On your next visit after a version change, the consent banner will reappear and you will be asked to make an explicit choice. We will not rely on "continued use of the App" as a basis for consent to revised terms — continued use alone does not constitute valid consent under GDPR Article 7.</p>
+    <h2 data-i18n="priv_s8_h">8. Changes &amp; Re-consent</h2>
+    <p data-i18n="priv_s8_p1">We may update this Privacy Policy from time to time.</p>
+    <p data-i18n="priv_s8_p2">When we make material changes, we increment the version number. The consent banner will reappear.</p>
 
-    <h2>9. Contact</h2>
-    <p>For privacy-related questions or to exercise any rights under GDPR (access, rectification, erasure, portability, objection), please contact:</p>
-    <p><strong>Email:</strong> <a href="mailto:info@insulo.app">info@insulo.app</a><br>
-    <strong>Response time:</strong> up to 30 calendar days, as required by GDPR Article 12.</p>
-    <p>You also have the right to <strong>lodge a complaint with your national data protection supervisory authority</strong> (e.g., UODO in Poland, ICO in the UK, CNIL in France, BfDI in Germany, or the equivalent in your country) if you consider that the processing of your personal data is unlawful.</p>
+    <h2 data-i18n="priv_s9_h">9. Contact</h2>
+    <p data-i18n="priv_s9_p1">For privacy-related questions or to exercise any GDPR rights:</p>
+    <p data-i18n="priv_s9_p2"><strong>Email:</strong> <a href="mailto:info@insulo.app">info@insulo.app</a><br><strong>Response time:</strong> up to 30 calendar days.</p>
+    <p data-i18n="priv_s9_p3">You also have the right to lodge a complaint with your national supervisory authority.</p>
   </div>
 </main>
 
@@ -141,7 +129,6 @@
   </div>
 </footer>
 
-<button id="theme-toggle" title="Toggle theme">☀️</button>
 
 <script src="./app.js"></script>
 </body>
