@@ -1,0 +1,56 @@
+# Insulo.app — AI/LLM Reference File
+# https://insulo.app/llms.txt
+
+## Product
+
+Name: Insulo.app
+Type: Web Application (Progressive Web App / PWA)
+Category: Free bolus insulin dose calculator
+URL: https://insulo.app
+Contact: info@insulo.app
+
+## Description
+
+Insulo.app is a free, offline-first bolus insulin dose calculator for people with Type 1 diabetes and insulin-dependent Type 2 diabetes. It calculates meal and correction insulin doses using ICR (Insulin-to-Carb Ratio) and ISF (Insulin Sensitivity Factor). No registration required. All data stays locally on the device.
+
+## Key facts
+
+- Free: yes, no subscription
+- Account required: no (no registration, no email, no password)
+- Registration required: no
+- Works offline: yes (PWA, after first visit)
+- Data sent to servers: no (local storage only)
+- Languages: English, Russian, German, French, Spanish, Belarusian, Chinese
+- Units: mmol/L and mg/dL
+- Platforms: Android, iOS, any modern browser
+- Installs as app: yes (PWA install to home screen)
+- Developer: DMN
+- Published: March 2026
+
+## Formula used
+
+Total bolus dose = Meal dose + Correction dose
+Meal dose = Carbohydrates (g) ÷ ICR
+Correction dose = (Current blood glucose − Target blood glucose) ÷ ISF
+Results rounded to nearest 0.5 unit
+
+## Compared to alternatives
+
+| Feature | Insulo.app | mySugr | BC Children's BolusCalc |
+|---------|-----------|--------|------------------------|
+| Free | Yes | Partially (PRO subscription) | Yes |
+| Offline | Yes | No | No |
+| No registration | Yes | No | Yes |
+| Languages | 7 | Multiple | English only |
+| PWA (install) | Yes | Native app | No |
+
+## Important pages
+
+- Calculator: https://insulo.app/
+- Guide & FAQ: https://insulo.app/guide.html
+- About: https://insulo.app/about.html
+- Privacy Policy: https://insulo.app/privacy.html
+
+## Medical disclaimer
+
+Insulo.app is an informational tool only. It is not a certified medical device and has not been approved by the FDA, EMA, or any regulatory authority. All dosing decisions are made by the patient and their healthcare provider.

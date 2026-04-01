@@ -118,6 +118,46 @@
         "@type": "Answer",
         "text": "Every 3–6 months, and also after significant changes in weight, diet, or activity level."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the app work offline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. On first load the app is cached by the service worker and works fully offline. History is stored locally on your device."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this calculator safe to use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The calculator uses standard bolus formulas. However, it does not account for active insulin (IOB), glycemic index of foods, or the effects of exercise and illness. Use as a reference only."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How accurate is a bolus insulin calculator?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A bolus calculator applies your personal ICR and ISF values to a standard formula. The result is only as accurate as the values you enter. The formula does not account for: active insulin on board (IOB), glycemic index, physical activity, illness or infection, stress hormones, or alcohol. Always treat the result as a starting point for discussion with your diabetes care team."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between mmol/L and mg/dL?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both measure blood glucose concentration. mmol/L is used in Europe, Canada, Australia and Asia. mg/dL is used in the United States. To convert: multiply mmol/L × 18.016 = mg/dL. Example: 5.5 mmol/L = 99 mg/dL. Use the toggle at the top of the calculator to switch units."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this calculator for Type 2 diabetes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This calculator uses the standard ICR/ISF bolus formula designed for basal-bolus insulin regimens — most commonly Type 1 diabetes and insulin-dependent Type 2 diabetes. If your doctor has provided ICR and ISF values, it may be useful. Always consult your diabetes care team first."
+      }
     }
   ]
 }</script>
@@ -127,6 +167,7 @@
   window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i|{}};
   plausible.init()
 </script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Insulo.app", "url": "https://insulo.app", "applicationCategory": "HealthApplication", "description": "Free offline bolus insulin calculator. No registration required.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "isAccessibleForFree": true}</script>
 </head>
 <body>
 
