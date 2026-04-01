@@ -2,9 +2,9 @@
 <html lang="ru" data-theme="dark">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Политика конфиденциальности — Калькулятор дозы инсулина</title>
-<meta name="description" content="Политика конфиденциальности калькулятора дозы инсулина. Информация об использовании cookies и обработке данных. GDPR.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Insulo.app</title>
+<meta name="description" content="Privacy Policy for Insulo.app. We collect no personal data. All calculation history stays locally on your device.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://insulo.app/privacy.html">
 <meta name="theme-color" content="#3fb68e">
@@ -70,10 +70,23 @@
     </ul>
     <p>If you clicked "Essential only" in the cookie banner, no third-party services are loaded.</p>
 
-    <h2>5. Your rights (GDPR)</h2>
-    <p>Under the EU General Data Protection Regulation (GDPR) you have the right to withdraw consent, access your data, and request deletion — all of which can be done by clearing localStorage in your browser, as we hold no data on servers.</p>
+        <h2>5. Your rights (GDPR)</h2>
+    <div class="prose-plain">
+      <p>Under the EU General Data Protection Regulation (GDPR) Articles 15–21, you have the following rights:</p>
+      <ul>
+        <li><strong>Right of access (Art. 15)</strong> — You may request information about data held about you. Since all data is stored locally on your device and never transmitted to servers, you can inspect it directly in your browser's localStorage.</li>
+        <li><strong>Right to rectification (Art. 16)</strong> — You may correct inaccurate data. Calculation history can be edited or deleted directly within the Application.</li>
+        <li><strong>Right to erasure (Art. 17)</strong> — You may delete all locally stored data at any time using the "Clear History" function, or by clearing localStorage in your browser settings.</li>
+        <li><strong>Right to restriction of processing (Art. 18)</strong> — You may restrict processing by clearing your consent record (localStorage key: <code>terms_accepted_ver</code>) and not re-accepting the Terms.</li>
+        <li><strong>Right to data portability (Art. 20)</strong> — You may export your calculation history using the "Copy" or "Share" function within the Application.</li>
+        <li><strong>Right to withdraw consent (Art. 7(3))</strong> — You may withdraw consent at any time by clearing localStorage. Withdrawal does not affect the lawfulness of prior processing.</li>
+        <li><strong>Right to object (Art. 21)</strong> — You may object to analytics data collection (Plausible) by using browser-level ad/tracker blockers.</li>
+        <li><strong>Right to lodge a complaint</strong> — You have the right to lodge a complaint with the Polish supervisory authority: Urząd Ochrony Danych Osobowych (UODO), ul. Stawki 2, 00-193 Warsaw, Poland. <a href="https://uodo.gov.pl" target="_blank" rel="noopener">uodo.gov.pl</a></li>
+      </ul>
+      <p>To exercise any of these rights, contact: <a href="mailto:info@insulo.app">info@insulo.app</a>. We will respond within 30 calendar days as required by GDPR Article 12.</p>
+    </div>
 
-    <h2>6. Data Retention and Local Storage</h2>
+<h2>6. Data Retention and Local Storage</h2>
     <p>Calculation history is stored <strong>locally on your device only</strong> (via browser localStorage). It is never transmitted to any server. A maximum of 20 entries are retained; older entries are automatically deleted. You may delete all history at any time using the "Clear History" function in the app.</p>
     <p>Consent records (Terms acceptance timestamp and version) are also stored locally on your device. The developer does not maintain server-side records of individual user consent.</p>
     <p>Language and theme preferences are stored locally and not transmitted.</p>
@@ -95,6 +108,11 @@
     <h2>6e. Third-Party Advertising (Google AdSense)</h2>
     <p>The App may display advertising served by Google AdSense. When enabled, Google and its partners may use cookies and device identifiers to serve personalised ads based on your prior visits to this and other websites. Google's use of advertising cookies is governed by <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>. You may opt out of personalised advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google Ads Settings</a>. The "Essential only" option in the consent banner will disable non-essential cookies including advertising cookies.</p>
 
+    <h3>6f. Hosting Infrastructure (GitHub Pages)</h3>
+    <div class="prose-plain">
+      <p>The Application is hosted on <strong>GitHub Pages</strong>, a static hosting service provided by GitHub, Inc. (a subsidiary of Microsoft Corporation). When you visit insulo.app, your browser connects to GitHub Pages servers, which may log your IP address and HTTP request metadata (page requested, timestamp, browser type) in standard server access logs. These logs are retained by GitHub according to their own privacy policy. GitHub Pages does not set cookies on behalf of this Application. GitHub's privacy statement is available at <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener">docs.github.com</a>.</p>
+    </div>
+
     <h2>7. Children</h2>
     <p>The App is intended for use by persons aged 18 and over. It is not intended for use by persons under 18 without direct supervision of a parent or legal guardian. We do not knowingly collect data from minors.</p>
 
@@ -112,14 +130,14 @@
 
 <footer class="footer">
   <div class="footer-inner">
-    <a href="./about.html" class="footer-link" data-i18n="nav_about">О расчёте</a>
+    <a href="./guide.html"   class="footer-link" data-i18n="nav_about">How it works</a>
     <span class="footer-sep">·</span>
-    <a href="./faq.html" class="footer-link" data-i18n="nav_faq">FAQ</a>
-    <span class="footer-sep">·</span>
-    <a href="./terms.html"  class="footer-link">Terms</a>
+    <a href="./about.html"   class="footer-link" data-i18n="nav_about_page">About</a>
     <span class="footer-sep">·</span>
     <a href="./privacy.html" class="footer-link">Privacy</a>
-    <div class="footer-copy" data-i18n="footer_copy">© 2026 insulin-calc.</div>
+    <span class="footer-sep">·</span>
+    <a href="./terms.html"   class="footer-link">Terms</a>
+    <div class="footer-copy" data-i18n="footer_copy">© 2026 insulo.app.</div>
   </div>
 </footer>
 

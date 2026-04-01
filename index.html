@@ -2,6 +2,15 @@
 <html lang="ru" data-theme="dark">
 <head>
 <meta charset="UTF-8">
+<style>
+/* v50: toggle fix — overrides any cached old styles */
+.toggle-pill{display:none !important}
+.unit-toggle{display:flex;position:relative;background:var(--surface2);border-radius:7px;border:0.5px solid var(--border);flex-shrink:0;overflow:hidden;padding:0 !important}
+.unit-btn{position:relative;z-index:1;flex:0 0 auto !important;font-family:var(--mono);font-size:11px;padding:4px 10px;border:none;background:none;color:var(--muted);cursor:pointer;font-weight:500;white-space:nowrap}
+.unit-btn.active{background:var(--surface);color:var(--text)}
+.unit-btn+.unit-btn{border-left:0.5px solid var(--border)}
+.glucose-label-row{display:flex !important;justify-content:space-between;align-items:center;width:100%;margin-bottom:4px}
+</style>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bolus Insulin Calculator — Free ICR & ISF Tool</title>
 <meta name="description" content="Free offline bolus insulin calculator. No account required. Calculate insulin dose by carbs (ICR) and blood glucose (ISF). Works on Android & iPhone.">
@@ -48,7 +57,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./style.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Insulo.app", "alternateName": ["Bolus Insulin Calculator", "Insulo", "Insulin Dose Calculator"], "url": "https://insulo.app", "applicationCategory": "HealthApplication", "applicationSubCategory": "Medical Calculator", "operatingSystem": "Android, iOS, Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Insulo.app is a free, offline-first progressive web app (PWA) that calculates bolus insulin doses using ICR (Insulin-to-Carb Ratio) and ISF (Insulin Sensitivity Factor). No registration required. Works without internet after first visit. Supports mmol/L and mg/dL. Available in 7 languages: English, Russian, German, French, Spanish, Belarusian, Chinese.", "featureList": ["Offline-first PWA — works without internet", "No registration or account required", "Bolus calculation using ICR and ISF", "Correction dose calculation", "Blood glucose unit conversion (mmol/L and mg/dL)", "Meal carbohydrate presets", "Calculation history (up to 20 entries)", "7 languages supported", "Install to home screen (PWA)"], "screenshot": "https://insulo.app/og-banner.png", "softwareVersion": "1.0", "datePublished": "2026-03-01", "inLanguage": ["en", "ru", "de", "fr", "es", "be", "zh"], "isAccessibleForFree": true, "creator": {"@type": "Person", "name": "DMN", "email": "info@insulo.app"}, "audience": {"@type": "MedicalAudience", "audienceType": "Patient", "healthCondition": {"@type": "MedicalCondition", "name": "Diabetes Mellitus, Type 1"}}, "keywords": "bolus insulin calculator, ICR calculator, ISF calculator, insulin dose calculator, type 1 diabetes, offline insulin calculator, free insulin calculator, carb ratio calculator", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://insulo.app/"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Insulo.app", "alternateName": ["Bolus Insulin Calculator", "Insulo", "Insulin Dose Calculator"], "url": "https://insulo.app", "applicationCategory": "Utilities", "applicationSubCategory": "Medical Calculator", "operatingSystem": "Android, iOS, Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Insulo.app is a free, offline-first progressive web app (PWA) that calculates bolus insulin doses using ICR (Insulin-to-Carb Ratio) and ISF (Insulin Sensitivity Factor). No registration required. Works without internet after first visit. Supports mmol/L and mg/dL. Available in 7 languages: English, Russian, German, French, Spanish, Belarusian, Chinese.", "featureList": ["Offline-first PWA — works without internet", "No registration or account required", "Bolus calculation using ICR and ISF", "Correction dose calculation", "Blood glucose unit conversion (mmol/L and mg/dL)", "Meal carbohydrate presets", "Calculation history (up to 20 entries)", "7 languages supported", "Install to home screen (PWA)"], "screenshot": "https://insulo.app/og-banner.png", "softwareVersion": "1.0", "datePublished": "2026-03-01", "inLanguage": ["en", "ru", "de", "fr", "es", "be", "zh"], "isAccessibleForFree": true, "creator": {"@type": "Person", "name": "DMN", "email": "info@insulo.app"}, "audience": {"@type": "MedicalAudience", "audienceType": "Patient", "healthCondition": {"@type": "MedicalCondition", "name": "Diabetes Mellitus, Type 1"}}, "keywords": "bolus insulin calculator, ICR calculator, ISF calculator, insulin dose calculator, type 1 diabetes, offline insulin calculator, free insulin calculator, carb ratio calculator", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://insulo.app/"}}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is ICR and how do I find mine?", "acceptedAnswer": {"@type": "Answer", "text": "ICR (Insulin-to-Carb Ratio) shows how many grams of carbs 1 unit of insulin covers. For example, ICR = 12 means 1 unit per every 12 g carbs.ICR is set individually by your endocrinologist. Typical range is 8–20. Never change ICR without consulting your doctor."}}, {"@type": "Question", "name": "What is ISF and why does it matter?", "acceptedAnswer": {"@type": "Answer", "text": "ISF (Insulin Sensitivity Factor) shows how much your glucose drops per 1 unit of insulin. ISF varies by time of day, physical activity, and other factors."}}, {"@type": "Question", "name": "What is the target glucose level?", "acceptedAnswer": {"@type": "Answer", "text": "The target is the glucose value the correction dose aims for. For most adults with T1D, this is 90–126 mg/dL (5.0–7.0 mmol/L). Your endocrinologist sets your personal target."}}, {"@type": "Question", "name": "Why is the dose rounded to 0.5?", "acceptedAnswer": {"@type": "Answer", "text": "Most insulin pens deliver in 0.5 or 1-unit increments. Rounding to 0.5 u. is a practical compromise between mathematical precision and device limitations."}}, {"@type": "Question", "name": "Blood glucose reference ranges", "acceptedAnswer": {"@type": "Answer", "text": "Below 70 mg/dL — hypoglycemia, requires immediate action70–140 mg/dL — normal range140–198 mg/dL — elevatedAbove 198 mg/dL — hyperglycemia"}}]}</script>
 <!-- AdSense: раскомментируйте после одобрения
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
@@ -303,12 +312,14 @@
 
 <footer class="footer">
   <div class="footer-inner">
-    <a href="./guide.html"   class="footer-link" data-i18n="nav_about">Guide</a>
+    <a href="./guide.html"   class="footer-link" data-i18n="nav_about">How it works</a>
+    <span class="footer-sep">·</span>
+    <a href="./about.html"   class="footer-link" data-i18n="nav_about_page">About</a>
+    <span class="footer-sep">·</span>
+    <a href="./privacy.html" class="footer-link">Privacy</a>
     <span class="footer-sep">·</span>
     <a href="./terms.html"   class="footer-link">Terms</a>
-    <span class="footer-sep">&middot;</span>
-    <a href="./privacy.html" class="footer-link">Privacy</a>
-    <div class="footer-copy" data-i18n="footer_copy">© 2026 insulin-calc.</div>
+    <div class="footer-copy" data-i18n="footer_copy">© 2026 insulo.app.</div>
   </div>
 </footer>
 

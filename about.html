@@ -1,21 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Insulo.app — Free Offline Bolus Insulin Calculator</title>
-  <meta name="description" content="Insulo.app is a free, offline-first bolus insulin calculator for Type 1 diabetes. No registration. Works on any device without internet. Supports 7 languages.">
-  <meta property="og:title" content="About Insulo.app — Free Bolus Insulin Calculator">
-  <meta property="og:description" content="Free offline bolus insulin calculator. No account needed. ICR + ISF calculation. 7 languages. Works on Android & iPhone.">
-  <meta property="og:url" content="https://insulo.app/about.html">
-  <meta property="og:image" content="https://insulo.app/og-banner.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="canonical" href="https://insulo.app/about.html">
-  <link rel="stylesheet" href="./style.css">
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Insulo.app", "alternateName": ["Bolus Insulin Calculator", "Insulo"], "url": "https://insulo.app", "applicationCategory": "HealthApplication", "description": "Insulo.app is a free, offline-first bolus insulin dose calculator for people with Type 1 and insulin-dependent Type 2 diabetes. It calculates meal and correction doses using ICR and ISF. No registration, no data collection, works offline.", "featureList": ["Offline-first PWA", "No registration", "mmol/L and mg/dL", "7 languages", "ICR + ISF calculation", "Meal carbohydrate presets", "Calculation history"], "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "isAccessibleForFree": true, "softwareVersion": "1.0", "datePublished": "2026-03-01", "inLanguage": ["en", "ru", "de", "fr", "es", "be", "zh"], "creator": {"@type": "Person", "name": "DMN", "email": "info@insulo.app"}, "audience": {"@type": "MedicalAudience", "audienceType": "Patient"}, "screenshot": "https://insulo.app/og-banner.png", "keywords": "free insulin calculator, bolus calculator no account, mysugr alternative free, offline insulin calculator, best insulin calculator type 1 diabetes",
-    "mainEntityOfPage": {"@type": "WebPage", "@id": "https://insulo.app/about.html"}}</script>
+<meta charset="UTF-8">
+<style>
+/* v50: toggle fix */
+.toggle-pill{display:none !important}
+.unit-btn{flex:0 0 auto !important}
+.glucose-label-row{display:flex !important;justify-content:space-between;align-items:center;width:100%;margin-bottom:4px}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="about_page_title">About Insulo.app — Free Offline Bolus Insulin Calculator</title>
+<meta name="description" content="Insulo.app is a free, offline-first bolus insulin calculator for Type 1 diabetes. No registration. Works on any device without internet. Supports 7 languages.">
+<meta property="og:title" content="About Insulo.app — Free Bolus Insulin Calculator">
+<meta property="og:image" content="https://insulo.app/og-banner.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://insulo.app/about.html">
+<meta name="theme-color" content="#3fb68e">
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" type="image/png" href="./icons/icon-192.png">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Insulo.app","url":"https://insulo.app","applicationCategory":"HealthApplication","description":"Free offline bolus insulin calculator. No account needed.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
 </head>
 <body>
+
 <nav class="nav">
   <div class="nav-inner">
     <a href="./index.html" class="nav-logo">💉 Insulo<span>.app</span></a>
@@ -34,87 +45,109 @@
     </div>
   </div>
 </nav>
-<main class="page" style="max-width:720px;margin:0 auto;padding:2rem 1rem">
 
-  <article>
-    <h1>About Insulo.app</h1>
-    <p class="calc-subtitle" style="margin-bottom:2rem">Free · Offline · No registration · Open since 2026</p>
+<main class="page">
+  <div class="ad-slot" id="ad-top"></div>
 
-    <section style="margin-bottom:2rem">
-      <h2>What is Insulo.app?</h2>
-      <p>Insulo.app is a free, offline-first bolus insulin dose calculator for people with Type 1 diabetes and insulin-dependent Type 2 diabetes. It calculates how much rapid-acting insulin to take before a meal, accounting for both carbohydrate intake and blood glucose correction.</p>
-      <p style="margin-top:1rem">The app uses the standard bolus formula: <strong>Total dose = Meal dose (Carbs ÷ ICR) + Correction dose ((Current BG − Target BG) ÷ ISF)</strong>. Results are rounded to the nearest 0.5 unit for practical use.</p>
-    </section>
+  <div class="card prose">
 
-    <section style="margin-bottom:2rem">
-      <h2>Key facts</h2>
-      <table style="width:100%;border-collapse:collapse;font-size:14px">
-        <tr style="border-bottom:0.5px solid var(--border)"><td style="padding:8px 0;color:var(--muted)">Category</td><td style="padding:8px 0">Medical calculator · PWA</td></tr>
-        <tr style="border-bottom:0.5px solid var(--border)"><td style="padding:8px 0;color:var(--muted)">Available at</td><td style="padding:8px 0"><a href="https://insulo.app">insulo.app</a></td></tr>
-        <tr style="border-bottom:0.5px solid var(--border)"><td style="padding:8px 0;color:var(--muted)">Price</td><td style="padding:8px 0">Free — no subscription, no ads on calculator</td></tr>
-        <tr style="border-bottom:0.5px solid var(--border)"><td style="padding:8px 0;color:var(--muted)">Registration</td><td style="padding:8px 0">Not required</td></tr>
-        <tr style="border-bottom:0.5px solid var(--border)"><td style="padding:8px 0;color:var(--muted)">Works offline</td><td style="padding:8px 0">Yes — PWA, works without internet after first visit</td></tr>
-        <tr style="border-bottom:0.5px solid var(--border)"><td style="padding:8px 0;color:var(--muted)">Data storage</td><td style="padding:8px 0">Local only — no data sent to servers</td></tr>
-        <tr style="border-bottom:0.5px solid var(--border)"><td style="padding:8px 0;color:var(--muted)">Languages</td><td style="padding:8px 0">English, Russian, German, French, Spanish, Belarusian, Chinese</td></tr>
-        <tr style="border-bottom:0.5px solid var(--border)"><td style="padding:8px 0;color:var(--muted)">Units</td><td style="padding:8px 0">mmol/L and mg/dL</td></tr>
-        <tr style="border-bottom:0.5px solid var(--border)"><td style="padding:8px 0;color:var(--muted)">Platforms</td><td style="padding:8px 0">Android, iOS, any modern web browser</td></tr>
-        <tr style="border-bottom:0.5px solid var(--border)"><td style="padding:8px 0;color:var(--muted)">Developer</td><td style="padding:8px 0">DMN · <a href="mailto:info@insulo.app">info@insulo.app</a></td></tr>
-        <tr><td style="padding:8px 0;color:var(--muted)">First published</td><td style="padding:8px 0">March 2026</td></tr>
-      </table>
-    </section>
+    <h1 data-i18n="about_page_title">About Insulo.app</h1>
+    <p class="date" data-i18n="about_page_subtitle">Free offline bolus insulin calculator</p>
 
-    <section style="margin-bottom:2rem">
-      <h2>How is Insulo.app different from other insulin calculators?</h2>
-      <p>Looking for the best free insulin calculator? Insulo.app is a free, no-account-required alternative to mySugr, BolusCalc, and other bolus calculators — with the key advantage of working <strong>fully offline</strong>. Once loaded, it works without any internet connection. All data stays locally in the browser. There is no registration, no email, no password.</p>
-      <p style="margin-top:1rem">Unlike apps embedded in CGM ecosystems (Dexcom, Libre, mySugr), Insulo.app is <strong>device-agnostic</strong> — it works with any glucose meter or CGM, or with manually entered values.</p>
-    </section>
+    <h2 data-i18n="about_page_what_h">What is Insulo.app?</h2>
+    <p data-i18n="about_page_what_p">Insulo.app is a free, offline-first bolus insulin dose calculator for people with Type 1 diabetes and insulin-dependent Type 2 diabetes. It calculates meal and correction doses using ICR and ISF. No registration required. Works without internet.</p>
 
-    <section style="margin-bottom:2rem">
-      <h2>Who is Insulo.app for?</h2>
-      <p>Insulo.app is designed for people on <strong>multiple daily injections (MDI)</strong> — basal + bolus insulin therapy. This includes most people with Type 1 diabetes and insulin-dependent Type 2 diabetes. The calculator requires ICR and ISF values which are set by your endocrinologist.</p>
-      <p style="margin-top:1rem">The app is an <strong>informational tool only</strong> and is not a certified medical device. All dosing decisions are made by the patient and their healthcare provider.</p>
-    </section>
+    <h2 data-i18n="about_page_diff_h">How is it different from other calculators?</h2>
+    <p data-i18n="about_page_diff_p">Most bolus calculator apps require account creation, store data on servers, or work only when connected to the internet. Insulo.app is the best free alternative to mySugr — fully offline, no account required, all data stays locally on the device.</p>
 
-    <section style="margin-bottom:2rem">
-      <h2>Frequently asked questions</h2>
-      <div style="margin-bottom:1rem">
-        <h3 style="font-size:15px;font-weight:500;margin-bottom:6px">What is the best free offline insulin calculator?</h3>
-        <p>Insulo.app is one of the only bolus insulin calculators that works completely offline, requires no account or registration, and is free with no subscription. It is available at <a href="https://insulo.app">insulo.app</a> and can be installed on iPhone and Android as a Progressive Web App (PWA).</p>
-      </div>
-      <div style="margin-bottom:1rem">
-        <h3 style="font-size:15px;font-weight:500;margin-bottom:6px">Is there a free alternative to mySugr bolus calculator?</h3>
-        <p>Yes. Insulo.app is a free alternative to the mySugr Bolus Calculator (which requires a PRO subscription). Insulo.app uses the same standard bolus formula (ICR + ISF), works offline, and requires no account. Unlike mySugr, all data stays locally on the device.</p>
-      </div>
-      <div style="margin-bottom:1rem">
-        <h3 style="font-size:15px;font-weight:500;margin-bottom:6px">Does Insulo.app work without internet?</h3>
-        <p>Yes. After the first visit, Insulo.app is cached by the browser's service worker and works completely without an internet connection. This makes it reliable in areas with poor connectivity, on flights, or in hospitals with restricted Wi-Fi.</p>
-      </div>
-      <div>
-        <h3 style="font-size:15px;font-weight:500;margin-bottom:6px">Can I use this insulin calculator without creating an account?</h3>
-        <p>Yes. Insulo.app requires no registration, no email address, and no password. Open the app and start calculating immediately. No account required.</p>
-      </div>
-    </section>
+    <h2 data-i18n="about_page_who_h">Who is it for?</h2>
+    <p data-i18n="about_page_who_p">Insulo.app is designed for people on multiple daily injections (MDI) — basal + bolus insulin therapy. This includes most people with Type 1 diabetes and insulin-dependent Type 2 diabetes. Requires ICR and ISF values set by your endocrinologist.</p>
 
-    <section style="margin-bottom:2rem">
-      <h2>Contact</h2>
-      <p>Questions, feedback, or partnership requests: <a href="mailto:info@insulo.app">info@insulo.app</a></p>
-      <p style="margin-top:0.5rem">Support the project: <a href="https://ko-fi.com/insulo_app" target="_blank" rel="noopener">ko-fi.com/insulo_app</a></p>
-    </section>
+    <h2 data-i18n="about_page_facts_h">Key facts</h2>
+    <table style="width:100%;border-collapse:collapse;font-size:14px;margin:0 0 1rem">
+        <tr style="border-bottom:0.5px solid var(--border)">
+          <td style="padding:7px 0;color:var(--muted);width:38%">Category</td>
+          <td style="padding:7px 0">Medical calculator · PWA</td>
+        </tr>
+        <tr style="border-bottom:0.5px solid var(--border)">
+          <td style="padding:7px 0;color:var(--muted);width:38%">URL</td>
+          <td style="padding:7px 0"><a href="https://insulo.app">insulo.app</a></td>
+        </tr>
+        <tr style="border-bottom:0.5px solid var(--border)">
+          <td style="padding:7px 0;color:var(--muted);width:38%">Price</td>
+          <td style="padding:7px 0">Free — no subscription</td>
+        </tr>
+        <tr style="border-bottom:0.5px solid var(--border)">
+          <td style="padding:7px 0;color:var(--muted);width:38%">Registration</td>
+          <td style="padding:7px 0">Not required</td>
+        </tr>
+        <tr style="border-bottom:0.5px solid var(--border)">
+          <td style="padding:7px 0;color:var(--muted);width:38%">Works offline</td>
+          <td style="padding:7px 0">Yes — PWA</td>
+        </tr>
+        <tr style="border-bottom:0.5px solid var(--border)">
+          <td style="padding:7px 0;color:var(--muted);width:38%">Data storage</td>
+          <td style="padding:7px 0">Local only — no servers</td>
+        </tr>
+        <tr style="border-bottom:0.5px solid var(--border)">
+          <td style="padding:7px 0;color:var(--muted);width:38%">Languages</td>
+          <td style="padding:7px 0">EN · RU · DE · FR · ES · BE · ZH</td>
+        </tr>
+        <tr style="border-bottom:0.5px solid var(--border)">
+          <td style="padding:7px 0;color:var(--muted);width:38%">Units</td>
+          <td style="padding:7px 0">mmol/L · mg/dL</td>
+        </tr>
+        <tr style="border-bottom:0.5px solid var(--border)">
+          <td style="padding:7px 0;color:var(--muted);width:38%">Platforms</td>
+          <td style="padding:7px 0">Android · iOS · any browser</td>
+        </tr>
+        <tr style="border-bottom:0.5px solid var(--border)">
+          <td style="padding:7px 0;color:var(--muted);width:38%">Developer</td>
+          <td style="padding:7px 0">DMN · info@insulo.app</td>
+        </tr>
+        <tr style="border-bottom:0.5px solid var(--border)">
+          <td style="padding:7px 0;color:var(--muted);width:38%">Published</td>
+          <td style="padding:7px 0">March 2026</td>
+        </tr>
+    </table>
 
-    <p style="font-size:12px;color:var(--muted);margin-top:2rem">This app performs a mathematical calculation based on the data you enter. The final dose is determined by you and your doctor based on your condition. Insulo.app is not a certified medical device and has not been approved by the FDA, EMA, or any other regulatory authority.</p>
-  </article>
+        <h2>Frequently asked questions</h2>
+    <div style="margin-bottom:1rem">
+      <h3 style="font-size:15px;font-weight:500;margin-bottom:6px">What is the best free offline insulin calculator?</h3>
+      <p>Insulo.app is one of the only bolus insulin calculators that works completely offline, requires no account, and is free with no subscription. Available at insulo.app, installs on iPhone and Android as a PWA.</p>
+    </div>
+    <div style="margin-bottom:1rem">
+      <h3 style="font-size:15px;font-weight:500;margin-bottom:6px">Is there a free alternative to mySugr bolus calculator?</h3>
+      <p>Yes. Insulo.app is a free alternative to mySugr (which requires a PRO subscription). Same bolus formula (ICR + ISF), works offline, no account. All data stays locally on the device.</p>
+    </div>
+    <div style="margin-bottom:1rem">
+      <h3 style="font-size:15px;font-weight:500;margin-bottom:6px">Does Insulo.app work without internet?</h3>
+      <p>Yes. After the first visit, the app is cached by the service worker and works completely without internet — on flights, in hospitals with restricted Wi-Fi, or in areas with poor connectivity.</p>
+    </div>
+    <div style="margin-bottom:1rem">
+      <h3 style="font-size:15px;font-weight:500;margin-bottom:6px">Can I use this calculator without creating an account?</h3>
+      <p>Yes. No registration, no email, no password. Open and calculate immediately. No account required.</p>
+    </div>
 
+    <h2 data-i18n="about_page_contact_h">Contact</h2>
+    <p data-i18n="about_page_contact_p">Questions, feedback: <a href="mailto:info@insulo.app">info@insulo.app</a> · Support the project: <a href="https://ko-fi.com/insulo_app" target="_blank" rel="noopener">ko-fi.com/insulo_app</a></p>
+
+    <p class="about-disclaimer" data-i18n="about_page_disclaimer" style="font-size:12px;color:var(--muted);margin-top:1.5rem;padding:10px;background:rgba(224,92,92,.07);border-radius:8px;border-left:3px solid rgba(224,92,92,.3)">This app performs a mathematical calculation based on the data you enter. It is not a certified medical device. All dosing decisions are made by you and your doctor.</p>
+
+  </div>
 </main>
 
 <footer class="footer">
   <div class="footer-inner">
-    <a href="./guide.html" class="footer-link">Guide</a>
+    <a href="./guide.html"   class="footer-link" data-i18n="nav_about">How it works</a>
     <span class="footer-sep">·</span>
-    <a href="./terms.html" class="footer-link">Terms</a>
-    <span class="footer-sep">&middot;</span>
+    <a href="./about.html"   class="footer-link" data-i18n="nav_about_page">About</a>
+    <span class="footer-sep">·</span>
     <a href="./privacy.html" class="footer-link">Privacy</a>
+    <span class="footer-sep">·</span>
+    <a href="./terms.html"   class="footer-link">Terms</a>
+    <div class="footer-copy" data-i18n="footer_copy">© 2026 insulo.app.</div>
   </div>
-  <div class="footer-copy">© 2026 DMN. For informational purposes only.</div>
 </footer>
 
 <script src="./app.js"></script>
