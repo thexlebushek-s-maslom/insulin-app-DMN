@@ -1731,9 +1731,6 @@ function clearAllErrors() {
 document.addEventListener('DOMContentLoaded', () => {
   applyTheme(currentTheme);
 
-  const themeBtn = document.getElementById('theme-toggle');
-  if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
-
   const langSel = document.getElementById('lang-select');
   if (langSel) langSel.addEventListener('change', e => applyLang(e.target.value));
 
