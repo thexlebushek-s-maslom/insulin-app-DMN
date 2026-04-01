@@ -59,13 +59,68 @@
   ]
 }
 </script>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-  {"@type":"Question","name":"What is ICR?","acceptedAnswer":{"@type":"Answer","text":"ICR (Insulin-to-Carb Ratio) shows how many grams of carbohydrates 1 unit of insulin covers."}},
-  {"@type":"Question","name":"What is ISF?","acceptedAnswer":{"@type":"Answer","text":"ISF (Insulin Sensitivity Factor) shows how much blood glucose drops per 1 unit of insulin."}},
-  {"@type":"Question","name":"Does the app work offline?","acceptedAnswer":{"@type":"Answer","text":"Yes. The app is cached on first load and works fully offline."}}
-]}
-</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is ICR and how do I find mine?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ICR (Insulin-to-Carb Ratio) shows how many grams of carbs 1 unit of insulin covers. For example, ICR = 12 means 1 unit per every 12 g carbs.ICR is set individually by your endocrinologist. Typical range is 8–20. Never change ICR without consulting your doctor."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is ISF and why does it matter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ISF (Insulin Sensitivity Factor) shows how much your glucose drops per 1 unit of insulin. ISF varies by time of day, physical activity, and other factors."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the target glucose level?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The target is the glucose value the correction dose aims for. For most adults with T1D, this is 90–126 mg/dL (5.0–7.0 mmol/L). Your endocrinologist sets your personal target."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is the dose rounded to 0.5?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most insulin pens deliver in 0.5 or 1-unit increments. Rounding to 0.5 u. is a practical compromise between mathematical precision and device limitations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Blood glucose reference ranges",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Below 70 mg/dL — hypoglycemia, requires immediate action70–140 mg/dL — normal range140–198 mg/dL — elevatedAbove 198 mg/dL — hyperglycemia"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the calculator show 0 or a negative dose?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This happens when glucose is already below target. The correction dose is negative, offsetting the meal dose. No correction insulin is needed — consult your doctor."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often should ICR and ISF be reviewed?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every 3–6 months, and also after significant changes in weight, diet, or activity level."
+      }
+    }
+  ]
+}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script async src="https://plausible.io/js/pa-XfDbZ87M0THBbcQYJgI4d.js"></script>
 <script>
@@ -151,8 +206,8 @@
     </ul>
 
 
-    <h2>What affects insulin sensitivity</h2>
-    <p>Several factors can change how sensitive you are to insulin on any given day. <strong>Physical activity</strong> increases sensitivity for 24–48 hours after exercise, meaning you may need less insulin. <strong>Illness or infection</strong> typically reduces sensitivity, increasing insulin requirements. <strong>Stress hormones</strong> such as cortisol and adrenaline counteract insulin, making glucose management harder during emotionally or physically demanding periods. <strong>Alcohol</strong> can cause delayed hypoglycemia hours after consumption. The <strong>menstrual cycle</strong> also affects sensitivity — many people with T1D need dose adjustments during specific phases. These are the key reasons why no calculator can replace clinical judgment, and why your ICR and ISF values should be reviewed regularly with your endocrinologist.</p>
+    <h2 data-i18n="about_h_sensitivity"></h2>
+    <p data-i18n="about_p_sensitivity"></p>
 
     <p style="font-size:12px;padding:10px;background:rgba(224,92,92,.07);border-radius:8px;border-left:3px solid var(--danger);" data-i18n="about_disclaimer_text">
       <strong>⚠️ Important:</strong> This calculator performs mathematical computation only. It does not account for active insulin on board (IOB), glycemic index, physical activity, illness, or stress. All dosing decisions must be made with your healthcare provider. This is not a certified medical device.
