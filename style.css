@@ -355,3 +355,9 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 
 #glucose-badge{display:none !important}
 #glucose-zone{display:none !important}
+
+/* Ko-fi toast — light theme fix */
+[data-theme="light"] .kofi-toast-inner{background:rgba(255,255,255,.97);border-color:rgba(232,168,76,.3);box-shadow:0 -4px 24px rgba(0,0,0,.12)}
+[data-theme="light"] .kofi-toast-title{color:var(--text)}
+[data-theme="light"] .kofi-toast-sub{color:var(--muted)}
+[data-theme="light"] .kofi-toast-dismiss{color:var(--muted)}
