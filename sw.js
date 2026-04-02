@@ -1,5 +1,5 @@
 // sw.js — Service Worker v4
-const CACHE = 'insulin-v62';
+const CACHE = 'insulin-v63';
 const ASSETS = [
   './',
   './index.html',
